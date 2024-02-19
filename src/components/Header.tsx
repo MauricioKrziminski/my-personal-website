@@ -43,7 +43,7 @@ export function Header() {
   return (
     <>
       <header
-        className={`fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-gray-200 bg-white/70 px-6 shadow-xl backdrop-blur-sm transition-all duration-300 lg:px-24 ${isShrink ? 'py-4 lg:py-6' : 'py-6 lg:py-8'}`}
+        className={`fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-gray-200 bg-white/70 px-6 shadow-xl backdrop-blur-sm transition-all duration-300 lg:px-24 ${isShrink ? 'py-4 lg:py-4' : 'py-6 lg:py-8'}`}
       >
         <div className="lg:hidden">
           <button onClick={() => setIsOpen(!isOpen)}>
@@ -66,10 +66,10 @@ export function Header() {
 
         <div className="flex items-center">
           <h2 className="hidden cursor-default text-xl font-semibold text-customGray lg:block lg:text-3xl">
-            <span className="text-customOrange">Mauricio</span> Krziminski
+            <span className="text-customGray">Mauricio</span> Krziminski
           </h2>
           <h2 className="cursor-default pr-4 text-2xl font-semibold text-customGray lg:hidden lg:text-3xl">
-            <span className="text-customOrange">M</span>K
+            <span className="text-customGray">M</span>K
           </h2>
         </div>
 
@@ -77,40 +77,40 @@ export function Header() {
           <Link
             to="home"
             smooth={true}
-            duration={100}
-            className="mr-10 py-2 text-lg font-medium text-customGray transition-colors duration-300 hover:text-customOrange"
+            duration={200}
+            className="mr-10 py-2 text-lg font-medium text-customGray transition-colors duration-300 hover:text-white"
           >
             Home
           </Link>
           <Link
             to="about"
             smooth={true}
-            duration={100}
-            className="mr-10 py-2 text-lg font-medium text-customGray transition-colors duration-300 hover:text-customOrange"
+            duration={200}
+            className="mr-10 py-2 text-lg font-medium text-customGray transition-colors duration-300 hover:text-white"
           >
             About
           </Link>
           <Link
             to="projects"
             smooth={true}
-            duration={100}
-            className="mr-10 py-2 text-lg font-medium text-customGray transition-colors duration-300 hover:text-customOrange"
+            duration={200}
+            className="mr-10 py-2 text-lg font-medium text-customGray transition-colors duration-300 hover:text-white"
           >
             Project
           </Link>
           <Link
             to="blog"
             smooth={true}
-            duration={100}
-            className="mr-10 py-2 text-lg font-medium text-customGray transition-colors duration-300 hover:text-customOrange"
+            duration={200}
+            className="mr-10 py-2 text-lg font-medium text-customGray transition-colors duration-300 hover:text-white"
           >
             Blog
           </Link>
           <Link
             to="contact"
             smooth={true}
-            duration={100}
-            className="py-2 text-lg font-medium text-customGray transition-colors duration-300 hover:text-customOrange"
+            duration={200}
+            className="py-2 text-lg font-medium text-customGray transition-colors duration-300 hover:text-white"
           >
             Contact
           </Link>
@@ -118,7 +118,7 @@ export function Header() {
         <a
           href="/CV-MauricioKrziminski.pdf"
           download="MauricioKrziminski-CV.pdf"
-          className="hidden rounded-extra border-2 border-customOrange bg-customOrange px-6 py-2 font-medium text-white transition-all duration-300 hover:bg-transparent hover:text-customOrange lg:inline-block"
+          className="hidden rounded-extra border-2 border-customGray bg-customGray px-6 py-2 font-medium text-white transition-all duration-300 hover:bg-transparent hover:text-customGray lg:inline-block"
         >
           Download CV
         </a>
@@ -136,7 +136,7 @@ export function Header() {
             smooth={true}
             duration={100}
             onClick={closeMenu}
-            className="mx-auto px-4 py-4 text-lg font-medium text-customGray transition-colors duration-300 hover:text-customOrange"
+            className="mx-auto px-4 py-4 text-lg font-medium text-customGray transition-colors duration-300 hover:text-white"
           >
             Home
           </Link>
@@ -145,7 +145,7 @@ export function Header() {
             smooth={true}
             duration={100}
             onClick={closeMenu}
-            className="mx-auto px-4 py-4 text-lg font-medium text-customGray transition-colors duration-300 hover:text-customOrange"
+            className="mx-auto px-4 py-4 text-lg font-medium text-customGray transition-colors duration-300 hover:text-white"
           >
             About
           </Link>
@@ -154,7 +154,7 @@ export function Header() {
             smooth={true}
             duration={100}
             onClick={closeMenu}
-            className="mx-auto px-4 py-4 text-lg font-medium text-customGray transition-colors duration-300 hover:text-customOrange"
+            className="mx-auto px-4 py-4 text-lg font-medium text-customGray transition-colors duration-300 hover:text-white"
           >
             Project
           </Link>
@@ -163,7 +163,7 @@ export function Header() {
             smooth={true}
             duration={100}
             onClick={closeMenu}
-            className="mx-auto px-4 py-4 text-lg font-medium text-customGray transition-colors duration-300 hover:text-customOrange"
+            className="mx-auto px-4 py-4 text-lg font-medium text-customGray transition-colors duration-300 hover:text-white"
           >
             Blog
           </Link>
@@ -172,14 +172,14 @@ export function Header() {
             smooth={true}
             duration={100}
             onClick={closeMenu}
-            className="mx-auto px-4 py-4 text-lg font-medium text-customGray transition-colors duration-300 hover:text-customOrange"
+            className="mx-auto px-4 py-4 text-lg font-medium text-customGray transition-colors duration-300 hover:text-white"
           >
             Contact
           </Link>
           <a
             href="/CV-MauricioKrziminski.pdf"
             download="MauricioKrziminski-CV.pdf"
-            className="mt-4 rounded-extra border-2 border-customOrange bg-customOrange py-2 text-center text-sm font-medium text-white transition-all duration-300 hover:bg-transparent hover:text-customOrange"
+            className="mt-4 rounded-extra border-2 border-customOrange bg-customGray py-2 text-center text-sm font-medium text-white transition-all duration-300 hover:bg-transparent hover:text-white"
           >
             Download CV
           </a>

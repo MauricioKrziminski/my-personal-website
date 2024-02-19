@@ -7,3 +7,29 @@
 html {
   scroll-behavior: smooth;
 }
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: white; }
+}
+
+.typewriter h4 {
+  display: inline-block;
+  overflow: hidden;
+  border-right: .15em solid transparent;
+  white-space: nowrap;
+  width: 0;
+  animation: typing 4s steps(40, end) 1s forwards,
+             blink-caret .75s step-end infinite;
+  animation-delay: 0s, 5s;            
+}
+
+.typewriter h4::after {
+  content: '';
+  animation: none;
+}

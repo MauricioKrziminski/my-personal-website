@@ -1,4 +1,5 @@
 import { Header } from '@/components/Header'
+import { About } from '@/components/Sections/About'
 import Home from '@/components/Sections/Home'
 import { Projects } from '@/components/Sections/Projects'
 
@@ -11,9 +12,9 @@ export default function Page() {
           <Home />
         </section>
 
-        {/* <section id="about">
+        <section id="about">
           <About />
-        </section> */}
+        </section>
 
         <section id="projects">
           <Projects />
