@@ -25,7 +25,7 @@ module.exports = {
         '300': '300ms',
       },
       boxShadow: {
-        glow: '0 0 10px 12px rgba(0, 255, 255, 0.5)',
+        glow: '0 0 12px 14px rgba(29, 78, 216, 0.6)',
       },
     },
   },
