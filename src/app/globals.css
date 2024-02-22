@@ -8,28 +8,60 @@ html {
   scroll-behavior: smooth;
 }
 
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes blink {
-  from, to { border-color: transparent; }
-  50% { border-color: white; }
-}
-
-.typewriter h4 {
+.typewriter {
   display: inline-block;
   overflow: hidden;
-  border-right: .15em solid transparent;
   white-space: nowrap;
-  width: 0;
-  animation: typing 4s steps(40, end) 1s forwards,
-             blink-caret .75s step-end infinite;
-  animation-delay: 0s, 5s;            
+  position: relative;
+  padding-right: 0.3em;
 }
 
-.typewriter h4::after {
+.typewriter::after {
   content: '';
-  animation: none;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  height: 1.5em;
+  width: 0.2em;
+  background-color: white;
+  animation: blink 0.75s step-end infinite;
+}
+
+@keyframes waveAnimation {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(14deg); }
+  40% { transform: rotate(-8deg); }
+  60% { transform: rotate(14deg); }
+  80% { transform: rotate(-4deg); }
+}
+
+.wave {
+  display: inline-block;
+  animation: waveAnimation 1.5s ease-in-out 0s infinite;
+}
+
+.item-tech {
+  transition: background-color 0.3s ease;
+}
+
+.img-tech {
+  transition: transform 0.3s ease;
+}
+
+.tech-name {
+  transition: transform 0.3s ease;
+}
+
+.status {
+  position: absolute;
+  /* bottom: -20%;  */
+  left: 0%;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease; 
+}
+
+.item-tech:hover .status {
+  opacity: 1;
 }

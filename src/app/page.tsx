@@ -5,7 +5,7 @@ import { Projects } from '@/components/Sections/Projects'
 
 export default function Page() {
   return (
-    <div className="font-poppins">
+    <div>
       <Header />
       <main>
         <section id="home">
