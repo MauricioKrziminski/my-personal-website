@@ -12,8 +12,8 @@ export function HomePage() {
   const [isDeleting, setIsDeleting] = useState(false)
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const words = ['Web Developer', 'Full Stack Developer', 'Informatics Student']
-  const typingSpeed = 150
-  const deletingSpeed = 150
+  const typingSpeed = 170
+  const deletingSpeed = 100
 
   useEffect(() => {
     const handleTyping = () => {
@@ -43,10 +43,11 @@ export function HomePage() {
   }, [animatedText, isDeleting, currentWordIndex])
 
   const slideInRightVariants = {
-    hidden: { x: 400, opacity: 0 },
+    hidden: { x: '100%', opacity: 0, scale: 0.95 },
     visible: (i: number) => ({
       x: 0,
       opacity: 1,
+      scale: 1,
       transition: {
         delay: i * 0.1,
         duration: 0.7,
@@ -55,10 +56,11 @@ export function HomePage() {
   }
 
   const slideInTopVariants = {
-    hidden: { y: 60, opacity: 0 },
+    hidden: { y: '100%', opacity: 0, scale: 0.95 },
     visible: (i: number) => ({
       y: 0,
       opacity: 1,
+      scale: 1,
       transition: {
         delay: i * 0.1,
         duration: 0.7,
@@ -67,10 +69,11 @@ export function HomePage() {
   }
 
   const slideInLeftVariants = {
-    hidden: { x: -150, opacity: 0 },
+    hidden: { x: '-100%', opacity: 0, scale: 0.95 },
     visible: (i: number) => ({
       x: 0,
       opacity: 1,
+      scale: 1,
       transition: {
         delay: i * 0.1,
         duration: 0.7,
@@ -78,20 +81,36 @@ export function HomePage() {
     }),
   }
 
-  const { ref, inView } = useInView({
+  const { ref: ref1, inView: inView1 } = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  })
+  const { ref: ref2, inView: inView2 } = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  })
+  const { ref: ref3, inView: inView3 } = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  })
+  const { ref: ref4, inView: inView4 } = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  })
+  const { ref: ref5, inView: inView5 } = useInView({
     triggerOnce: false,
     threshold: 0.1,
   })
 
   return (
-    <div className="flex h-screen w-full items-center justify-center bg-zinc-800">
+    <div className="flex h-screen w-full items-center justify-center overflow-x-hidden bg-zinc-800">
       <section className="flex w-full max-w-4xl flex-col items-center justify-center px-6 text-center lg:flex-row-reverse lg:px-24 lg:text-left">
         <div className="space-y-4 text-white">
           <div className="text-center lg:text-left">
             <motion.div
-              ref={ref}
+              ref={ref1}
               initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              animate={inView1 ? 'visible' : 'hidden'}
               variants={slideInTopVariants}
             >
               <p className="text-xl text-blue-700">Hello, I'm</p>
@@ -100,9 +119,9 @@ export function HomePage() {
               </h1>
             </motion.div>
             <motion.div
-              ref={ref}
+              ref={ref2}
               initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              animate={inView2 ? 'visible' : 'hidden'}
               variants={slideInTopVariants}
             >
               <div
@@ -115,9 +134,9 @@ export function HomePage() {
               </div>
             </motion.div>
             <motion.div
-              ref={ref}
+              ref={ref3}
               initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              animate={inView3 ? 'visible' : 'hidden'}
               variants={slideInLeftVariants}
             >
               <p className="fade-in-from-left mb-24 lg:mb-0">
@@ -126,9 +145,9 @@ export function HomePage() {
               </p>
             </motion.div>
             <motion.div
-              ref={ref}
+              ref={ref4}
               initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              animate={inView4 ? 'visible' : 'hidden'}
               variants={slideInLeftVariants}
             >
               <div className="mt-14 flex justify-center space-x-6 lg:justify-start">
@@ -158,9 +177,9 @@ export function HomePage() {
         </div>
         <div className="order-first mb-14 md:mt-0 lg:ml-20 lg:mt-10">
           <motion.div
-            ref={ref}
+            ref={ref5}
             initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
+            animate={inView5 ? 'visible' : 'hidden'}
             variants={slideInRightVariants}
           >
             <div className="flex h-80 w-80 scale-110 items-center justify-center overflow-hidden rounded-full border-3 border-blue-700 shadow-glow transition-transform duration-300 hover:scale-125 md:h-96 md:w-96">

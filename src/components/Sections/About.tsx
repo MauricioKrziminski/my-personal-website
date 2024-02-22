@@ -135,34 +135,11 @@ export function About() {
   }
 
   const fadeInBottomVariants = {
-    hidden: { y: 250, opacity: 0 },
+    hidden: { y: '100%', opacity: 0, scale: 0.95 },
     visible: (i: number) => ({
       y: 0,
       opacity: 1,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.4,
-      },
-    }),
-  }
-
-  const fadeInTopVariants = {
-    hidden: { y: -40, opacity: 0 },
-    visible: (i: number) => ({
-      y: 0,
-      opacity: 1,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.4,
-      },
-    }),
-  }
-
-  const slideInRightVariants = {
-    hidden: { x: 200, opacity: 0 },
-    visible: (i: number) => ({
-      x: 0,
-      opacity: 1,
+      scale: 1,
       transition: {
         delay: i * 0.1,
         duration: 0.7,
@@ -170,21 +147,59 @@ export function About() {
     }),
   }
 
-  const { ref, inView } = useInView({
+  const fadeInTopVariants = {
+    hidden: { y: '-200%', opacity: 0, scale: 0.95 },
+    visible: (i: number) => ({
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.7,
+      },
+    }),
+  }
+
+  const slideInRightVariants = {
+    hidden: { x: '90%', opacity: 0, scale: 0.95 },
+    visible: (i: number) => ({
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.7,
+      },
+    }),
+  }
+
+  const { ref: ref1, inView: inView1 } = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  })
+  const { ref: ref2, inView: inView2 } = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  })
+  const { ref: ref3, inView: inView3 } = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  })
+  const { ref: ref4, inView: inView4 } = useInView({
     triggerOnce: false,
     threshold: 0.1,
   })
 
   return (
-    <div className="relative mx-auto flex max-w-full flex-col bg-zinc-950">
+    <div className="relative mx-auto flex max-w-full flex-col overflow-x-hidden bg-zinc-950">
       <div className="mb-5 mt-14 flex max-w-7xl items-center justify-center rounded-3xl border border-[#383838] bg-[#1e1e1f] px-5 py-5 text-left text-white md:px-12 md:py-10 lg:mx-96">
         <article data-page="about">
           <header>
             <motion.div
-              ref={ref}
+              ref={ref1}
               variants={fadeInTopVariants}
               initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              animate={inView1 ? 'visible' : 'hidden'}
             >
               <div className="mb-5 flex items-center text-2xl font-bold text-white">
                 About Me
@@ -195,10 +210,10 @@ export function About() {
 
           <section className="md:justify-left flex flex-col gap-4 text-justify text-sm md:flex-row md:items-center md:gap-8 md:text-lg">
             <motion.div
-              ref={ref}
+              ref={ref2}
               variants={fadeInBottomVariants}
               initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              animate={inView2 ? 'visible' : 'hidden'}
             >
               <div className="ml-10 flex h-72 w-72 items-center justify-center overflow-hidden rounded-full transition-transform duration-300 md:h-80 md:w-80 lg:ml-0">
                 <Image
@@ -215,10 +230,10 @@ export function About() {
             </motion.div>
             <div className="md:w-7/12">
               <motion.div
-                ref={ref}
+                ref={ref3}
                 variants={slideInRightVariants}
                 initial="hidden"
-                animate={inView ? 'visible' : 'hidden'}
+                animate={inView3 ? 'visible' : 'hidden'}
               >
                 <p className="mb-3 md:mb-7">
                   Hi everyone! My name is Mauricio Krziminski. I'm a web
@@ -241,13 +256,13 @@ export function About() {
         <article data-page="about">
           <header>
             <motion.div
-              ref={ref}
+              ref={ref4}
               variants={fadeInTopVariants}
               initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              animate={inView4 ? 'visible' : 'hidden'}
             >
               <div className="mb-5 flex items-center text-2xl font-bold text-white">
-                <div className="0 h-[2px] w-10 bg-blue-700 md:w-20"></div>
+                <div className="h-[2px] w-10 bg-blue-700 md:w-20"></div>
                 &nbsp; Skills
               </div>
             </motion.div>
