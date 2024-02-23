@@ -55,11 +55,17 @@ html {
 
 .status {
   position: absolute;
-  /* bottom: -20%;  */
+  bottom: -20%;
   left: 0%;
   white-space: nowrap;
   opacity: 0;
-  transition: opacity 0.3s ease; 
+  transition: opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .status {
+    bottom: -10%;
+  }
 }
 
 .item-tech:hover .status {
