@@ -7,7 +7,7 @@ import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
 import {
   slideInTopVariants,
-  slideInRightVariants,
+  // slideInRightVariants,
 } from '../Animations/animationVariants'
 import { tech, tools } from '../TechToolsData'
 import TechToolItem from '../TechToolItem'
@@ -32,6 +32,18 @@ export function About() {
       y: 0,
       opacity: 1,
       scale: 1,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.7,
+      },
+    }),
+  }
+
+  const slideInRightVariants = {
+    hidden: { x: 200, opacity: 0 },
+    visible: (i: number) => ({
+      x: 0,
+      opacity: 1,
       transition: {
         delay: i * 0.1,
         duration: 0.7,
