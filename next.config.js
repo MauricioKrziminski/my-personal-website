@@ -1,4 +1,7 @@
 module.exports = {
-  output: 'export',
+  start: 'next start',
   distDir: 'build',
+  images: {
+    unoptimized: true,
+  },
 }
