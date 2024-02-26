@@ -130,7 +130,7 @@ export function About() {
         </article>
       </div>
 
-      <div className="mx-3 px-5 py-5 text-left text-white md:px-12 md:py-10 lg:mx-96 xl:mx-52">
+      <div className="mx-3 px-5 py-5 text-left text-white md:px-12 md:py-10 lg:mx-96 xl:mx-44">
         <article data-page="about">
           <header>
             <motion.div
