@@ -2,6 +2,10 @@ module.exports = {
   content: ['./src/**/*.tsx'],
   theme: {
     extend: {
+      screens: {
+        'custom-lg': '1680px',
+        'custom-xl': '1920px',
+      },
       keyframes: {
         blink: {
           'from, to': { opacity: '1' },
