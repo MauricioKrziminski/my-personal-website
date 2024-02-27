@@ -69,8 +69,8 @@ export function About() {
   })
 
   return (
-    <div className="relative mx-auto flex max-w-full flex-col overflow-x-hidden bg-zinc-950">
-      <div className="mb-5 mt-14 flex max-w-7xl items-center justify-center rounded-3xl border border-[#383838] bg-[#1e1e1f] px-5 py-5 text-left text-white md:px-12 md:py-10 lg:mx-96 xl:mx-52">
+    <div className="relative mx-auto flex max-w-full flex-col overflow-x-hidden bg-zinc-950 px-2">
+      <div className="mb-5 mt-14 flex max-w-7xl items-center justify-center rounded-3xl border border-[#383838] bg-[#1e1e1f] px-5 py-5 text-left text-white md:px-12 md:py-10 xl:mx-auto">
         <article data-page="about">
           <header>
             <motion.div
@@ -130,7 +130,7 @@ export function About() {
         </article>
       </div>
 
-      <div className="mx-3 px-5 py-5 text-left text-white md:px-12 md:py-10 lg:mx-96 xl:mx-52">
+      <div className="mx-3 px-2 py-5 text-left text-white md:px-12 md:py-10 custom-lg:mx-44 custom-xl:mx-72">
         <article data-page="about">
           <header>
             <motion.div
