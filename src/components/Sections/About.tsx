@@ -5,10 +5,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
-import {
-  slideInTopVariants,
-  // slideInRightVariants,
-} from '../Animations/animationVariants'
+import { slideInTopVariants } from '../Animations/animationVariants'
 import { tech, tools } from '../TechToolsData'
 import TechToolItem from '../TechToolItem'
 
@@ -130,7 +127,7 @@ export function About() {
         </article>
       </div>
 
-      <div className="custom-xl:mx-72 custom-lg:mx-44 mx-3 px-2 py-5 text-left text-white md:px-12 md:py-10">
+      <div className="mx-3 px-2 py-5 text-left text-white md:px-12 md:py-10 custom-lg:mx-44 custom-xl:mx-72">
         <article data-page="about">
           <header>
             <motion.div
