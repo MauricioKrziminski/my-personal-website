@@ -100,7 +100,7 @@ export function HomePage() {
             </motion.div>
           </div>
         </div>
-        <div className="order-first mb-14 mt-22 md:mt-0 lg:ml-20 lg:mt-10">
+        <div className="order-first mb-14 mt-28 md:mt-0 lg:ml-20 lg:mt-10">
           <motion.div
             ref={ref5}
             initial="hidden"
