@@ -109,7 +109,7 @@ export function HomePage() {
           >
             <div className="flex h-80 w-80 scale-110 items-center justify-center overflow-hidden rounded-full border-3 border-blue-700 shadow-glow transition-transform duration-300 hover:scale-125 md:h-96 md:w-96">
               <Image
-                src="/teste.png"
+                src="https://i.imgur.com/j5S8kIn.png"
                 alt=""
                 width={384}
                 height={384}

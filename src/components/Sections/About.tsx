@@ -92,7 +92,7 @@ export function About() {
             >
               <div className="ml-10 flex h-72 w-72 items-center justify-center overflow-hidden rounded-full transition-transform duration-300 md:h-80 md:w-80 lg:ml-0">
                 <Image
-                  src="/fig.jpeg"
+                  src="https://i.imgur.com/Z0FZsHU.jpg"
                   alt=""
                   width={384}
                   height={384}

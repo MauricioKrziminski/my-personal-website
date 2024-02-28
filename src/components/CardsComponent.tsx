@@ -4,7 +4,7 @@ export function CardsComponent() {
   // Array de objetos, onde cada objeto representa um card
   const cards = [
     {
-      imgSrc: '/img-portfolio.jpg',
+      imgSrc: 'https://i.imgur.com/oZ3cDa1.jpg',
       imgAlt: 'Personal Website',
       title: 'Personal Website',
       description:
