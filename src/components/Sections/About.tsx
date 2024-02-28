@@ -5,10 +5,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
-import {
-  slideInTopVariants,
-  // slideInRightVariants,
-} from '../Animations/animationVariants'
+import { slideInTopVariants } from '../Animations/animationVariants'
 import { tech, tools } from '../TechToolsData'
 import TechToolItem from '../TechToolItem'
 

@@ -72,4 +72,11 @@ html {
   opacity: 1;
 }
 
+.card-hover-effect {
+  transition: transform 0.3s ease-in-out;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-10px);
+}
 
