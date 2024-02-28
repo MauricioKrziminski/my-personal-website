@@ -27,7 +27,7 @@ export function Projects() {
 
   return (
     <div className="h-screen w-full overflow-hidden bg-zinc-800">
-      <div className="relative mx-auto flex max-w-7xl flex-col bg-zinc-800">
+      <div className="relative mx-auto flex h-screen max-w-7xl flex-col bg-zinc-800">
         <motion.section
           ref={ref}
           variants={containerVariants}
