@@ -66,7 +66,7 @@ export function About() {
   })
 
   return (
-    <div className="relative mx-auto flex max-w-full flex-col overflow-x-hidden bg-zinc-950 px-2">
+    <div className="relative mx-auto flex max-w-full flex-col overflow-hidden bg-zinc-950 px-2">
       <div className="mb-5 mt-14 flex max-w-7xl items-center justify-center rounded-3xl border border-[#383838] bg-[#1e1e1f] px-5 py-5 text-left text-white md:px-12 md:py-10 xl:mx-auto">
         <article data-page="about">
           <header>
@@ -90,17 +90,19 @@ export function About() {
               initial="hidden"
               animate={inView2 ? 'visible' : 'hidden'}
             >
-              <div className="ml-10 flex h-72 w-72 items-center justify-center overflow-hidden rounded-full transition-transform duration-300 md:h-80 md:w-80 lg:ml-0">
-                <Image
-                  src="https://i.imgur.com/Z0FZsHU.jpg"
-                  alt=""
-                  width={384}
-                  height={384}
-                  layout="responsive"
-                  objectFit="contain"
-                  objectPosition="center"
-                  className="lg:scale-125"
-                />
+              <div className="flex justify-center">
+                <div className="flex h-72 w-72 items-center justify-center overflow-hidden rounded-full transition-transform duration-300 md:h-80 md:w-80 lg:ml-0">
+                  <Image
+                    src="https://i.imgur.com/Z0FZsHU.jpg"
+                    alt=""
+                    width={384}
+                    height={384}
+                    layout="responsive"
+                    objectFit="contain"
+                    objectPosition="center"
+                    className="lg:scale-125"
+                  />
+                </div>
               </div>
             </motion.div>
             <div className="">

@@ -12,7 +12,7 @@ export const slideInTopVariants = {
 }
 
 export const slideInRightVariants = {
-  hidden: { x: '100%', opacity: 0, scale: 0.95 },
+  hidden: { x: 100, opacity: 0, scale: 0.95 },
   visible: (i: number) => ({
     x: 0,
     opacity: 1,

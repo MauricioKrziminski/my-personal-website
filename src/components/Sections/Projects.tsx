@@ -26,7 +26,7 @@ export function Projects() {
   })
 
   return (
-    <div className="h-screen w-full overflow-x-hidden bg-zinc-800">
+    <div className="h-screen w-full overflow-hidden bg-zinc-800">
       <div className="relative mx-auto flex max-w-7xl flex-col bg-zinc-800">
         <motion.section
           ref={ref}
@@ -34,7 +34,7 @@ export function Projects() {
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
         >
-          <section className="mx-3 mt-20 px-5 py-5 text-left text-white md:px-12 md:py-10">
+          <section className="mx-3 mt-14 px-5 py-5 text-left text-white md:px-12 md:py-10">
             <header>
               <div className="mb-10 flex flex-col items-center justify-center text-2xl font-bold text-white">
                 <h4>Past Project Experience</h4>

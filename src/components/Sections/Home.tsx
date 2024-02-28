@@ -49,7 +49,7 @@ export function HomePage() {
   })
 
   return (
-    <div className="flex h-screen w-full items-center justify-center overflow-x-hidden bg-zinc-800">
+    <div className="flex h-screen w-full items-center justify-center overflow-hidden bg-zinc-800">
       <section className="flex w-full max-w-4xl flex-col items-center justify-center px-6 text-center lg:flex-row-reverse lg:px-24 lg:text-left">
         <div className="space-y-4 text-white">
           <div className="text-center lg:text-left">
@@ -100,14 +100,14 @@ export function HomePage() {
             </motion.div>
           </div>
         </div>
-        <div className="order-first mb-14 md:mt-0 lg:ml-20 lg:mt-10">
+        <div className="order-first mb-14 mt-16 md:mt-0 lg:ml-20 lg:mt-10">
           <motion.div
             ref={ref5}
             initial="hidden"
             animate={inView5 ? 'visible' : 'hidden'}
             variants={slideInRightVariants}
           >
-            <div className="flex h-80 w-80 scale-110 items-center justify-center overflow-hidden rounded-full border-3 border-blue-700 shadow-glow transition-transform duration-300 hover:scale-125 md:h-96 md:w-96">
+            <div className="flex h-80 w-80 scale-110 items-center justify-center overflow-hidden rounded-full border-3 border-blue-700 shadow-glow transition-transform duration-300 md:h-96 md:w-96 lg:hover:scale-125">
               <Image
                 src="https://i.imgur.com/j5S8kIn.png"
                 alt=""
