@@ -80,7 +80,7 @@ export function HomePage() {
               animate={inView3 ? 'visible' : 'hidden'}
               variants={slideInLeftVariants}
             >
-              <p className="fade-in-from-left mb-24 lg:mb-0">
+              <p className="fade-in-from-left lg:mb-0">
                 Welcome to My personal website.{' '}
                 <span className="wave text-xl">👋🏼</span>
               </p>
@@ -91,7 +91,7 @@ export function HomePage() {
               animate={inView4 ? 'visible' : 'hidden'}
               variants={slideInLeftVariants}
             >
-              <div className="mt-14 flex justify-center space-x-6 lg:justify-start">
+              <div className="mt-10 flex justify-center space-x-6 lg:justify-start">
                 <SocialIcon Icon={BsWhatsapp} href="#" />
                 <SocialIcon Icon={BsInstagram} href="#" />
                 <SocialIcon Icon={BsLinkedin} href="#" />
@@ -100,7 +100,7 @@ export function HomePage() {
             </motion.div>
           </div>
         </div>
-        <div className="order-first mb-14 mt-36 md:mt-0 lg:ml-20 lg:mt-10">
+        <div className="order-first mb-14 mt-40 md:mt-0 lg:ml-20 lg:mt-10">
           <motion.div
             ref={ref5}
             initial="hidden"
