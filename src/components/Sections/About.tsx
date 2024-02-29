@@ -114,14 +114,18 @@ export function About() {
               >
                 <p className="mb-3 md:mb-7">
                   Hi everyone! My name is Mauricio Krziminski. I'm a web
-                  developer from Bogor, West Java. I have 1 year of experience
-                  in back-end web development. I really enjoy what I do right
-                  now, in my opinion, creating programs is not just a job, but
-                  also an art that has aesthetic value
+                  developer from Porto Alegre, RS Brazil. I have 1 year of
+                  experience in front-end development. I really enjoy what I do
+                  rightnow, in my opinion, creating programs is not just a job,
+                  but also an art that has aesthetic value.
                 </p>
                 <p className="mb-3">
                   My job is to build your website to be functional and
-                  user-friendly yet still attractive...
+                  user-friendly yet still attractive. In addition, I provide a
+                  personal touch to your product and ensure that the website
+                  catches attention and is easy to use. My goal is to convey
+                  your message and identity in the most creative way. If you are
+                  interested in hiring me, please contact the listed contact.
                 </p>
               </motion.div>
             </div>

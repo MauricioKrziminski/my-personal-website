@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unescaped-entities */
 export function CardsComponent() {
-  // Array de objetos, onde cada objeto representa um card
   const cards = [
     {
       imgSrc: 'https://i.imgur.com/oZ3cDa1.jpg',
@@ -20,6 +19,21 @@ export function CardsComponent() {
     },
     {
       title: 'Card 3',
+      description:
+        "This is a placeholder card. It's a brief description of the card content.",
+    },
+    {
+      title: 'Card 4',
+      description:
+        "This is a placeholder card. It's a brief description of the card content.",
+    },
+    {
+      title: 'Card 5',
+      description:
+        "This is a placeholder card. It's a brief description of the card content.",
+    },
+    {
+      title: 'Card 6',
       description:
         "This is a placeholder card. It's a brief description of the card content.",
     },
