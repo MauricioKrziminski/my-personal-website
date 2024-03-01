@@ -19,7 +19,7 @@ export function Projects() {
         initial="hidden"
         animate={inView ? 'visible' : 'hidden'}
       >
-        <section className="mx-3 my-16 px-5 py-5 text-left text-white md:px-12 md:py-10 lg:mb-16 lg:mt-16">
+        <section className="mx-3 my-24 px-5 py-5 text-left text-white md:px-12 md:py-10 lg:mb-16 lg:mt-16">
           <header>
             <div className="mb-16 flex flex-col items-center justify-center overflow-x-hidden text-2xl font-bold text-white">
               <h4>Past Project Experience</h4>

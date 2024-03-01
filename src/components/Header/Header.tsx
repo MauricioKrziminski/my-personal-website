@@ -12,7 +12,7 @@ import {
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const { isShrink, activeSection } = useScrollListener()
-  const navItems = useMemo(() => ['home', 'about', 'projects', 'contact'], [])
+  const navItems = useMemo(() => ['home', 'about', 'projects'], [])
   const navRefs = useRef<(HTMLDivElement | null)[]>([])
   const [indicatorProps, setIndicatorProps] = useState({ left: 0, width: 0 })
 
@@ -101,7 +101,7 @@ export function Header() {
         animate={isOpen ? 'open' : 'closed'}
         variants={menuVariants}
       >
-        <nav className="ml-10 mt-24 flex flex-col items-center p-4">
+        <nav className="ml-10 mt-52 flex flex-col items-center justify-start space-y-2 p-4">
           {navItems.map((section) => (
             <NavItem
               key={section}
@@ -113,7 +113,7 @@ export function Header() {
           <a
             href="/CV-MauricioKrziminski.pdf"
             download="MauricioKrziminski-CV.pdf"
-            className="mr-10 mt-4 w-full rounded-3xl border-2 border-blue-700 bg-blue-700 py-2 text-center text-sm font-medium text-white transition-all duration-300"
+            className="mr-10 w-full rounded-3xl border-2 border-blue-700 bg-blue-700 py-2 text-center text-sm font-medium text-white transition-all duration-300"
           >
             Download CV
           </a>

@@ -14,42 +14,28 @@ export function CardsComponent() {
     },
     {
       title: 'Card 2',
-      description:
-        "This is a placeholder card. It's a brief description of the card content.",
+      description: '',
     },
     {
       title: 'Card 3',
-      description:
-        "This is a placeholder card. It's a brief description of the card content.",
+      description: '',
     },
     {
-      imgSrc: 'https://i.imgur.com/oZ3cDa1.jpg',
-      imgAlt: 'Personal Website',
-      title: 'Personal Website',
-      description:
-        'My personal website, I created this website to display my profile, skills and projects. As well as my place to try new technology.',
-      technologies: 'Next.js, TailwindCSS',
-      githubUrl: 'https://github.com/MauricioKrziminski/my-personal-website',
-      projectUrl: '#',
+      title: 'Card 4',
+      description: '',
     },
     {
       title: 'Card 5',
-      description:
-        "This is a placeholder card. It's a brief description of the card content.",
-    },
-    {
-      title: 'Card 6',
-      description:
-        "This is a placeholder card. It's a brief description of the card content.",
+      description: '',
     },
   ]
 
   return (
-    <div className="grid h-full cursor-default grid-cols-1 justify-center gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid h-full cursor-default grid-cols-1 flex-wrap justify-center gap-4 md:grid-cols-2 lg:grid-cols-3">
       {cards.map((card, index) => (
         <div
           key={index}
-          className="card-hover-effect flex min-h-[320px] flex-col items-center gap-2 rounded-xl border border-[#383838] bg-[#1e1e1f] px-5 py-5 text-white hover:bg-[#282828] md:gap-3 lg:px-5"
+          className="card-hover-effect flex min-h-96 flex-col items-center gap-2 rounded-xl border border-[#383838] bg-[#1e1e1f] px-5 py-5 text-white hover:bg-[#282828] md:gap-3 lg:px-5"
         >
           {card.imgSrc && (
             <div className="flex h-full w-full items-center justify-center p-0 lg:p-0">

@@ -21,10 +21,6 @@ export default function Page() {
           <Projects />
         </section>
 
-        {/* <section id="contact">
-          <ContactSection />
-        </section> */}
-
         <section id="footer">
           <Footer />
         </section>
