@@ -23,9 +23,14 @@ export function CardsComponent() {
         "This is a placeholder card. It's a brief description of the card content.",
     },
     {
-      title: 'Card 4',
+      imgSrc: 'https://i.imgur.com/oZ3cDa1.jpg',
+      imgAlt: 'Personal Website',
+      title: 'Personal Website',
       description:
-        "This is a placeholder card. It's a brief description of the card content.",
+        'My personal website, I created this website to display my profile, skills and projects. As well as my place to try new technology.',
+      technologies: 'Next.js, TailwindCSS',
+      githubUrl: 'https://github.com/MauricioKrziminski/my-personal-website',
+      projectUrl: '#',
     },
     {
       title: 'Card 5',
@@ -44,7 +49,7 @@ export function CardsComponent() {
       {cards.map((card, index) => (
         <div
           key={index}
-          className="card-hover-effect flex flex-col items-center gap-2 rounded-xl border border-[#383838] bg-[#1e1e1f] px-5 py-5 text-white hover:bg-[#282828] md:gap-3 lg:px-5"
+          className="card-hover-effect flex min-h-[320px] flex-col items-center gap-2 rounded-xl border border-[#383838] bg-[#1e1e1f] px-5 py-5 text-white hover:bg-[#282828] md:gap-3 lg:px-5"
         >
           {card.imgSrc && (
             <div className="flex h-full w-full items-center justify-center p-0 lg:p-0">
