@@ -4,10 +4,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-html {
-  scroll-behavior: smooth;
-}
-
 .typewriter {
   display: inline-block;
   overflow: hidden;
@@ -78,5 +74,26 @@ html {
 
 .card-hover-effect:hover {
   transform: translateY(-10px);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1d4ed8;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1d4ed8;
+}
+
+body {
+  scrollbar-color: #1d4ed8 #000000;
+  scrollbar-width: thin;
 }
 

@@ -5,9 +5,13 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
-import { slideInTopVariants } from '../Animations/animationVariants'
-import { tech, tools } from '../TechToolsData'
-import TechToolItem from '../TechToolItem'
+import {
+  slideInTopVariants,
+  slideInRightVariants,
+  slideInBottomVariants,
+} from '../Animations/animationVariants'
+import { tech, tools } from '../TechTools/TechToolsData'
+import TechToolItem from '../TechTools/TechToolItem'
 
 export function About() {
   const [activeTab, setActiveTab] = useState(1)
@@ -21,31 +25,6 @@ export function About() {
 
   const handleMouseLeave = () => {
     setHoveredItemId(null)
-  }
-
-  const slideInBottomVariants = {
-    hidden: { y: '100%', opacity: 0, scale: 0.95 },
-    visible: (i: number) => ({
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.7,
-      },
-    }),
-  }
-
-  const slideInRightVariants = {
-    hidden: { x: 200, opacity: 0 },
-    visible: (i: number) => ({
-      x: 0,
-      opacity: 1,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.7,
-      },
-    }),
   }
 
   const { ref: ref1, inView: inView1 } = useInView({
@@ -66,7 +45,7 @@ export function About() {
   })
 
   return (
-    <div className="relative mx-auto flex max-w-full flex-col overflow-x-hidden bg-zinc-950 px-2">
+    <div className="relative mx-auto flex max-w-full flex-col overflow-hidden bg-zinc-950 px-2">
       <div className="mb-5 mt-14 flex max-w-7xl items-center justify-center rounded-3xl border border-[#383838] bg-[#1e1e1f] px-5 py-5 text-left text-white md:px-12 md:py-10 xl:mx-auto">
         <article data-page="about">
           <header>
@@ -90,17 +69,19 @@ export function About() {
               initial="hidden"
               animate={inView2 ? 'visible' : 'hidden'}
             >
-              <div className="ml-10 flex h-72 w-72 items-center justify-center overflow-hidden rounded-full transition-transform duration-300 md:h-80 md:w-80 lg:ml-0">
-                <Image
-                  src="/fig.jpeg"
-                  alt=""
-                  width={384}
-                  height={384}
-                  layout="responsive"
-                  objectFit="contain"
-                  objectPosition="center"
-                  className="lg:scale-125"
-                />
+              <div className="flex justify-center">
+                <div className="flex h-72 w-72 items-center justify-center overflow-hidden rounded-full transition-transform duration-300 md:h-80 md:w-80 lg:ml-0">
+                  <Image
+                    src="https://i.imgur.com/Z0FZsHU.jpg"
+                    alt=""
+                    width={384}
+                    height={384}
+                    layout="responsive"
+                    objectFit="contain"
+                    objectPosition="center"
+                    className="lg:scale-125"
+                  />
+                </div>
               </div>
             </motion.div>
             <div className="">
@@ -112,14 +93,19 @@ export function About() {
               >
                 <p className="mb-3 md:mb-7">
                   Hi everyone! My name is Mauricio Krziminski. I'm a web
-                  developer from Bogor, West Java. I have 1 year of experience
-                  in back-end web development. I really enjoy what I do right
-                  now, in my opinion, creating programs is not just a job, but
-                  also an art that has aesthetic value
+                  developer from Porto Alegre, RS Brazil. I have 1 year of
+                  experience in front-end development. I really enjoy what I do
+                  rightnow, in my opinion, creating programs is not just a job,
+                  but also an art that has aesthetic value.
                 </p>
                 <p className="mb-3">
                   My job is to build your website to be functional and
-                  user-friendly yet still attractive...
+                  user-friendly yet still attractive. In addition, I provide a
+                  personal touch to your product and ensure that the website
+                  catches attention and is easy to use. My goal is to
+                  communicate your message and identity in the most creative
+                  way. If you are interested in hiring me, please contact the
+                  listed contact.
                 </p>
               </motion.div>
             </div>

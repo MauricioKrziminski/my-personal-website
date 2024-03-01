@@ -1,10 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unescaped-entities */
 export function CardsComponent() {
-  // Array de objetos, onde cada objeto representa um card
   const cards = [
     {
-      imgSrc: '/img-portfolio.jpg',
+      imgSrc: 'https://i.imgur.com/oZ3cDa1.jpg',
       imgAlt: 'Personal Website',
       title: 'Personal Website',
       description:
@@ -14,23 +13,45 @@ export function CardsComponent() {
       projectUrl: '#',
     },
     {
-      title: 'Card 2',
-      description:
-        "This is a placeholder card. It's a brief description of the card content.",
+      imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
+      title: "it's coming...",
+      description: "it's working...",
+      technologies: "it's working...",
+      githubUrl: '#',
+      projectUrl: '#',
     },
     {
-      title: 'Card 3',
-      description:
-        "This is a placeholder card. It's a brief description of the card content.",
+      imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
+      title: "it's coming...",
+      description: "it's working...",
+      technologies: "it's working...",
+      githubUrl: '#',
+      projectUrl: '#',
+    },
+    {
+      imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
+      title: "it's coming...",
+      description: "it's working...",
+      technologies: "it's working...",
+      githubUrl: '#',
+      projectUrl: '#',
+    },
+    {
+      imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
+      title: "it's coming...",
+      description: "it's working...",
+      technologies: "it's working...",
+      githubUrl: '#',
+      projectUrl: '#',
     },
   ]
 
   return (
-    <div className="grid h-full cursor-default grid-cols-1 justify-center gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid h-full cursor-default grid-cols-1 flex-wrap justify-center gap-4 md:grid-cols-2 lg:grid-cols-3">
       {cards.map((card, index) => (
         <div
           key={index}
-          className="card-hover-effect flex flex-col items-center gap-2 rounded-xl border border-[#383838] bg-[#1e1e1f] px-5 py-5 text-white hover:bg-[#282828] md:gap-3 lg:px-5"
+          className="card-hover-effect flex min-h-96 flex-col items-center gap-2 rounded-xl border border-[#383838] bg-[#1e1e1f] px-5 py-5 text-white hover:bg-[#282828] md:gap-3 lg:px-5"
         >
           {card.imgSrc && (
             <div className="flex h-full w-full items-center justify-center p-0 lg:p-0">
@@ -50,7 +71,7 @@ export function CardsComponent() {
               {card.description}
             </div>
             {card.technologies && (
-              <div className="mt-4 w-full text-left text-sm text-amber-200">
+              <div className="mt-4 w-full text-left text-sm text-amber-300">
                 {card.technologies}
               </div>
             )}
