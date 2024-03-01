@@ -12,14 +12,14 @@ export function Projects() {
   })
 
   return (
-    <div className="relative mx-auto flex w-full flex-col overflow-hidden bg-zinc-800">
+    <div className="flex w-full flex-col overflow-hidden bg-zinc-800 lg:h-screen">
       <motion.section
         ref={ref}
         variants={containerVariants}
         initial="hidden"
         animate={inView ? 'visible' : 'hidden'}
       >
-        <section className="mx-3 my-20 px-5 py-5 text-left text-white md:px-12 md:py-10 lg:mt-12">
+        <section className="mx-3 my-16 px-5 py-5 text-left text-white md:px-12 md:py-10 lg:mb-0 lg:mt-16">
           <header>
             <div className="mb-16 flex flex-col items-center justify-center overflow-x-hidden text-2xl font-bold text-white">
               <h4>Past Project Experience</h4>
@@ -29,7 +29,7 @@ export function Projects() {
               </h4>
             </div>
           </header>
-          <div className="mb-10 flex justify-center lg:mb-0">
+          <div className="flex justify-center lg:mb-0">
             <div className="max-w-7xl">
               <CardsComponent />
             </div>
