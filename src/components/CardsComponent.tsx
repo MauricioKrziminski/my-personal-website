@@ -14,19 +14,19 @@ export function CardsComponent() {
     },
     {
       title: 'Card 2',
-      description: '',
+      description: "it's coming...",
     },
     {
       title: 'Card 3',
-      description: '',
+      description: "it's coming...",
     },
     {
       title: 'Card 4',
-      description: '',
+      description: "it's coming...",
     },
     {
       title: 'Card 5',
-      description: '',
+      description: "it's coming...",
     },
   ]
 
