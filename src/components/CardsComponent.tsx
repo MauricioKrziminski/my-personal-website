@@ -64,7 +64,7 @@ export function CardsComponent() {
               {card.description}
             </div>
             {card.technologies && (
-              <div className="mt-4 w-full text-left text-sm text-amber-200">
+              <div className="mt-4 w-full text-left text-sm text-white">
                 {card.technologies}
               </div>
             )}

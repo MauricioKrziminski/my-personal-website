@@ -8,24 +8,12 @@ import SocialIcon from '../SocialIcon'
 import {
   slideInTopVariants,
   slideInRightVariants,
+  slideInLeftVariants,
 } from '../Animations/animationVariants'
 import AnimatedText from '../Animations/animatedText'
 
 export function HomePage() {
   const words = ['Web Developer', 'Full Stack Developer', 'Informatics Student']
-
-  const slideInLeftVariants = {
-    hidden: { x: '-100%', opacity: 0, scale: 0.95 },
-    visible: (i: number) => ({
-      x: 0,
-      opacity: 1,
-      scale: 1,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.7,
-      },
-    }),
-  }
 
   const { ref: ref1, inView: inView1 } = useInView({
     triggerOnce: false,
@@ -92,10 +80,22 @@ export function HomePage() {
               variants={slideInLeftVariants}
             >
               <div className="mt-10 flex justify-center space-x-6 lg:justify-start">
-                <SocialIcon Icon={BsWhatsapp} href="#" />
-                <SocialIcon Icon={BsInstagram} href="#" />
-                <SocialIcon Icon={BsLinkedin} href="#" />
-                <SocialIcon Icon={BsGithub} href="#" />
+                <SocialIcon
+                  Icon={BsWhatsapp}
+                  href="https://wa.me/5551992553295"
+                />
+                <SocialIcon
+                  Icon={BsInstagram}
+                  href="https://www.instagram.com/krziminskii/"
+                />
+                <SocialIcon
+                  Icon={BsLinkedin}
+                  href="https://www.linkedin.com/in/mauricio-krziminski/"
+                />
+                <SocialIcon
+                  Icon={BsGithub}
+                  href="https://github.com/MauricioKrziminski"
+                />
               </div>
             </motion.div>
           </div>

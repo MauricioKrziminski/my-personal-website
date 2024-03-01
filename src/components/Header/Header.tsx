@@ -12,10 +12,7 @@ import {
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const { isShrink, activeSection } = useScrollListener()
-  const navItems = useMemo(
-    () => ['home', 'about', 'projects', 'blog', 'contact'],
-    [],
-  )
+  const navItems = useMemo(() => ['home', 'about', 'projects', 'contact'], [])
   const navRefs = useRef<(HTMLDivElement | null)[]>([])
   const [indicatorProps, setIndicatorProps] = useState({ left: 0, width: 0 })
 

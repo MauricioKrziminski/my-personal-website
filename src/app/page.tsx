@@ -1,3 +1,4 @@
+import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header/Header'
 import { About } from '@/components/Sections/About'
 import Home from '@/components/Sections/Home'
@@ -23,6 +24,10 @@ export default function Page() {
         {/* <section id="contact">
           <ContactSection />
         </section> */}
+
+        <section id="footer">
+          <Footer />
+        </section>
       </main>
     </div>
   )

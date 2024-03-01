@@ -15,7 +15,7 @@ export const NavItem: React.FC<NavItemProps> = ({
     <Link
       to={section}
       smooth={true}
-      duration={300}
+      duration={700}
       onClick={onClick}
       className={`nav-link mr-10 py-2 text-lg font-medium transition-colors duration-300 ${
         isActive ? 'text-blue-700' : 'text-white hover:text-blue-700'
