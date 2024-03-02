@@ -47,7 +47,7 @@ export function HomePage() {
               animate={inView1 ? 'visible' : 'hidden'}
               variants={slideInTopVariants}
             >
-              <p className="text-xl text-blue-700">Hello, I'm</p>
+              <p className="text-xl text-blue-700 lg:ml-[2px]">Hello, I'm</p>
               <h1 className="whitespace-nowrap text-3xl font-bold md:text-5xl">
                 Mauricio Krziminski
               </h1>
@@ -58,7 +58,7 @@ export function HomePage() {
               animate={inView2 ? 'visible' : 'hidden'}
               variants={slideInTopVariants}
             >
-              <div className="App">
+              <div className="App lg:ml-[2px]">
                 <AnimatedText words={words} />
               </div>
             </motion.div>
@@ -68,7 +68,7 @@ export function HomePage() {
               animate={inView3 ? 'visible' : 'hidden'}
               variants={slideInLeftVariants}
             >
-              <p className="fade-in-from-left lg:mb-0">
+              <p className="fade-in-from-left lg:mb-0 lg:ml-[2px]">
                 Welcome to My personal website.{' '}
                 <span className="wave text-xl">👋🏼</span>
               </p>
