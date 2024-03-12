@@ -19,6 +19,36 @@ export function About() {
     null,
   )
 
+  const [idioma, setIdioma] = useState('en')
+
+  const alternarIdioma = () => {
+    setIdioma(idioma === 'en' ? 'pt' : 'en')
+  }
+
+  const textos = {
+    en: {
+      aboutMe: 'About Me',
+      paragraph1:
+        "Hi everyone! My name is Mauricio Krziminski. I'm a web developer from Porto Alegre, RS Brazil. I have 1 year of experience in front-end development. I really enjoy what I do right now, in my opinion, creating programs is not just a job, but also an art that has aesthetic value.",
+      paragraph2:
+        'My job is to build your website to be functional and user-friendly yet still attractive. In addition, I provide a personal touch to your product and ensure that the website catches attention and is easy to use. My goal is to communicate your message and identity in the most creative way. If you are interested in hiring me, please contact the listed contact.',
+    },
+    pt: {
+      aboutMe: 'Sobre Mim',
+      paragraph1:
+        'Olá a todos! Meu nome é Mauricio Krziminski. Sou um desenvolvedor web de Porto Alegre, RS Brasil. Tenho 1 ano de experiência em desenvolvimento front-end. Eu realmente gosto do que faço atualmente, na minha opinião, criar programas não é apenas um trabalho, mas também uma arte que tem valor estético.',
+      paragraph2:
+        'Meu trabalho é construir seu site para ser funcional e amigável ao usuário, mas ainda atraente. Além disso, eu forneço um toque pessoal ao seu produto e garanto que o site chame atenção e seja fácil de usar. Meu objetivo é comunicar sua mensagem e identidade da forma mais criativa possível. Se você estiver interessado em me contratar, por favor, entre em contato pelo contato listado.',
+    },
+  }
+
+  const bandeiraURL =
+    idioma === 'en'
+      ? 'https://i.imgur.com/X30TFyJ.jpg'
+      : 'https://i.imgur.com/jrx6VDs.jpg'
+  const altTexto =
+    idioma === 'en' ? 'Bandeira do Brasil' : 'Bandeira dos Estados Unidos'
+
   const handleMouseEnter = (id: string | number) => {
     setHoveredItemId(id)
   }
@@ -56,9 +86,15 @@ export function About() {
               animate={inView1 ? 'visible' : 'hidden'}
             >
               <div className="mb-5 flex items-center text-2xl font-bold text-white">
-                About Me
+                About me
                 <div className="ml-4 h-[2px] w-32 bg-blue-700 md:w-96"></div>
               </div>
+              <button
+                onClick={alternarIdioma}
+                className="absolute right-0 top-0 m-2"
+              >
+                <img src={bandeiraURL} alt={altTexto} className="w-8" />
+              </button>
             </motion.div>
           </header>
 
@@ -92,20 +128,10 @@ export function About() {
                 animate={inView3 ? 'visible' : 'hidden'}
               >
                 <p className="mb-3 md:mb-7">
-                  Hi everyone! My name is Mauricio Krziminski. I'm a web
-                  developer from Porto Alegre, RS Brazil. I have 1 year of
-                  experience in front-end development. I really enjoy what I do
-                  rightnow, in my opinion, creating programs is not just a job,
-                  but also an art that has aesthetic value.
+                  {textos[idioma as 'en' | 'pt'].paragraph1}
                 </p>
                 <p className="mb-3">
-                  My job is to build your website to be functional and
-                  user-friendly yet still attractive. In addition, I provide a
-                  personal touch to your product and ensure that the website
-                  catches attention and is easy to use. My goal is to
-                  communicate your message and identity in the most creative
-                  way. If you are interested in hiring me, please contact the
-                  listed contact.
+                  {textos[idioma as 'en' | 'pt'].paragraph2}
                 </p>
               </motion.div>
             </div>
