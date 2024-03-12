@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { NavItem } from './NavItem'
 import { ToggleButton } from './ToggleButton'
-import { useScrollListener } from '../Hooks/useScrollListener'
+import { useScrollListener } from '../../hooks/useScrollListener'
 import {
   slideInTopVariants,
   menuVariants,

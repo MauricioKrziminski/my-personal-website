@@ -13,12 +13,13 @@ export function CardsComponent() {
       projectUrl: '#',
     },
     {
-      imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
-      title: "it's coming...",
-      description: "it's working...",
-      technologies: "it's working...",
-      githubUrl: '#',
-      projectUrl: '#',
+      imgSrc: 'https://i.imgur.com/CFtzOnj.png',
+      title: 'O site para você',
+      description:
+        'Site desenvolvido para demonstrar um esboço de um site de uma empresa fictícia, com o intuito de mostrar um pouco do meu trabalho.',
+      technologies: 'Next.js, TailwindCSS',
+      githubUrl: 'https://github.com/MauricioKrziminski/project-website',
+      projectUrl: 'https://f1f198f7.project-website-3zk.pages.dev/',
     },
     {
       imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
