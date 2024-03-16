@@ -37,9 +37,9 @@ export function HomePage() {
   })
 
   return (
-    <div className="flex h-screen w-full items-center justify-center overflow-hidden bg-zinc-800">
+    <div className="flex h-[800px] w-full items-center justify-center overflow-hidden bg-zinc-800 lg:h-screen">
       <section className="flex w-full max-w-4xl flex-col items-center justify-center px-6 text-center lg:flex-row-reverse lg:px-24 lg:text-left">
-        <div className="space-y-4 text-white">
+        <div className="mb-16 space-y-4 text-white lg:mb-0">
           <div className="text-center lg:text-left">
             <motion.div
               ref={ref1}
@@ -79,7 +79,7 @@ export function HomePage() {
               animate={inView4 ? 'visible' : 'hidden'}
               variants={slideInLeftVariants}
             >
-              <div className="mt-10 flex justify-center space-x-6 lg:justify-start">
+              <div className="mb-14 mt-10 flex justify-center space-x-6 lg:mt-10 lg:justify-start">
                 <SocialIcon
                   Icon={BsWhatsapp}
                   href="https://wa.me/5551992553295"
