@@ -12,6 +12,7 @@ import {
 } from '../Animations/animationVariants'
 import { tech, tools } from '../TechTools/TechToolsData'
 import TechToolItem from '../TechTools/TechToolItem'
+import { useLanguage } from '../../contexts/LanguageContext'
 
 export function About() {
   const [activeTab, setActiveTab] = useState(1)
@@ -19,35 +20,31 @@ export function About() {
     null,
   )
 
-  const [idioma, setIdioma] = useState('en')
+  const { language } = useLanguage()
 
-  const alternarIdioma = () => {
-    setIdioma(idioma === 'en' ? 'pt' : 'en')
-  }
-
-  const textos = {
-    en: {
-      aboutMe: 'About Me',
-      paragraph1:
-        "Hi everyone! My name is Mauricio Krziminski. I'm a web developer from Porto Alegre, RS Brazil. I have 1 year of experience in front-end development. I really enjoy what I do right now, in my opinion, creating programs is not just a job, but also an art that has aesthetic value.",
-      paragraph2:
-        'My job is to build your website to be functional and user-friendly yet still attractive. In addition, I provide a personal touch to your product and ensure that the website catches attention and is easy to use. My goal is to communicate your message and identity in the most creative way. If you are interested in hiring me, please contact the listed contact.',
-    },
-    pt: {
-      aboutMe: 'Sobre Mim',
-      paragraph1:
-        'Olá a todos! Meu nome é Mauricio Krziminski. Sou um desenvolvedor web de Porto Alegre, RS Brasil. Tenho 1 ano de experiência em desenvolvimento front-end. Eu realmente gosto do que faço atualmente, na minha opinião, criar programas não é apenas um trabalho, mas também uma arte que tem valor estético.',
-      paragraph2:
-        'Meu trabalho é construir seu site para ser funcional e amigável ao usuário, mas ainda atraente. Além disso, eu forneço um toque pessoal ao seu produto e garanto que o site chame atenção e seja fácil de usar. Meu objetivo é comunicar sua mensagem e identidade da forma mais criativa possível. Se você estiver interessado em me contratar, por favor, entre em contato pelo contato listado.',
-    },
-  }
-
-  const bandeiraURL =
-    idioma === 'en'
-      ? 'https://i.imgur.com/X30TFyJ.jpg'
-      : 'https://i.imgur.com/jrx6VDs.jpg'
-  const altTexto =
-    idioma === 'en' ? 'Bandeira do Brasil' : 'Bandeira dos Estados Unidos'
+  const textos =
+    {
+      en: {
+        aboutMe: 'About Me',
+        paragraph1:
+          "Hi everyone! My name is Mauricio Krziminski. I'm a web developer from Porto Alegre, RS Brazil. I have 1 year of experience in front-end development. I really enjoy what I do right now, in my opinion, creating programs is not just a job, but also an art that has aesthetic value.",
+        paragraph2:
+          'My job is to build your website to be functional and user-friendly yet still attractive. In addition, I provide a personal touch to your product and ensure that the website catches attention and is easy to use. My goal is to communicate your message and identity in the most creative way. If you are interested in hiring me, please contact the listed contact.',
+        skillsTitle: 'Skills',
+        techStack: 'Tech Stack',
+        tools: 'Tools',
+      },
+      pt: {
+        aboutMe: 'Sobre Mim',
+        paragraph1:
+          'Olá a todos! Meu nome é Mauricio Krziminski. Sou um desenvolvedor web de Porto Alegre, RS Brasil. Tenho 1 ano de experiência em desenvolvimento front-end. Eu realmente gosto do que faço agora, na minha opinião, criar programas não é apenas um trabalho, mas também uma arte que tem valor estético.',
+        paragraph2:
+          'Meu trabalho é construir seu site para ser funcional e amigável, mas ainda atraente. Além disso, dou um toque pessoal ao seu produto e garanto que o site chame a atenção e seja fácil de usar. Meu objetivo é comunicar sua mensagem e identidade da maneira mais criativa. Se você estiver interessado em me contratar, entre em contato com os contatos listados.',
+        skillsTitle: 'Habilidades',
+        techStack: 'Tecnologias',
+        tools: 'Ferramentas',
+      },
+    }[language] || {}
 
   const handleMouseEnter = (id: string | number) => {
     setHoveredItemId(id)
@@ -86,15 +83,9 @@ export function About() {
               animate={inView1 ? 'visible' : 'hidden'}
             >
               <div className="mb-5 flex items-center text-2xl font-bold text-white">
-                About me
+                {textos.aboutMe}
                 <div className="ml-4 h-[2px] w-32 bg-blue-700 md:w-96"></div>
               </div>
-              <button
-                onClick={alternarIdioma}
-                className="absolute right-0 top-0 m-2"
-              >
-                <img src={bandeiraURL} alt={altTexto} className="w-8" />
-              </button>
             </motion.div>
           </header>
 
@@ -127,12 +118,8 @@ export function About() {
                 initial="hidden"
                 animate={inView3 ? 'visible' : 'hidden'}
               >
-                <p className="mb-3 md:mb-7">
-                  {textos[idioma as 'en' | 'pt'].paragraph1}
-                </p>
-                <p className="mb-3">
-                  {textos[idioma as 'en' | 'pt'].paragraph2}
-                </p>
+                <p className="mb-3 md:mb-7">{textos.paragraph1}</p>
+                <p className="mb-3">{textos.paragraph2}</p>
               </motion.div>
             </div>
           </section>
@@ -150,7 +137,7 @@ export function About() {
             >
               <div className="mb-5 flex items-center text-2xl font-bold text-white">
                 <div className="h-[2px] w-10 bg-blue-700 md:w-20"></div>
-                &nbsp; Skills
+                &nbsp; {textos.skillsTitle}
               </div>
             </motion.div>
           </header>
@@ -160,13 +147,13 @@ export function About() {
                 className={`mr-2 inline-block rounded-lg px-4 py-3 hover:text-blue-700 ${activeTab === 1 ? 'bg-blue-700 bg-opacity-10 text-blue-700' : ''}`}
                 onClick={() => setActiveTab(1)}
               >
-                Tech Stack
+                {textos.techStack}
               </button>
               <button
                 className={`mr-2 inline-block rounded-lg px-4 py-3 hover:text-blue-700 ${activeTab === 2 ? 'bg-blue-700 bg-opacity-10 text-blue-700' : ''}`}
                 onClick={() => setActiveTab(2)}
               >
-                Tools
+                {textos.tools}
               </button>
             </div>
 

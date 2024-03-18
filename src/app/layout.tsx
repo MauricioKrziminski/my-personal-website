@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="antialiased">
+    <html lang="en" translate="no" className="antialiased">
       <body className={poppins.className}>
         <link rel="icon" href="https://i.imgur.com/bxsHqEa.png" sizes="any" />
         <div>

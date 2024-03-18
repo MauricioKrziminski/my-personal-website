@@ -11,9 +11,23 @@ import {
   slideInLeftVariants,
 } from '../Animations/animationVariants'
 import AnimatedText from '../Animations/animatedText'
+import { useLanguage } from '../../contexts/LanguageContext'
 
 export function HomePage() {
-  const words = ['Web Developer', 'Full Stack Developer', 'Informatics Student']
+  const { language } = useLanguage()
+  const words =
+    language === 'en'
+      ? ['Web Developer', 'Full Stack Developer', 'Informatics Student']
+      : [
+          'Desenvolvedor Web',
+          'Desenvolvedor Full Stack',
+          'Estudante de Informática',
+        ]
+  const greeting = language === 'en' ? "Hello, I'm" : 'Olá, eu sou'
+  const welcome =
+    language === 'en'
+      ? 'Welcome to My personal website'
+      : 'Bem-vindo ao meu site pessoal'
 
   const { ref: ref1, inView: inView1 } = useInView({
     triggerOnce: false,
@@ -47,7 +61,7 @@ export function HomePage() {
               animate={inView1 ? 'visible' : 'hidden'}
               variants={slideInTopVariants}
             >
-              <p className="text-xl text-blue-700 lg:ml-[2px]">Hello, I'm</p>
+              <p className="text-xl text-blue-700 lg:ml-[2px]">{greeting}</p>
               <h1 className="whitespace-nowrap text-3xl font-bold md:text-5xl">
                 Mauricio Krziminski
               </h1>
@@ -69,7 +83,7 @@ export function HomePage() {
               variants={slideInLeftVariants}
             >
               <p className="fade-in-from-left lg:mb-0 lg:ml-[2px]">
-                Welcome to My personal website.{' '}
+                {welcome}
                 <span className="wave text-xl">👋🏼</span>
               </p>
             </motion.div>

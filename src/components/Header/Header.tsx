@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
@@ -8,6 +9,7 @@ import {
   slideInTopVariants,
   menuVariants,
 } from '../Animations/animationVariants'
+import { useLanguage } from '../../contexts/LanguageContext'
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -15,6 +17,7 @@ export function Header() {
   const navItems = useMemo(() => ['home', 'about', 'projects'], [])
   const navRefs = useRef<(HTMLDivElement | null)[]>([])
   const [indicatorProps, setIndicatorProps] = useState({ left: 0, width: 0 })
+  const { language, toggleLanguage } = useLanguage()
 
   const closeMenu = () => {
     setIsOpen(false)
@@ -58,7 +61,7 @@ export function Header() {
           variants={slideInTopVariants}
           className="hidden lg:flex lg:flex-row"
         >
-          <nav className="relative hidden cursor-pointer lg:flex lg:flex-row">
+          <nav className="relative hidden cursor-pointer lg:ml-20 lg:flex lg:flex-row">
             {navItems.map((section, index) => (
               <div ref={(el) => (navRefs.current[index] = el)} key={section}>
                 <NavItem
@@ -84,7 +87,28 @@ export function Header() {
           initial="hidden"
           animate="visible"
           variants={slideInTopVariants}
+          className="lg:flex lg:w-auto lg:flex-row lg:justify-between"
         >
+          <div className="hidden items-center justify-end space-x-3 lg:mb-0 lg:mr-6 lg:flex">
+            <img
+              src="https://i.imgur.com/jrx6VDs.jpg"
+              alt="United States Flag"
+              className={`w-8 ${language === 'pt' ? 'opacity-50' : 'opacity-100'}`}
+            />
+            <label className="switch">
+              <input
+                type="checkbox"
+                checked={language === 'pt'}
+                onChange={toggleLanguage}
+              />
+              <span className="slider round"></span>
+            </label>
+            <img
+              src="https://i.imgur.com/X30TFyJ.jpg"
+              alt="Brazil Flag"
+              className={`w-8 ${language === 'en' ? 'opacity-50' : 'opacity-100'}`}
+            />
+          </div>
           <a
             href="/CV-MauricioKrziminski.pdf"
             download="CV - Mauricio Krziminski.pdf"
@@ -117,6 +141,26 @@ export function Header() {
           >
             Download CV
           </a>
+          <div className="mr-6 flex items-center space-x-3 lg:mb-0">
+            <img
+              src="https://i.imgur.com/jrx6VDs.jpg"
+              alt="United States Flag"
+              className={`w-8 ${language === 'pt' ? 'opacity-50' : 'opacity-100'}`}
+            />
+            <label className="switch">
+              <input
+                type="checkbox"
+                checked={language === 'pt'}
+                onChange={toggleLanguage}
+              />
+              <span className="slider round"></span>
+            </label>
+            <img
+              src="https://i.imgur.com/X30TFyJ.jpg"
+              alt="Brazil Flag"
+              className={`w-8 ${language === 'en' ? 'opacity-50' : 'opacity-100'}`}
+            />
+          </div>
         </nav>
       </motion.div>
     </>

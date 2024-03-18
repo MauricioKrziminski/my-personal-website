@@ -1,51 +1,137 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unescaped-entities */
+import { useLanguage } from '../contexts/LanguageContext'
+interface Card {
+  imgSrc: string
+  imgAlt?: string
+  title: string
+  description: string
+  technologies: string
+  githubUrl: string
+  projectUrl: string
+}
+interface Translations {
+  [key: string]: {
+    cards: Card[]
+  }
+}
 export function CardsComponent() {
-  const cards = [
-    {
-      imgSrc: 'https://i.imgur.com/oZ3cDa1.jpg',
-      imgAlt: 'Personal Website',
-      title: 'Personal Website',
-      description:
-        'My personal website, I created this website to display my profile, skills and projects. As well as my place to try new technology.',
-      technologies: 'Next.js, TailwindCSS',
-      githubUrl: 'https://github.com/MauricioKrziminski/my-personal-website',
-      projectUrl: '#',
+  const { language } = useLanguage()
+  const translations: Translations = {
+    en: {
+      cards: [
+        {
+          imgSrc: 'https://i.imgur.com/oZ3cDa1.jpg',
+          imgAlt: 'Personal Website',
+          title: 'Personal Website',
+          description:
+            'My personal website, I created this website to display my profile, skills and projects. As well as my place to try new technology.',
+          technologies: 'Next.js, TailwindCSS',
+          githubUrl:
+            'https://github.com/MauricioKrziminski/my-personal-website',
+          projectUrl: '#',
+        },
+        {
+          imgSrc: 'https://i.imgur.com/CFtzOnj.png',
+          title: 'The website for you',
+          description:
+            'Website developed on a single page to demonstrate a sketch of a website for a fictitious company, with the aim of showing a little of my work.',
+          technologies: 'Next.js, TailwindCSS',
+          githubUrl: 'https://github.com/MauricioKrziminski/project-website',
+          projectUrl: 'https://f1f198f7.project-website-3zk.pages.dev/',
+        },
+        {
+          imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
+          title: "it's coming...",
+          description: 'working...',
+          technologies: 'working...',
+          githubUrl: '#',
+          projectUrl: '#',
+        },
+        {
+          imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
+          title: "it's coming...",
+          description: 'working...',
+          technologies: 'working...',
+          githubUrl: '#',
+          projectUrl: '#',
+        },
+        {
+          imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
+          title: "it's coming...",
+          description: 'working...',
+          technologies: 'working...',
+          githubUrl: '#',
+          projectUrl: '#',
+        },
+        {
+          imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
+          title: "it's coming...",
+          description: 'working...',
+          technologies: 'working...',
+          githubUrl: '#',
+          projectUrl: '#',
+        },
+      ],
     },
-    {
-      imgSrc: 'https://i.imgur.com/CFtzOnj.png',
-      title: 'O site para você',
-      description:
-        'Site desenvolvido para demonstrar um esboço de um site de uma empresa fictícia, com o intuito de mostrar um pouco do meu trabalho.',
-      technologies: 'Next.js, TailwindCSS',
-      githubUrl: 'https://github.com/MauricioKrziminski/project-website',
-      projectUrl: 'https://f1f198f7.project-website-3zk.pages.dev/',
+    pt: {
+      cards: [
+        {
+          imgSrc: 'https://i.imgur.com/oZ3cDa1.jpg',
+          title: 'Site Pessoal',
+          description:
+            'Meu site pessoal, criei este site para exibir meu perfil, habilidades e projetos. Assim como meu lugar para experimentar novas tecnologias.',
+          technologies: 'Next.js, TailwindCSS',
+          githubUrl:
+            'https://github.com/MauricioKrziminski/my-personal-website',
+          projectUrl: '#',
+        },
+        {
+          imgSrc: 'https://i.imgur.com/CFtzOnj.png',
+          title: 'O site para você',
+          description:
+            'Site desenvolvido em pagina unica para demonstrar um esboço de um site de uma empresa fictícia, com o intuito de mostrar um pouco do meu trabalho.',
+          technologies: 'Next.js, TailwindCSS',
+          githubUrl: 'https://github.com/MauricioKrziminski/project-website',
+          projectUrl: 'https://f1f198f7.project-website-3zk.pages.dev/',
+        },
+        {
+          imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
+          title: 'está chegando...',
+          description: 'trabalhando...',
+          technologies: 'trabalhando...',
+          githubUrl: '#',
+          projectUrl: '#',
+        },
+        {
+          imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
+          title: 'está chegando...',
+          description: 'trabalhando...',
+          technologies: 'trabalhando...',
+          githubUrl: '#',
+          projectUrl: '#',
+        },
+        {
+          imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
+          title: 'está chegando...',
+          description: 'trabalhando...',
+          technologies: 'trabalhando...',
+          githubUrl: '#',
+          projectUrl: '#',
+        },
+        {
+          imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
+          title: 'está chegando...',
+          description: 'trabalhando...',
+          technologies: 'trabalhando...',
+          githubUrl: '#',
+          projectUrl: '#',
+        },
+      ],
     },
-    {
-      imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
-      title: "it's coming...",
-      description: "it's working...",
-      technologies: "it's working...",
-      githubUrl: '#',
-      projectUrl: '#',
-    },
-    {
-      imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
-      title: "it's coming...",
-      description: "it's working...",
-      technologies: "it's working...",
-      githubUrl: '#',
-      projectUrl: '#',
-    },
-    {
-      imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
-      title: "it's coming...",
-      description: "it's working...",
-      technologies: "it's working...",
-      githubUrl: '#',
-      projectUrl: '#',
-    },
-  ]
+  }
+
+  const cards = translations[language].cards || []
 
   return (
     <div className="grid h-full cursor-default grid-cols-1 flex-wrap justify-center gap-4 md:grid-cols-2 lg:grid-cols-3">
