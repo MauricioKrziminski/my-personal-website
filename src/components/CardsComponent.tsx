@@ -21,7 +21,7 @@ export function CardsComponent() {
     en: {
       cards: [
         {
-          imgSrc: 'https://i.imgur.com/oZ3cDa1.jpg',
+          imgSrc: 'https://i.imgur.com/4OLAOsb.png',
           imgAlt: 'Personal Website',
           title: 'Personal Website',
           description:
@@ -32,7 +32,7 @@ export function CardsComponent() {
           projectUrl: '#',
         },
         {
-          imgSrc: 'https://i.imgur.com/CFtzOnj.png',
+          imgSrc: 'https://i.imgur.com/VQ9uR76.png',
           title: 'The website for you',
           description:
             'Website developed on a single page to demonstrate a sketch of a website for a fictitious company, with the aim of showing a little of my work.',
@@ -77,7 +77,7 @@ export function CardsComponent() {
     pt: {
       cards: [
         {
-          imgSrc: 'https://i.imgur.com/oZ3cDa1.jpg',
+          imgSrc: 'https://i.imgur.com/4OLAOsb.png',
           title: 'Site Pessoal',
           description:
             'Meu site pessoal, criei este site para exibir meu perfil, habilidades e projetos. Assim como meu lugar para experimentar novas tecnologias.',
@@ -87,7 +87,7 @@ export function CardsComponent() {
           projectUrl: '#',
         },
         {
-          imgSrc: 'https://i.imgur.com/CFtzOnj.png',
+          imgSrc: 'https://i.imgur.com/VQ9uR76.png',
           title: 'O site para você',
           description:
             'Site desenvolvido em pagina unica para demonstrar um esboço de um site de uma empresa fictícia, com o intuito de mostrar um pouco do meu trabalho.',

@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" translate="no" className="antialiased">
       <body className={poppins.className}>
-        <link rel="icon" href="https://i.imgur.com/bxsHqEa.png" sizes="any" />
+        <link rel="icon" href="https://i.imgur.com/V61JFZJ.png" sizes="any" />
         <div>
           <main>{children}</main>
         </div>

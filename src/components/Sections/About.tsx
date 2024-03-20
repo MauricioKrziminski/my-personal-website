@@ -99,14 +99,13 @@ export function About() {
               <div className="flex justify-center">
                 <div className="flex h-72 w-72 items-center justify-center overflow-hidden rounded-full transition-transform duration-300 md:h-80 md:w-80 lg:ml-0">
                   <Image
-                    src="https://i.imgur.com/Z0FZsHU.jpg"
+                    src="https://i.imgur.com/jubrm1Z.jpg"
                     alt=""
                     width={384}
                     height={384}
                     layout="responsive"
                     objectFit="contain"
                     objectPosition="center"
-                    className="lg:scale-125"
                   />
                 </div>
               </div>

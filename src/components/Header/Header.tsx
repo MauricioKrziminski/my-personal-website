@@ -91,7 +91,7 @@ export function Header() {
         >
           <div className="hidden items-center justify-end space-x-3 lg:mb-0 lg:mr-6 lg:flex">
             <img
-              src="https://i.imgur.com/jrx6VDs.jpg"
+              src="https://i.imgur.com/shOBDB8.jpg"
               alt="United States Flag"
               className={`w-8 ${language === 'pt' ? 'opacity-50' : 'opacity-100'}`}
             />
@@ -104,7 +104,7 @@ export function Header() {
               <span className="slider round"></span>
             </label>
             <img
-              src="https://i.imgur.com/X30TFyJ.jpg"
+              src="https://i.imgur.com/3BXGUoY.jpg"
               alt="Brazil Flag"
               className={`w-8 ${language === 'en' ? 'opacity-50' : 'opacity-100'}`}
             />
