@@ -38,7 +38,7 @@ export function CardsComponent() {
             'Website developed on a single page to demonstrate a sketch of a website for a fictitious company, with the aim of showing a little of my work.',
           technologies: 'Next.js, TailwindCSS',
           githubUrl: 'https://github.com/MauricioKrziminski/project-website',
-          projectUrl: 'https://f1f198f7.project-website-3zk.pages.dev/',
+          projectUrl: 'https://344dfb6f.project-website-3zk.pages.dev/',
         },
         {
           imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
@@ -93,7 +93,7 @@ export function CardsComponent() {
             'Site desenvolvido em pagina unica para demonstrar um esboço de um site de uma empresa fictícia, com o intuito de mostrar um pouco do meu trabalho.',
           technologies: 'Next.js, TailwindCSS',
           githubUrl: 'https://github.com/MauricioKrziminski/project-website',
-          projectUrl: 'https://f1f198f7.project-website-3zk.pages.dev/',
+          projectUrl: 'https://344dfb6f.project-website-3zk.pages.dev/',
         },
         {
           imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
