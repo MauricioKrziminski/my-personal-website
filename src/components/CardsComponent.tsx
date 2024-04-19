@@ -33,12 +33,12 @@ export function CardsComponent() {
         },
         {
           imgSrc: 'https://i.imgur.com/VQ9uR76.png',
-          title: 'The website for you',
+          title: 'LAEC',
           description:
-            'Website developed on a single page to demonstrate a sketch of a website for a fictitious company, with the aim of showing a little of my work.',
+            'Website developed on a single page with catalog and shopping cart, to display the work of an academic nursing league in cardiology, so that e-books and other study materials can be purchased.',
           technologies: 'Next.js, TailwindCSS',
           githubUrl: 'https://github.com/MauricioKrziminski/project-website',
-          projectUrl: 'https://344dfb6f.project-website-3zk.pages.dev/',
+          projectUrl: 'https://e76c187b.project-website-3zk.pages.dev/',
         },
         {
           imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
@@ -88,12 +88,12 @@ export function CardsComponent() {
         },
         {
           imgSrc: 'https://i.imgur.com/VQ9uR76.png',
-          title: 'O site para você',
+          title: 'LAEC - Liga Acadêmica',
           description:
-            'Site desenvolvido em pagina unica para demonstrar um esboço de um site de uma empresa fictícia, com o intuito de mostrar um pouco do meu trabalho.',
+            'Site desenvolvido em pagina unica com catalogo e carrinho de compras, para exibir o trabalho de uma liga acadêmica de enfermagem em cardiologia, assim podendo ser comprados e-books e outros materiais para estudos.',
           technologies: 'Next.js, TailwindCSS',
           githubUrl: 'https://github.com/MauricioKrziminski/project-website',
-          projectUrl: 'https://344dfb6f.project-website-3zk.pages.dev/',
+          projectUrl: 'https://e76c187b.project-website-3zk.pages.dev/',
         },
         {
           imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',

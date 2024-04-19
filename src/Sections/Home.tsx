@@ -4,14 +4,14 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { BsWhatsapp, BsInstagram, BsLinkedin, BsGithub } from 'react-icons/bs'
 import { useInView } from 'react-intersection-observer'
-import SocialIcon from '../SocialIcon'
+import SocialIcon from '../components/SocialIcon'
 import {
   slideInTopVariants,
   slideInRightVariants,
   slideInLeftVariants,
-} from '../Animations/animationVariants'
-import AnimatedText from '../Animations/animatedText'
-import { useLanguage } from '../../contexts/LanguageContext'
+} from '../components/Animations/animationVariants'
+import AnimatedText from '../components/Animations/animatedText'
+import { useLanguage } from '../contexts/LanguageContext'
 
 export function HomePage() {
   const { language } = useLanguage()

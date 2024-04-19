@@ -9,10 +9,10 @@ import {
   slideInTopVariants,
   slideInRightVariants,
   slideInBottomVariants,
-} from '../Animations/animationVariants'
+} from '../components/Animations/animationVariants'
 import { tech, tools } from '../TechTools/TechToolsData'
 import TechToolItem from '../TechTools/TechToolItem'
-import { useLanguage } from '../../contexts/LanguageContext'
+import { useLanguage } from '../contexts/LanguageContext'
 
 export function About() {
   const [activeTab, setActiveTab] = useState(1)

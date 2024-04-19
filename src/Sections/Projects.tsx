@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client'
 import { motion } from 'framer-motion'
-import { CardsComponent } from '../CardsComponent'
-import { containerVariants } from '../Animations/animationVariants'
+import { CardsComponent } from '../components/CardsComponent'
+import { containerVariants } from '../components/Animations/animationVariants'
 import { useInView } from 'react-intersection-observer'
-import { useLanguage } from '../../contexts/LanguageContext'
+import { useLanguage } from '../contexts/LanguageContext'
 
 export function Projects() {
   const { ref, inView } = useInView({
