@@ -121,7 +121,7 @@ export function HomePage() {
             animate={inView5 ? 'visible' : 'hidden'}
             variants={slideInRightVariants}
           >
-            <div className="flex h-80 w-80 scale-110 items-center justify-center overflow-hidden rounded-full border-3 border-blue-700 shadow-glow transition-transform duration-300 md:h-96 md:w-96 lg:hover:scale-125">
+            <div className="flex h-80 w-80 scale-110 items-center justify-center overflow-hidden rounded-full border-3 border-blue-700 shadow-glow transition-transform duration-300 md:mt-56 md:h-96 md:w-96 lg:hover:scale-125">
               <Image
                 src="https://i.imgur.com/odiT0Cu.png"
                 alt=""

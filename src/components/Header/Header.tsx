@@ -36,7 +36,7 @@ export function Header() {
   return (
     <>
       <header
-        className={`fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-zinc-800 bg-zinc-950/70 px-6 shadow-xl backdrop-blur-sm transition-all duration-300 lg:px-24 ${isShrink ? 'py-4 lg:py-4' : 'py-6 lg:py-8'}`}
+        className={`fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-zinc-800 bg-zinc-950/70 px-6 shadow-xl backdrop-blur-sm transition-all duration-300 lg:px-10 ${isShrink ? 'py-4 lg:py-4' : 'py-6 lg:py-8'}`}
       >
         <div className="flex items-center">
           <motion.div
@@ -45,7 +45,10 @@ export function Header() {
             variants={slideInTopVariants}
           >
             <h2 className="hidden cursor-default text-xl font-semibold text-white lg:block lg:text-3xl">
-              <span className="text-blue-700">Mauricio</span> Krziminski
+              <span className="text-blue-700">Mauricio</span>
+              {` `}
+              <span className="lg:block lg:w-full xl:hidden"></span>
+              Krziminski
             </h2>
             <h2 className="cursor-default pr-4 text-2xl font-semibold text-white lg:hidden lg:text-3xl">
               <span className="text-blue-700">M</span>K
@@ -61,7 +64,7 @@ export function Header() {
           variants={slideInTopVariants}
           className="hidden lg:flex lg:flex-row"
         >
-          <nav className="relative hidden cursor-pointer lg:ml-20 lg:flex lg:flex-row">
+          <nav className="relative hidden cursor-pointer lg:ml-16 lg:flex lg:flex-row xl:ml-24">
             {navItems.map((section, index) => (
               <div ref={(el) => (navRefs.current[index] = el)} key={section}>
                 <NavItem
@@ -89,7 +92,7 @@ export function Header() {
           variants={slideInTopVariants}
           className="lg:flex lg:w-auto lg:flex-row lg:justify-between"
         >
-          <div className="hidden items-center justify-end space-x-3 lg:mb-0 lg:mr-6 lg:flex">
+          <div className="hidden items-center justify-end space-x-3 lg:mb-0 lg:mr-16 lg:flex xl:mr-6">
             <img
               src="https://i.imgur.com/shOBDB8.jpg"
               alt="United States Flag"
@@ -112,7 +115,7 @@ export function Header() {
           <a
             href="/CV-MauricioKrziminski.pdf"
             download="CV - Mauricio Krziminski.pdf"
-            className="hidden rounded-3xl border-2 border-blue-700 px-6 py-2 font-medium text-blue-700 transition-all duration-300 hover:scale-110 hover:bg-blue-700 hover:text-white lg:inline-block"
+            className="hidden whitespace-nowrap rounded-3xl border-2 border-blue-700 px-6 py-2 font-medium text-blue-700 transition-all duration-300 hover:scale-110 hover:bg-blue-700 hover:text-white lg:inline-block"
           >
             Download CV
           </a>
