@@ -138,7 +138,8 @@ export function CardsComponent() {
       {cards.map((card, index) => (
         <div
           key={index}
-          className="card-hover-effect flex min-h-96 flex-col items-center gap-2 rounded-xl border border-[#383838] bg-[#1e1e1f] px-5 py-5 text-white hover:bg-[#282828] md:gap-3 lg:px-5"
+          className="card-hover-effect flex min-h-96 cursor-pointer flex-col items-center gap-2 rounded-xl border border-[#383838] bg-[#1e1e1f] px-5 py-5 text-white hover:bg-[#282828] md:gap-3 lg:px-5"
+          onClick={() => window.open(card.projectUrl, '_blank')}
         >
           {card.imgSrc && (
             <div className="flex h-full w-full items-center justify-center p-0 lg:p-0">
@@ -171,16 +172,16 @@ export function CardsComponent() {
                     rel="noreferrer noopener"
                     title='Go to "My personal website" repository'
                     className="transition-all hover:text-blue-700"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      stroke-width="2"
+                      strokeWidth="2"
                       viewBox="0 0 24 24"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      height="16"
-                      width="16"
-                      className="h-5 w-5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      height="18"
+                      width="18"
                       fill="currentColor"
                     >
                       <path
@@ -195,17 +196,17 @@ export function CardsComponent() {
                     rel="noreferrer"
                     title="View finished project"
                     className="transition-all hover:text-blue-700"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      stroke="currentColor"
-                      fill="none"
-                      stroke-width="2"
+                      strokeWidth="2"
                       viewBox="0 0 24 24"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       height="18"
                       width="18"
+                      fill="currentColor"
                     >
                       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                       <polyline points="15 3 21 3 21 9" />
