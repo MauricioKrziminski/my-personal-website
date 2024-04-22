@@ -10,17 +10,23 @@ import {
   menuVariants,
 } from '../Animations/animationVariants'
 import { useLanguage } from '../../contexts/LanguageContext'
+import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
 
 export function Header() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { isShrink, activeSection } = useScrollListener()
   const navItems = useMemo(() => ['home', 'about', 'projects'], [])
   const navRefs = useRef<(HTMLDivElement | null)[]>([])
   const [indicatorProps, setIndicatorProps] = useState({ left: 0, width: 0 })
   const { language, toggleLanguage } = useLanguage()
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
-  const closeMenu = () => {
-    setIsOpen(false)
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen)
   }
 
   useEffect(() => {
@@ -55,8 +61,25 @@ export function Header() {
             </h2>
           </motion.div>
         </div>
-        <div className="flex w-full justify-end lg:hidden">
-          <ToggleButton isOpen={isOpen} toggleOpen={() => setIsOpen(!isOpen)} />
+        <div className="flex w-full items-center justify-end space-x-3 lg:hidden">
+          <div className="relative">
+            <select
+              value={language}
+              onChange={toggleLanguage}
+              onClick={toggleDropdown}
+              onBlur={() => setIsDropdownOpen(false)}
+              className={`block w-full cursor-pointer appearance-none rounded-md border border-black px-3 py-1.5 pr-8 leading-tight text-white focus:outline-none ${isDropdownOpen ? 'bg-black' : 'bg-blue-700'}`}
+            >
+              <option value="en">EN</option>
+              <option value="pt">PT</option>
+            </select>
+            {isDropdownOpen ? (
+              <IoIosArrowUp className="pointer-events-none absolute inset-y-2 right-0 mr-2 h-4 w-4 text-white" />
+            ) : (
+              <IoIosArrowDown className="pointer-events-none absolute inset-y-2 right-0 mr-2 h-4 w-4 text-white" />
+            )}
+          </div>
+          <ToggleButton isOpen={isMenuOpen} toggleOpen={toggleMenu} />
         </div>
         <motion.nav
           initial="hidden"
@@ -70,7 +93,7 @@ export function Header() {
                 <NavItem
                   section={section}
                   isActive={activeSection === section}
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => setIsMenuOpen(false)}
                 />
               </div>
             ))}
@@ -92,30 +115,29 @@ export function Header() {
           variants={slideInTopVariants}
           className="lg:flex lg:w-auto lg:flex-row lg:justify-between"
         >
-          <div className="hidden items-center justify-end space-x-3 lg:mb-0 lg:mr-16 lg:flex xl:mr-6">
-            <img
-              src="https://i.imgur.com/shOBDB8.jpg"
-              alt="United States Flag"
-              className={`w-8 ${language === 'pt' ? 'opacity-50' : 'opacity-100'}`}
-            />
-            <label className="switch">
-              <input
-                type="checkbox"
-                checked={language === 'pt'}
+          <div className="hidden items-center justify-end space-x-3 lg:mb-0 lg:mr-10 lg:flex">
+            <div className="relative">
+              <select
+                value={language}
                 onChange={toggleLanguage}
-              />
-              <span className="slider round"></span>
-            </label>
-            <img
-              src="https://i.imgur.com/3BXGUoY.jpg"
-              alt="Brazil Flag"
-              className={`w-8 ${language === 'en' ? 'opacity-50' : 'opacity-100'}`}
-            />
+                onClick={toggleDropdown}
+                onBlur={() => setIsDropdownOpen(false)}
+                className={`block w-full cursor-pointer appearance-none rounded-md border border-black px-3 py-1.5 pr-8 leading-tight text-white focus:outline-none ${isDropdownOpen ? 'bg-black' : 'bg-blue-700'}`}
+              >
+                <option value="en">EN</option>
+                <option value="pt">PT</option>
+              </select>
+              {isDropdownOpen ? (
+                <IoIosArrowUp className="pointer-events-none absolute inset-y-2.5 right-0 mr-3 h-4 w-4 text-white" />
+              ) : (
+                <IoIosArrowDown className="pointer-events-none absolute inset-y-2.5 right-0 mr-3 h-4 w-4 text-white" />
+              )}
+            </div>
           </div>
           <a
             href="/CV-MauricioKrziminski.pdf"
             download="CV - Mauricio Krziminski.pdf"
-            className="hidden whitespace-nowrap rounded-3xl border-2 border-blue-700 px-6 py-2 font-medium text-blue-700 transition-all duration-300 hover:scale-110 hover:bg-blue-700 hover:text-white lg:inline-block"
+            className="hidden whitespace-nowrap rounded-3xl border-2 border-black bg-blue-700 px-6 py-2 font-medium text-white transition-all duration-300 hover:scale-110 hover:border-blue-700 hover:bg-transparent hover:text-blue-700 lg:inline-block"
           >
             Download CV
           </a>
@@ -125,7 +147,7 @@ export function Header() {
       <motion.div
         className="fixed right-0 top-0 z-40 h-full w-3/4 max-w-md bg-zinc-950/70 shadow-xl backdrop-blur-md lg:hidden"
         initial="closed"
-        animate={isOpen ? 'open' : 'closed'}
+        animate={isMenuOpen ? 'open' : 'closed'}
         variants={menuVariants}
       >
         <nav className="ml-10 mt-52 flex flex-col items-center justify-start space-y-2 p-4">
@@ -134,7 +156,7 @@ export function Header() {
               key={section}
               section={section}
               isActive={false}
-              onClick={closeMenu}
+              onClick={toggleMenu}
             />
           ))}
           <a
@@ -144,26 +166,6 @@ export function Header() {
           >
             Download CV
           </a>
-          <div className="mr-6 flex items-center space-x-3 lg:mb-0">
-            <img
-              src="https://i.imgur.com/shOBDB8.jpg"
-              alt="United States Flag"
-              className={`w-8 ${language === 'pt' ? 'opacity-50' : 'opacity-100'}`}
-            />
-            <label className="switch">
-              <input
-                type="checkbox"
-                checked={language === 'pt'}
-                onChange={toggleLanguage}
-              />
-              <span className="slider round"></span>
-            </label>
-            <img
-              src="https://i.imgur.com/3BXGUoY.jpg"
-              alt="Brazil Flag"
-              className={`w-8 ${language === 'en' ? 'opacity-50' : 'opacity-100'}`}
-            />
-          </div>
         </nav>
       </motion.div>
     </>

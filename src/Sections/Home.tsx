@@ -114,14 +114,14 @@ export function HomePage() {
             </motion.div>
           </div>
         </div>
-        <div className="order-first mb-14 mt-40 md:mt-0 lg:ml-20 lg:mt-10">
+        <div className="order-first mb-14 mt-40 md:mt-0 lg:ml-20 lg:mr-5 lg:mt-10">
           <motion.div
             ref={ref5}
             initial="hidden"
             animate={inView5 ? 'visible' : 'hidden'}
             variants={slideInRightVariants}
           >
-            <div className="flex h-80 w-80 scale-110 items-center justify-center overflow-hidden rounded-full border-3 border-blue-700 shadow-glow transition-transform duration-300 md:mt-56 md:h-96 md:w-96 lg:hover:scale-125">
+            <div className="flex h-80 w-80 scale-110 items-center justify-center overflow-hidden rounded-full border-3 border-blue-700 shadow-glow transition-transform duration-300 md:mt-56 md:h-96 md:w-96 lg:mt-16 lg:hover:scale-125">
               <Image
                 src="https://i.imgur.com/odiT0Cu.png"
                 alt=""
