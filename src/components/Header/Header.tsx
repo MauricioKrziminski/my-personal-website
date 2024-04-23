@@ -8,6 +8,7 @@ import { useScrollListener } from '../../hooks/useScrollListener'
 import {
   slideInTopVariants,
   menuVariants,
+  slideInRightVariants,
 } from '../Animations/animationVariants'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
@@ -89,23 +90,29 @@ export function Header() {
           </motion.div>
         </div>
         <div className="flex w-full items-center justify-end space-x-3 lg:hidden">
-          <div className="relative">
-            <select
-              value={language}
-              onChange={toggleLanguage}
-              onClick={toggleDropdown}
-              onBlur={() => setIsDropdownOpen(false)}
-              className={`block w-full cursor-pointer appearance-none rounded-md border border-black px-3 py-1.5 pr-8 leading-tight text-white focus:outline-none ${isDropdownOpen ? 'bg-black' : 'bg-blue-700'}`}
-            >
-              <option value="en">EN</option>
-              <option value="pt">PT</option>
-            </select>
-            {isDropdownOpen ? (
-              <IoIosArrowUp className="pointer-events-none absolute inset-y-2 right-0 mr-2 h-4 w-4 text-white" />
-            ) : (
-              <IoIosArrowDown className="pointer-events-none absolute inset-y-2 right-0 mr-2 h-4 w-4 text-white" />
-            )}
-          </div>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={slideInRightVariants}
+          >
+            <div className="relative">
+              <select
+                value={language}
+                onChange={toggleLanguage}
+                onClick={toggleDropdown}
+                onBlur={() => setIsDropdownOpen(false)}
+                className={`block w-full cursor-pointer appearance-none rounded-md border border-black px-3 py-1.5 pr-8 leading-tight text-white focus:outline-none ${isDropdownOpen ? 'bg-black' : 'bg-blue-700'}`}
+              >
+                <option value="en">EN</option>
+                <option value="pt">PT</option>
+              </select>
+              {isDropdownOpen ? (
+                <IoIosArrowUp className="pointer-events-none absolute inset-y-2 right-0 mr-2 h-4 w-4 text-white" />
+              ) : (
+                <IoIosArrowDown className="pointer-events-none absolute inset-y-2 right-0 mr-2 h-4 w-4 text-white" />
+              )}
+            </div>
+          </motion.div>
           <ToggleButton isOpen={isMenuOpen} toggleOpen={toggleMenu} />
         </div>
         <motion.nav

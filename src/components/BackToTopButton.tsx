@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 export default function BackToTopButton() {
   const [isVisible, setIsVisible] = useState(false)
 
-  // Função para verificar se o botão deve ser exibido
   const toggleVisibility = () => {
     if (window.pageYOffset > 500) {
       setIsVisible(true)
@@ -13,7 +12,6 @@ export default function BackToTopButton() {
     }
   }
 
-  // Função para subir ao topo
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
