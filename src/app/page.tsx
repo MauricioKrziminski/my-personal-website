@@ -4,6 +4,7 @@ import { About } from '@/Sections/About'
 import Home from '@/Sections/Home'
 import { Projects } from '@/Sections/Projects'
 import { LanguageProvider } from '../contexts/LanguageContext'
+import BackToTopButton from '@/components/BackToTopButton'
 
 export default function Page() {
   return (
@@ -26,6 +27,7 @@ export default function Page() {
           <section id="footer">
             <Footer />
           </section>
+          <BackToTopButton />
         </main>
       </div>
     </LanguageProvider>
