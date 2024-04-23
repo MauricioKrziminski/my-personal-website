@@ -38,7 +38,7 @@ export function CardsComponent() {
             'Website developed on a single page with catalog and shopping cart, to display the work of an academic nursing league in cardiology, so that e-books and other study materials can be purchased.',
           technologies: 'Next.js, TailwindCSS',
           githubUrl: 'https://github.com/MauricioKrziminski/project-website',
-          projectUrl: 'https://project-website-3zk.pages.dev/',
+          projectUrl: 'https://d8f1ef85.project-website-3zk.pages.dev/',
         },
         {
           imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
@@ -93,7 +93,7 @@ export function CardsComponent() {
             'Site desenvolvido em pagina unica com catalogo e carrinho de compras, para exibir o trabalho de uma liga acadêmica de enfermagem em cardiologia, assim podendo ser comprados e-books e outros materiais para estudos.',
           technologies: 'Next.js, TailwindCSS',
           githubUrl: 'https://github.com/MauricioKrziminski/project-website',
-          projectUrl: 'https://project-website-3zk.pages.dev/',
+          projectUrl: 'https://d8f1ef85.project-website-3zk.pages.dev/',
         },
         {
           imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
