@@ -15,11 +15,18 @@ import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { isShrink, activeSection } = useScrollListener()
-  const navItems = useMemo(() => ['home', 'about', 'projects'], [])
   const navRefs = useRef<(HTMLDivElement | null)[]>([])
   const [indicatorProps, setIndicatorProps] = useState({ left: 0, width: 0 })
   const { language, toggleLanguage } = useLanguage()
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const navItems = useMemo(
+    () => [
+      { key: 'home', label: language === 'pt' ? 'Home' : 'Home' },
+      { key: 'about', label: language === 'pt' ? 'Sobre' : 'About' },
+      { key: 'projects', label: language === 'pt' ? 'Projetos' : 'Projects' },
+    ],
+    [language],
+  )
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -29,8 +36,28 @@ export function Header() {
     setIsDropdownOpen(!isDropdownOpen)
   }
 
+  const handleNavItemClick = (key: string) => {
+    // Fechar o menu se estiver aberto
+    if (isMenuOpen) {
+      setIsMenuOpen(false)
+    }
+
+    // Aqui você pode adicionar a lógica para scrollar para a seção correspondente
+    // Você pode precisar de um método para calcular a posição ou usar uma biblioteca de scroll
+    const sectionElement = document.getElementById(key) // assumindo que você tem um id correspondente na seção
+    if (sectionElement) {
+      window.scrollTo({
+        top: sectionElement.offsetTop,
+        behavior: 'smooth',
+      })
+    }
+  }
+
   useEffect(() => {
-    const activeNavItem = navRefs.current[navItems.indexOf(activeSection)]
+    const activeNavItemIndex = navItems.findIndex(
+      (item) => item.key === activeSection,
+    )
+    const activeNavItem = navRefs.current[activeNavItemIndex]
     if (activeNavItem) {
       setIndicatorProps({
         left: activeNavItem.offsetLeft - 2,
@@ -88,12 +115,12 @@ export function Header() {
           className="hidden lg:flex lg:flex-row"
         >
           <nav className="relative hidden cursor-pointer lg:ml-16 lg:flex lg:flex-row xl:ml-24">
-            {navItems.map((section, index) => (
-              <div ref={(el) => (navRefs.current[index] = el)} key={section}>
+            {navItems.map((item, index) => (
+              <div ref={(el) => (navRefs.current[index] = el)} key={item.key}>
                 <NavItem
-                  section={section}
-                  isActive={activeSection === section}
-                  onClick={() => setIsMenuOpen(false)}
+                  section={item.label}
+                  isActive={activeSection === item.key}
+                  onClick={() => handleNavItemClick(item.key)}
                 />
               </div>
             ))}
@@ -151,12 +178,12 @@ export function Header() {
         variants={menuVariants}
       >
         <nav className="ml-10 mt-52 flex flex-col items-center justify-start space-y-2 p-4">
-          {navItems.map((section) => (
+          {navItems.map((item) => (
             <NavItem
-              key={section}
-              section={section}
-              isActive={false}
-              onClick={toggleMenu}
+              key={item.key}
+              section={item.label}
+              isActive={activeSection === item.key}
+              onClick={() => handleNavItemClick(item.key)}
             />
           ))}
           <a
