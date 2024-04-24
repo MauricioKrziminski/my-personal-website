@@ -51,7 +51,7 @@ export function HomePage() {
   })
 
   return (
-    <div className="flex h-[800px] w-full items-center justify-center overflow-hidden bg-zinc-800 lg:h-screen">
+    <div className="flex h-[800px] w-full items-center justify-center overflow-hidden bg-slate-950 lg:h-screen">
       <section className="flex w-full max-w-4xl flex-col items-center justify-center px-6 text-center lg:flex-row-reverse lg:px-24 lg:text-left">
         <div className="mb-16 space-y-4 text-white lg:mb-0">
           <div className="text-center lg:text-left">

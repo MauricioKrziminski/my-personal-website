@@ -2,7 +2,7 @@ import { BsWhatsapp, BsInstagram, BsLinkedin } from 'react-icons/bs'
 
 export function Footer() {
   return (
-    <footer className="bg-zinc-700 p-6 text-white">
+    <footer className=" bg-zinc-950 p-6 text-white">
       <div className="container mx-auto flex flex-col items-center justify-between px-4 sm:flex-row sm:px-8 lg:px-56">
         <div className="mb-4 flex flex-col items-start sm:mb-0 lg:mb-0">
           <span className="text-lg lg:mb-0">

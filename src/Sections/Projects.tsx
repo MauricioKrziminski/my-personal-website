@@ -27,7 +27,7 @@ export function Projects() {
     }[language] || {}
 
   return (
-    <div className="flex w-full flex-col overflow-hidden bg-zinc-800 lg:h-full">
+    <div className="flex w-full flex-col overflow-hidden bg-slate-950 lg:h-full">
       <motion.section
         ref={ref}
         variants={containerVariants}
