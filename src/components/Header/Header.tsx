@@ -101,7 +101,7 @@ export function Header() {
                 onChange={toggleLanguage}
                 onClick={toggleDropdown}
                 onBlur={() => setIsDropdownOpen(false)}
-                className={`block w-full cursor-pointer appearance-none rounded-md border border-black px-3 py-1.5 pr-8 leading-tight text-white focus:outline-none ${isDropdownOpen ? 'bg-black' : 'bg-blue-700'}`}
+                className={`block w-full cursor-pointer appearance-none rounded-md border border-black px-3 py-1.5 pr-8 leading-tight text-white focus:outline-none ${isDropdownOpen ? 'bg-zinc-950' : 'bg-blue-700'}`}
               >
                 <option value="en">EN</option>
                 <option value="pt">PT</option>
@@ -156,7 +156,7 @@ export function Header() {
                 onChange={toggleLanguage}
                 onClick={toggleDropdown}
                 onBlur={() => setIsDropdownOpen(false)}
-                className={`block w-full cursor-pointer appearance-none rounded-md border border-black px-3 py-1.5 pr-8 leading-tight text-white focus:outline-none ${isDropdownOpen ? 'bg-black' : 'bg-blue-700'}`}
+                className={`block w-full cursor-pointer appearance-none rounded-md border border-black px-3 py-1.5 pr-8 leading-tight text-white focus:outline-none ${isDropdownOpen ? 'bg-zinc-950' : 'bg-blue-700'}`}
               >
                 <option value="en">EN</option>
                 <option value="pt">PT</option>

@@ -53,7 +53,7 @@ export function HomePage() {
   return (
     <div className="flex h-[800px] w-full items-center justify-center overflow-hidden bg-slate-950 lg:h-screen">
       <section className="flex w-full max-w-4xl flex-col items-center justify-center px-6 text-center lg:flex-row-reverse lg:px-24 lg:text-left">
-        <div className="mb-16 space-y-4 text-white lg:mb-0">
+        <div className="mb-16 space-y-4 text-white lg:mb-0 lg:mt-10">
           <div className="text-center lg:text-left">
             <motion.div
               ref={ref1}
@@ -121,7 +121,7 @@ export function HomePage() {
             animate={inView5 ? 'visible' : 'hidden'}
             variants={slideInRightVariants}
           >
-            <div className="flex h-80 w-80 scale-110 items-center justify-center overflow-hidden rounded-full border-3 border-blue-700 shadow-glow transition-transform duration-300 md:mt-56 md:h-96 md:w-96 lg:mt-10 lg:hover:scale-125">
+            <div className="flex h-80 w-80 scale-110 items-center justify-center overflow-hidden rounded-full border-3 border-blue-700 shadow-glow transition-transform duration-300 md:mt-56 md:h-96 md:w-96 lg:mt-4 lg:hover:scale-125">
               <Image
                 src="https://i.imgur.com/odiT0Cu.png"
                 alt=""
