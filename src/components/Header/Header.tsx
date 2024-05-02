@@ -38,14 +38,11 @@ export function Header() {
   }
 
   const handleNavItemClick = (key: string) => {
-    // Fechar o menu se estiver aberto
     if (isMenuOpen) {
       setIsMenuOpen(false)
     }
 
-    // Aqui você pode adicionar a lógica para scrollar para a seção correspondente
-    // Você pode precisar de um método para calcular a posição ou usar uma biblioteca de scroll
-    const sectionElement = document.getElementById(key) // assumindo que você tem um id correspondente na seção
+    const sectionElement = document.getElementById(key)
     if (sectionElement) {
       window.scrollTo({
         top: sectionElement.offsetTop,
