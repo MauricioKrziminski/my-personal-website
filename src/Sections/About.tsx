@@ -70,6 +70,10 @@ export function About() {
     triggerOnce: false,
     threshold: 0.1,
   })
+  const [ref5, inView5] = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  })
 
   return (
     <div className="relative mx-auto flex max-w-full flex-col overflow-hidden bg-zinc-950 px-2">
@@ -155,18 +159,24 @@ export function About() {
                 {textos.tools}
               </button>
             </div>
-
-            <div className="grid grid-cols-2 gap-4 pb-32 md:grid-cols-3 md:gap-8 xl:grid-cols-4 xl:gap-10 2xl:gap-12">
-              {(activeTab === 1 ? tech : tools).map((item) => (
-                <TechToolItem
-                  key={item.id}
-                  item={item}
-                  hoveredItemId={hoveredItemId}
-                  handleMouseEnter={handleMouseEnter}
-                  handleMouseLeave={handleMouseLeave}
-                />
-              ))}
-            </div>
+            <motion.div
+              ref={ref5}
+              variants={slideInRightVariants}
+              initial="hidden"
+              animate={inView5 ? 'visible' : 'hidden'}
+            >
+              <div className="grid grid-cols-2 gap-4 pb-32 md:grid-cols-3 md:gap-8 xl:grid-cols-4 xl:gap-10 2xl:gap-12">
+                {(activeTab === 1 ? tech : tools).map((item) => (
+                  <TechToolItem
+                    key={item.id}
+                    item={item}
+                    hoveredItemId={hoveredItemId}
+                    handleMouseEnter={handleMouseEnter}
+                    handleMouseLeave={handleMouseLeave}
+                  />
+                ))}
+              </div>
+            </motion.div>
           </section>
         </article>
       </div>
