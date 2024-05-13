@@ -35,7 +35,7 @@ export function CardsComponent() {
           imgSrc: 'https://i.imgur.com/VQ9uR76.png',
           title: 'LAEC',
           description:
-            'Website developed on a single page with catalog and shopping cart, to display the work of an academic nursing league in cardiology, so that e-books and other study materials can be purchased.',
+            'Website developed on a landing page with catalog and shopping cart, to display the work of an academic nursing league in cardiology, so that e-books and other study materials can be purchased.',
           technologies: 'Next.js, TailwindCSS',
           githubUrl: 'https://github.com/MauricioKrziminski/project-website',
           projectUrl: 'https://d8f1ef85.project-website-3zk.pages.dev/',
@@ -90,7 +90,7 @@ export function CardsComponent() {
           imgSrc: 'https://i.imgur.com/VQ9uR76.png',
           title: 'LAEC - Liga Acadêmica',
           description:
-            'Site desenvolvido em pagina unica com catalogo e carrinho de compras, para exibir o trabalho de uma liga acadêmica de enfermagem em cardiologia, assim podendo ser comprados e-books e outros materiais para estudos.',
+            'Site desenvolvido em pagina unica com catálogo e carrinho de compras, para exibir o trabalho de uma liga acadêmica de enfermagem em cardiologia, assim podendo ser comprados e-books e outros materiais para estudos.',
           technologies: 'Next.js, TailwindCSS',
           githubUrl: 'https://github.com/MauricioKrziminski/project-website',
           projectUrl: 'https://d8f1ef85.project-website-3zk.pages.dev/',
