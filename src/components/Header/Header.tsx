@@ -1,17 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { NavItem } from './NavItem'
-import { ToggleButton } from './ToggleButton'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
+import { useLanguage } from '../../contexts/LanguageContext'
 import { useScrollListener } from '../../hooks/useScrollListener'
 import {
-  slideInTopVariants,
   menuVariants,
   slideInRightVariants,
+  slideInTopVariants,
 } from '../Animations/animationVariants'
-import { useLanguage } from '../../contexts/LanguageContext'
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
+import { NavItem } from './NavItem'
+import { ToggleButton } from './ToggleButton'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -167,7 +167,7 @@ export function Header() {
           </div>
           <a
             href="/CV-MauricioKrziminski.pdf"
-            download="CV - Mauricio Krziminski.pdf"
+            download="Curriculo - Mauricio Krziminski.pdf"
             className="hidden whitespace-nowrap rounded-3xl border-2 border-black bg-blue-700 px-6 py-2 font-medium text-white transition-all duration-300 hover:scale-110 hover:border-blue-700 hover:bg-transparent hover:text-blue-700 lg:inline-block"
           >
             Download CV
@@ -192,7 +192,7 @@ export function Header() {
           ))}
           <a
             href="/CV-MauricioKrziminski.pdf"
-            download="MauricioKrziminski-CV.pdf"
+            download="Curriculo - Mauricio Krziminski.pdf"
             className="mr-10 w-full rounded-3xl border-2 border-blue-700 bg-blue-700 py-2 text-center text-sm font-medium text-white transition-all duration-300"
           >
             Download CV
