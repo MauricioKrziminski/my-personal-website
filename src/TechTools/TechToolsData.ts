@@ -15,14 +15,14 @@ export const tech = [
     id: 3,
     name: 'JavaScript',
     imageUrl:
-      'https://cdn.icon-icons.com/icons2/2415/PNG/512/javascript_original_logo_icon_146455.png',
+      'https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg',
     status: 'Advanced',
   },
   {
     id: 4,
     name: 'TypeScript',
     imageUrl:
-      'https://cdn.icon-icons.com/icons2/2415/PNG/512/typescript_original_logo_icon_146317.png',
+      'https://img.icons8.com/?size=100&id=wpZmKzk11AzJ&format=png&color=000000',
     status: 'Advanced',
   },
   {
@@ -36,7 +36,7 @@ export const tech = [
     id: 6,
     name: 'NextJS',
     imageUrl:
-      'https://cdn.icon-icons.com/icons2/2148/PNG/512/nextjs_icon_132160.png',
+      'https://img.icons8.com/?size=100&id=yUdJlcKanVbh&format=png&color=000000',
     status: 'Advanced',
   },
   {
@@ -50,14 +50,14 @@ export const tech = [
     id: 8,
     name: 'TailwindCSS',
     imageUrl:
-      'https://cdn.icon-icons.com/icons2/2107/PNG/512/file_type_tailwind_icon_130128.png',
+      'https://img.icons8.com/?size=100&id=CIAZz2CYc6Kc&format=png&color=000000',
     status: 'Intermediate',
   },
   {
     id: 9,
     name: 'NodeJS',
     imageUrl:
-      'https://cdn.icon-icons.com/icons2/2107/PNG/512/file_type_node_icon_130301.png',
+      'https://img.icons8.com/?size=100&id=hsPbhkOH4FMe&format=png&color=000000',
     status: 'Beginner',
   },
 ]
@@ -79,35 +79,35 @@ export const tools = [
     id: 3,
     name: 'VSCode',
     imageUrl:
-      'https://cdn.icon-icons.com/icons2/1381/PNG/512/visualstudiocode_93981.png',
+      'https://img.icons8.com/?size=100&id=y7WGoWNuIWac&format=png&color=000000',
     status: 'Code Editor',
   },
   {
     id: 4,
     name: 'Figma',
     imageUrl:
-      'https://cdn.icon-icons.com/icons2/2699/PNG/512/figma_logo_icon_170157.png',
+      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',
     status: 'Design Tool',
   },
   {
     id: 5,
     name: 'Postman',
     imageUrl:
-      'https://cdn.icon-icons.com/icons2/3053/PNG/512/postman_macos_bigsur_icon_189815.png',
+      'https://img.icons8.com/?size=100&id=QEQQKirln6Tf&format=png&color=000000',
     status: 'API Testing',
   },
   {
     id: 7,
     name: 'Docker',
     imageUrl:
-      'https://cdn.icon-icons.com/icons2/2415/PNG/512/docker_original_wordmark_logo_icon_146557.png',
+      'https://img.icons8.com/?size=100&id=cdYUlRaag9G9&format=png&color=000000',
     status: 'Containerization',
   },
   {
     id: 8,
     name: 'NPM',
     imageUrl:
-      'https://cdn.icon-icons.com/icons2/2415/PNG/512/npm_original_wordmark_logo_icon_146402.png',
+      'https://img.icons8.com/?size=100&id=24895&format=png&color=000000',
     status: 'Package Manager',
   },
 ]

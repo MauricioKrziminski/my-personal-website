@@ -41,12 +41,13 @@ export function CardsComponent() {
           projectUrl: 'https://d8f1ef85.project-website-3zk.pages.dev/',
         },
         {
-          imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
-          title: "it's coming...",
-          description: 'working...',
-          technologies: 'working...',
-          githubUrl: '#',
-          projectUrl: '#',
+          imgSrc: 'https://i.imgur.com/YACrgVH.png',
+          title: 'Confeitaria da Ge',
+          description:
+            'Website developed on a landing page with catalog and shopping cart, to display the work of an academic nursing league in cardiology, so that e-books and other study materials can be purchased.',
+          technologies: 'Next.js, TailwindCSS',
+          githubUrl: 'https://github.com/MauricioKrziminski/confeitaria-ge',
+          projectUrl: 'https://confeitaria-ge.vercel.app/',
         },
         {
           imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
@@ -96,12 +97,13 @@ export function CardsComponent() {
           projectUrl: 'https://d8f1ef85.project-website-3zk.pages.dev/',
         },
         {
-          imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',
-          title: 'está chegando...',
-          description: 'trabalhando...',
-          technologies: 'trabalhando...',
-          githubUrl: '#',
-          projectUrl: '#',
+          imgSrc: 'https://i.imgur.com/YACrgVH.png',
+          title: 'Confeitaria da Ge',
+          description:
+            'Site desenvolvido como landing page com catálogo e carrinho de compras, projetado para mostrar a Confeitaria da Gê. Ele apresenta uma exibição dinâmica de produtos, animações suaves e uma experiência de pedido intuitiva.',
+          technologies: 'Next.js, TailwindCSS',
+          githubUrl: 'https://github.com/MauricioKrziminski/confeitaria-ge',
+          projectUrl: 'https://confeitaria-ge.vercel.app/',
         },
         {
           imgSrc: 'https://media.giphy.com/media/FaAxdPWZ7HKGmlnku7/giphy.gif',

@@ -166,7 +166,7 @@ export function Header() {
             </div>
           </div>
           <a
-            href="/Curriculo-MauricioKrziminski.pdf"
+            href="/Curriculo Mauricio Krziminski.pdf"
             download="Curriculo - Mauricio Krziminski.pdf"
             className="hidden whitespace-nowrap rounded-3xl border-2 border-black bg-blue-700 px-6 py-2 font-medium text-white transition-all duration-300 hover:scale-110 hover:border-blue-700 hover:bg-transparent hover:text-blue-700 lg:inline-block"
           >
@@ -191,7 +191,7 @@ export function Header() {
             />
           ))}
           <a
-            href="/Curriculo-MauricioKrziminski.pdf"
+            href="/Curriculo Mauricio Krziminski.pdf"
             download="Curriculo - Mauricio Krziminski.pdf"
             className="mr-10 w-full rounded-3xl border-2 border-blue-700 bg-blue-700 py-2 text-center text-sm font-medium text-white transition-all duration-300"
           >
