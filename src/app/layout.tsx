@@ -8,8 +8,6 @@ const poppins = Poppins({
   subsets: ['latin'],
 })
 
-export const runtime = 'edge'
-
 export const metadata: Metadata = {
   title: 'Mauricio Krziminski',
   description: 'My Personal Website',
