@@ -1,26 +1,76 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Brand fonts for the ported New Form site. Files live in /public/fonts and are
+ * declared here with the exact family names the styled-components reference
+ * (see styles/text.ts): 'TWK Lausanne' (200/350/550), 'PP Mondwest' (regular),
+ * 'Editorial New' (light). font-display: swap avoids invisible text while they
+ * load.
+ */
+@font-face {
+  font-family: "TWK Lausanne";
+  src: url("/fonts/TWKLausanne-200.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TWK Lausanne";
+  src: url("/fonts/TWKLausanne-350.woff2") format("woff2");
+  font-weight: 350;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TWK Lausanne";
+  src: url("/fonts/TWKLausanne-550.woff2") format("woff2");
+  font-weight: 550;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PP Mondwest";
+  src: url("/fonts/PPMondwest-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Editorial New";
+  src: url("/fonts/PPEditorialNew-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/*
+ * Global reset for the ported New Form site. The original Gatsby build shipped
+ * its resets via createGlobalStyle; we keep them here so styled-components
+ * (which owns all real styling) can layer on top.
+ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  height: 100%;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
 }

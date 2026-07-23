@@ -1,0 +1,36 @@
+/**
+ * contains animation timings for the approach section,
+ * as well as the total duration of the timeline
+ *
+ * note that fill screen animation at end is keyframed separately,
+ * relative to bottom of container
+ *
+ */
+const KEYFRAMES = {
+  START: 0,
+  START_MOVE_TO_CENTER: 0,
+  FINISH_MOVE_TO_CENTER: 1,
+  START_FINANCE_COLOR: 0.5,
+  FINISH_FINANCE_COLOR: 1.5,
+  START_FINANCE_LINES: 0.8,
+  FINISH_FINANCE_LINES: 2,
+  START_DATA_FADE_IN: 2.5,
+  FINISH_DATA_FADE_IN: 3,
+  START_DATA_COLOR: 3,
+  FINISH_DATA_COLOR: 3.5,
+  START_DATA_DOTS: 3.5,
+  FINISH_DATA_DOTS: 5.5,
+  START_BLOCKCHAIN_FADE_IN: 6,
+  FINISH_BLOCKCHAIN_FADE_IN: 6.2,
+  START_BLOCKCHAIN_COLOR: 6.8,
+  FINISH_BLOCKCHAIN_COLOR: 7.3,
+  START_BLOCKCHAIN_LINES: 7,
+  FINISH_BLOCKCHAIN_LINES: 8.5,
+  START_EXPAND_VENN_DIAGRAM: 9,
+  FINISH_EXPAND_VENN_DIAGRAM: 10,
+  START_SHOW_TRIANGLE: 10,
+  FINISH_SHOW_TRIANGLE: 11,
+  DURATION: 11,
+}
+
+export default KEYFRAMES
