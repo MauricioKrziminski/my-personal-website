@@ -94,9 +94,10 @@ const Wrapper = styled.div`
   justify-content: center;
 
   ${media.mobile} {
-    /* just center the tagline in the viewport; the old 200vw + translateX hack
-       (needed to fit the flanking wave arrows in a row) pushed the text off the
-       right edge and clipped words. The arrows are hidden on mobile below. */
+    /* same row composition as desktop: the opening effect IS the two arrows
+       being pushed apart by the growing Clipper, so they have to flank the text
+       (stacking them in a column left them static, i.e. "already open"). They
+       are shrunk below so the row fits 100vw without squeezing the tagline. */
     width: 100vw;
   }
 `
@@ -115,15 +116,23 @@ const Before = styled(WaveArrowSVG)`
     margin: 3.1vw 1.953vw;
   }
   ${media.mobile} {
-    /* decorative flourish only: hiding it on mobile lets the tagline use the
-       full centered width instead of being squeezed/clipped between the arrows */
-    display: none;
+    /* kept on mobile (it used to be display: none, so it never showed on a real
+       phone) but small: arrow 7.5vw tall + 0.8vw margins is ~29.6px a side at
+       402px wide, which leaves the 81.333vw tagline its full width inside the
+       row instead of squeezing/clipping it. */
+    display: block;
+    height: 7.5vw;
+    margin: 2vw 0.8vw;
+    flex-shrink: 0;
   }
 `
 
 const Clipper = styled.div`
   ${media.mobile} {
-    width: 92vw;
+    /* 84vw (was 92vw) so the row Before + Clipper + After stays under 100vw;
+       still wider than the 81.333vw tagline inside it */
+    width: 84vw;
+    flex-shrink: 0;
   }
   will-change: width, height;
 `
