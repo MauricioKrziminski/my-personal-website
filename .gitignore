@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# lockfile deixado de fora de proposito: o Cloudflare usa `npm install`
+# (nao `npm ci`), entao o package-lock.json nao deve ser versionado
+package-lock.json
