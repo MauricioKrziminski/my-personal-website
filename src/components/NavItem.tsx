@@ -96,7 +96,12 @@ const Wrapper = styled.div`
 const Item = styled.div<{ isActive: boolean; color: string }>`
   ${({ isActive }) => !isActive && strokeText};
   color: ${({ color }) => color};
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  /* o polígono ficava exatamente na caixa do elemento, que com o line-height:100%
+     dos tokens de texto tem a altura da fonte: as descidas de g, j, p, q, y e @
+     passam ~7% abaixo dela e maiúsculas acentuadas ~3% acima, então apareciam
+     raspadas (e-mail do rodapé, "Projetos" no menu). Sobra vertical de 15% em
+     cima e embaixo; o recorte horizontal segue igual. */
+  clip-path: polygon(0 -15%, 100% -15%, 100% 115%, 0 115%);
   display: flex;
   flex-wrap: nowrap;
   width: fit-content;

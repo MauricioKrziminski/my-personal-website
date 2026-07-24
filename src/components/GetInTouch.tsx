@@ -36,14 +36,19 @@ const TouchInternal = styled.div<{ darkText: boolean }>`
   color: ${props => (props.darkText ? colors.black700 : colors.white500)};
   opacity: 0.5;
   padding-left: 50px;
-  margin-bottom: -25px;
+  /* o pai (Touch, no rodapé e no menu) tem overflow: hidden, então esta margem
+     negativa define onde o texto é cortado. Com os -25px do port o corte caía na
+     linha de base: em inglês ("Get in touch") não havia descida nenhuma, mas em
+     português o "g" de "Comigo" ficava raspado. Valor em em (nada de crase aqui:
+     ela encerraria o template literal do styled-components) para acompanhar a fonte
+     em todos os breakpoints (antes eram três valores duplicados, e o mobile nem
+     tinha o seu). */
+  margin-bottom: -0.04em;
   ${media.desktop} {
     padding-left: 3.472vw;
-    margin-bottom: -1.736vw;
   }
   ${media.tablet} {
     padding-left: 4.883vw;
-    margin-bottom: -2.441vw;
   }
   ${media.mobile} {
     @media (max-height: 800px) {
