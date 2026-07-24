@@ -194,6 +194,18 @@ Diretório `src/utils/i18n/`:
   (JS). Quando um SVG é usado via `<img src>` (não import SVGR), ele precisa
   existir como **SVG cru** em `public/images/**`. Ícones do Approach animam
   consultando os próprios elementos por tag/classe — não regenere sem verificar.
+- **Descidas de letra (g, j, p, q, y, @) sendo raspadas**: os tokens `text.h1..h6`
+  usam `line-height: 100%`, então a caixa da linha tem exatamente a altura da
+  fonte e a tinta das descidas fica ~7% ABAIXO dela (maiúsculas acentuadas ficam
+  ~3% acima). Qualquer `overflow: hidden` ou `clip-path` colado na caixa corta a
+  letra. Já mordeu duas vezes: o `clip-path` do `NavItem` (e-mail do rodapé e
+  itens do menu) e o `margin-bottom` negativo do `GetInTouch` ("Fale Comigo").
+  Detalhe traiçoeiro: em inglês o texto do port não tinha descida nenhuma
+  ("Get in touch", "Projects" no menu era o único), então o bug só aparece com a
+  cópia em português. Ao criar máscara/recorte em texto, deixe folga vertical.
+- **Nunca use crase dentro de comentário CSS** em `styled.x\`...\``: a crase
+  encerra o template literal e o build quebra com "Expected a semicolon", com a
+  página inteira em branco no dev.
 - **JSX apaga whitespace** entre expressões em linhas separadas (ex.: `{a}` e
   `<span>` viraram "FaleComigo"). Use `{" "}` explícito quando precisar do espaço.
 - **Imagens de projeto via `sharp`**: os screenshots emoldurados (barra de
