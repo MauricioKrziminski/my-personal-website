@@ -1,10 +1,9 @@
-import React, { useContext, useState } from "react"
+import React, { useState } from "react"
 
 import gsap from "gsap"
 import ScrollTrigger from "gsap/ScrollTrigger"
 import styled from "styled-components"
 
-import { ScreenContext } from "components/Providers"
 import { useIsSmooth } from "components/Scroll"
 import ScrollInvite from "components/ScrollInvite"
 import ExperienceDeck from "components/team/ExperienceDeck"
@@ -29,11 +28,10 @@ export default function Experiences({ team }: Props) {
   const [wrapperEl, setWrapperEl] = useState<HTMLElement | null>(null)
   const [tl, setTl] = useState<GSAPTimeline | null>(null)
   const isSmooth = useIsSmooth()
-  const { mobile } = useContext(ScreenContext)
   const t = useT()
 
   useAnimation(() => {
-    if (wrapperEl && !mobile) {
+    if (wrapperEl) {
       ScrollTrigger.create({
         pin: wrapperEl.children,
         trigger: wrapperEl,
@@ -53,28 +51,7 @@ export default function Experiences({ team }: Props) {
 
       setTl(newTl)
     }
-  }, [isSmooth, wrapperEl, mobile])
-
-  if (mobile) {
-    return (
-      <MobileOuter>
-        <Header>
-          <Title>{t.aboutPage.experienceTitle}</Title>
-          <MobileBar />
-        </Header>
-        {team.map((entry, i) => (
-          <MobileCard key={entry.name}>
-            <Index>{String(i + 1).padStart(2, "0")}</Index>
-            <MobileName>{entry.name}</MobileName>
-            <MobilePeriod>{entry.title}</MobilePeriod>
-            {!!entry.description?.description && (
-              <MobileDesc>{entry.description.description}</MobileDesc>
-            )}
-          </MobileCard>
-        ))}
-      </MobileOuter>
-    )
-  }
+  }, [isSmooth, wrapperEl])
 
   return (
     <Wrapper id="team-experience" ref={ref => setWrapperEl(ref)} count={team.length}>
@@ -136,6 +113,18 @@ const Content = styled.div`
     width: 32vw;
     left: 5.371vw;
   }
+  /* mobile: heading pinned at the top-center, the card deck plays below it
+     (the desktop layout puts the heading on the left of the deck instead) */
+  ${media.mobile} {
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    text-align: center;
+    padding-top: 16vw;
+  }
 `
 
 const Title = styled.h2`
@@ -153,7 +142,8 @@ const Title = styled.h2`
     margin-bottom: 2.4vw;
   }
   ${media.mobile} {
-    ${text.h5}
+    ${text.h6}
+    text-align: center;
   }
 `
 
@@ -175,6 +165,11 @@ const Line = styled.div`
     width: 4.88vw;
     margin-bottom: 2.4vw;
   }
+  ${media.mobile} {
+    height: 0.8vw;
+    width: 13.33vw;
+    margin-bottom: 4vw;
+  }
 `
 
 const Text = styled.p`
@@ -191,6 +186,11 @@ const Text = styled.p`
     ${text.bodyM}
     width: 30vw;
   }
+  /* the intro paragraph is dropped on mobile so the deck has room; the heading
+     alone carries the section, matching how tight mobile viewports handle it */
+  ${media.mobile} {
+    display: none;
+  }
 `
 
 const InviteWrapper = styled.div`
@@ -206,6 +206,9 @@ const InviteWrapper = styled.div`
   }
   ${media.tablet} {
     left: 23.34vw;
+  }
+  ${media.mobile} {
+    display: none;
   }
 `
 
@@ -224,57 +227,19 @@ const DeckWrapper = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
   }
-`
-
-/* ---- mobile: simple stacked list ---- */
-
-const MobileOuter = styled.div`
-  padding: 24vw 6.667vw 26.667vw;
-`
-
-const Header = styled.div`
-  margin-bottom: 13.333vw;
-`
-
-const MobileBar = styled.span`
-  display: block;
-  background-color: ${colors.mainGreen};
-  height: 1.067vw;
-  width: 14vw;
-  margin-top: 4vw;
-`
-
-const MobileCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-left: 8vw;
-  padding-bottom: 10.667vw;
-  border-left: 2px solid rgba(0, 0, 0, 0.14);
-`
-
-const Index = styled.span`
-  ${text.bodyXS}
-  color: ${colors.green700};
-  letter-spacing: 0.12em;
-  margin-bottom: 3.2vw;
-`
-
-const MobileName = styled.h3`
-  ${text.h6}
-  color: ${colors.mainBlack};
-  margin-bottom: 2.667vw;
-`
-
-const MobilePeriod = styled.span`
-  ${text.bodyXS}
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: ${colors.green700};
-  margin-bottom: 4vw;
-`
-
-const MobileDesc = styled.p`
-  ${text.bodyS}
-  color: ${colors.black300};
+  /* mobile: a CLIPPED viewport that starts below the pinned title and runs to
+     the bottom. Cards are flex-centered inside it, and because it clips, a card
+     rising/exiting upward simply disappears at this viewport's top edge instead
+     of sliding behind (and peeking through the letters of) the section title. */
+  ${media.mobile} {
+    top: 24vh;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: none;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `

@@ -66,6 +66,14 @@ const Email = styled.div<{ isDark: boolean }>`
     ${text.sub1}
     padding-bottom: 8vw;
   }
+  /* NOTE: this MUST be a separate ${"media.mobile"} block. text.sub1 carries its
+     own nested mobile font-size (8vw) which stylis hoists after the block above;
+     a separate later block reliably wins. The full email
+     (mauricio.krziminskii@gmail.com) is long and can't wrap mid-address, so
+     shrink it to fit the mobile column instead of clipping. */
+  ${media.mobile} {
+    font-size: 5.2vw;
+  }
 `
 
 const Wrapper = styled.footer<{ isDark: boolean }>`

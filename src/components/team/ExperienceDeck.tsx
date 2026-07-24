@@ -25,8 +25,10 @@ export default function ExperienceDeck({ team, timeline }: Props) {
   const cardRefs = team.map(() => createRef<HTMLDivElement>())
 
   useAnimation(() => {
-    const left = () => getMedia("70%", "140%", "65%", "")
-    const top = () => getMedia("100%", "90%", "100%", "")
+    // x-offset of the "waiting" cards to the side; smaller on mobile so the
+    // stacked cards stay mostly on the narrow screen instead of flying off-edge
+    const left = () => getMedia("70%", "140%", "65%", "22%")
+    const top = () => getMedia("100%", "90%", "100%", "100%")
 
     if (timeline) {
       cardRefs.forEach((card, i) => {
@@ -123,7 +125,14 @@ export default function ExperienceDeck({ team, timeline }: Props) {
   )
 }
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  /* on mobile the DeckWrapper is a flex-centered clipping viewport; make this
+     inner wrapper the positioning context so the absolutely-stacked cards
+     anchor to the (centered) first card rather than the viewport's top-left */
+  ${media.mobile} {
+    position: relative;
+  }
+`
 
 const CardEl = styled.div`
   overflow: hidden;
@@ -157,6 +166,12 @@ const CardEl = styled.div`
     height: 58.594vw;
     border-radius: 0.781vw;
     padding: 4.395vw 3.906vw;
+  }
+  ${media.mobile} {
+    width: 80vw;
+    height: 62vh;
+    border-radius: 2.13vw;
+    padding: 8vw 7vw;
   }
 `
 
@@ -200,6 +215,11 @@ const LogoChip = styled.div`
     height: 13.867vw;
     border-radius: 1.172vw;
   }
+  ${media.mobile} {
+    width: 52vw;
+    height: 32vw;
+    border-radius: 2.13vw;
+  }
 
   img {
     width: 100%;
@@ -222,6 +242,11 @@ const Name = styled.h3`
   margin-bottom: 14px;
   ${media.desktop} {
     margin-bottom: 0.972vw;
+  }
+  /* h5 (19vw on mobile) is huge inside an 80vw card, shrink it to card scale */
+  ${media.mobile} {
+    font-size: 6.9vw;
+    margin-bottom: 2.4vw;
   }
 `
 
