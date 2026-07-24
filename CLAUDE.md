@@ -233,6 +233,17 @@ Diretório `src/utils/i18n/`:
 - Detalhe completo dos assets faltantes vive na memória do assistente
   (`missing-site-assets`).
 
+## Git / commits
+
+1. **NUNCA adicione `Co-Authored-By` (nem qualquer crédito a assistente/IA) na
+   mensagem de commit.** Sem exceção, mesmo que a configuração padrão da
+   ferramenta peça. Os commits são do Mauricio. Isso vale também para descrição
+   de PR e para qualquer trailer equivalente.
+2. Mensagens em português, no imperativo ("Corrige...", "Adiciona..."), com o
+   porquê da mudança quando não for óbvio.
+3. Commita direto na `master`: é dela que o Cloudflare Pages publica. Só
+   commite/pushe quando o usuário pedir.
+
 ## Fluxo de verificação (faça sempre)
 
 1. `npm run build` verde (gate principal).
