@@ -169,9 +169,15 @@ const CardEl = styled.div`
   }
   ${media.mobile} {
     width: 80vw;
+    /* svh (see DeckWrapper in 02-Experiences): with vh the card is measured
+       against iOS Safari's toolbar-less viewport and its bottom lands under the
+       browser UI, hiding the tail of the description. */
     height: 62vh;
+    height: 62svh;
     border-radius: 2.13vw;
-    padding: 8vw 7vw;
+    /* extra bottom padding so the last line of the description never touches
+       the green bar at the foot of the card */
+    padding: 6vw 6.5vw 8vw;
   }
 `
 
@@ -191,6 +197,14 @@ const LogoArea = styled.div`
   padding: 28px 0;
   ${media.desktop} {
     padding: 1.944vw 0;
+  }
+  /* the fixed 28px padding ate scarce vertical space on a phone; also let this
+     block be the one that shrinks (min-height/overflow) so a long description
+     never gets clipped by the card's overflow: hidden */
+  ${media.mobile} {
+    padding: 3vw 0;
+    min-height: 0;
+    overflow: hidden;
   }
 `
 
@@ -216,9 +230,10 @@ const LogoChip = styled.div`
     border-radius: 1.172vw;
   }
   ${media.mobile} {
-    width: 52vw;
-    height: 32vw;
+    width: 46vw;
+    height: 27vw;
     border-radius: 2.13vw;
+    flex-shrink: 0;
   }
 
   img {
@@ -233,6 +248,9 @@ const LogoChip = styled.div`
 const Bottom = styled.div`
   display: flex;
   flex-direction: column;
+  /* never let the text block be squeezed by the card's fixed height: the logo
+     area above absorbs any shortage instead (see LogoArea) */
+  flex-shrink: 0;
 `
 
 const Name = styled.h3`
@@ -245,8 +263,8 @@ const Name = styled.h3`
   }
   /* h5 (19vw on mobile) is huge inside an 80vw card, shrink it to card scale */
   ${media.mobile} {
-    font-size: 6.9vw;
-    margin-bottom: 2.4vw;
+    font-size: 6.4vw;
+    margin-bottom: 2vw;
   }
 `
 
@@ -260,11 +278,22 @@ const Period = styled.span`
   ${media.desktop} {
     margin-bottom: 1.667vw;
   }
+  /* the fixed 24px gap is a lot of the card on a phone */
+  ${media.mobile} {
+    margin-bottom: 3vw;
+  }
 `
 
 const Desc = styled.p`
   ${text.bodyS}
   color: ${colors.black300};
+
+  /* bodyS (4.267vw) pushed the longest description (Banrisul) past the card's
+     fixed height, and the card clips its overflow, so the last lines vanished */
+  ${media.mobile} {
+    font-size: 3.9vw;
+    line-height: 145%;
+  }
 `
 
 const BottomBar = styled.span`

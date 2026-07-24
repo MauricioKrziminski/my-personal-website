@@ -214,12 +214,22 @@ Diretório `src/utils/i18n/`:
 ## Assets
 
 - **Prontos**: os 5 screenshots emoldurados dos projetos; ícones/SVGs do port
-  já renderizados; texturas.
+  já renderizados; texturas; fotos reais do Mauricio no Intro da home
+  (`homepage/intro/mauricio.webp`) e no hero da Sobre (`team/Hero-team-main.webp`,
+  braços cruzados); caricatura vetorial (`team/caricatura.png`).
+- **Favicon e OG image (prontos, gerados por script)**: monograma MK verde
+  `#2BEE4B` sobre `#121613` em `src/app/icon.png` (512), `apple-icon.png` (180) e
+  `favicon.ico` (16/32/48, PNGs embutidos); OG 1200x630 com a caricatura em
+  `public/images/og-default.png`. Saem de `scripts/gen-icons.mjs` e
+  `scripts/gen-og.mjs` (rodar da raiz). Os scripts montam um SVG com a
+  **TWK Lausanne embutida como data URI woff2** e renderizam via `sharp`:
+  librsvg lê `@font-face` base64, então a tipografia sai idêntica à do site
+  (vale para qualquer imagem futura com texto da marca).
 - **Ainda placeholder** (trocar quando o Mauricio enviar os originais — mesmos
   paths em `src/images/**` e cópia em `public/images/**` p/ os usados como `<img>`):
   os 4 logos MK (`global/Logo*.svg`), `portfolio/hero.webp`,
-  `team/Hero-team-main.webp`, e headshots/dados reais dos membros de "experiência"
-  (hoje `headshot:null` em `data.ts`). OG image `public/images/og-default.png`.
+  e headshots/dados reais dos membros de "experiência"
+  (hoje `headshot:null` em `data.ts`).
 - Detalhe completo dos assets faltantes vive na memória do assistente
   (`missing-site-assets`).
 
@@ -237,5 +247,6 @@ Diretório `src/utils/i18n/`:
 - Renomear rota `/portfolio`→`/projects` (o `/team`→`/about` já foi feito).
 - Páginas `/terms` e `/privacy` (linkadas em `Socials`, sem rota) — criar ou
   remover links.
-- Fotos reais e logos MK definitivos; OG image final; favicon final.
+- Logos MK definitivos (`global/Logo*.svg` ainda são placeholder). Favicon, OG
+  image e fotos reais já estão feitos.
 - Ícones de skill custom no Venn (hoje reusa os SVGs animados do Approach).

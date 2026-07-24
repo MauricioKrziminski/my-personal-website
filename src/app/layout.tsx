@@ -19,10 +19,19 @@ export const metadata: Metadata = {
     description: siteMetadata.description,
     url: siteMetadata.siteUrl,
     type: "website",
-    images: [siteMetadata.image],
+    locale: "pt_BR",
+    images: [
+      {
+        url: siteMetadata.image,
+        width: 1200,
+        height: 630,
+        alt: `${siteMetadata.title}, Desenvolvedor de Software Full-stack`,
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    // a OG image é 1200x630, então o card grande (e não o "summary" quadrado)
+    card: "summary_large_image",
     title: siteMetadata.title,
     description: siteMetadata.description,
     images: [siteMetadata.image],

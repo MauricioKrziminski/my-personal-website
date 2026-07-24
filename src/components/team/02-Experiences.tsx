@@ -233,8 +233,16 @@ const DeckWrapper = styled.div`
      of sliding behind (and peeking through the letters of) the section title. */
   ${media.mobile} {
     top: 24vh;
+    height: 74vh;
+    /* svh, not vh: on iOS Safari 100vh is the LARGE viewport (toolbars hidden),
+       so a vh-based band runs underneath the browser UI and the bottom of the
+       card (the end of the description) is cut off on a real phone. svh is the
+       small viewport, i.e. what is actually visible with the toolbar showing.
+       The vh pair above stays as the fallback for browsers without svh. */
+    top: 24svh;
+    height: 74svh;
     right: 0;
-    bottom: 0;
+    bottom: auto;
     left: 0;
     transform: none;
     overflow: hidden;
