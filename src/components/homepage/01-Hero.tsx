@@ -185,7 +185,16 @@ const Text = styled.h1<{ area: string }>`
 
   ${media.mobile} {
     ${text.m1};
+    /* the personal headline lines ("Software Robusto", "e Experiências") are
+       longer than the original firm's single words: drop the nowrap so a line
+       can wrap instead of overflowing off-screen */
+    white-space: normal;
     text-align: center;
+  }
+  /* separate block so this font-size wins over text.m1's hoisted mobile size;
+     shrink a touch so a whole phrase fits the column width without clipping */
+  ${media.mobile} {
+    font-size: 12.8vw;
   }
 `
 

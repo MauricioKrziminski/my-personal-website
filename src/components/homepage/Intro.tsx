@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react"
+import React, { useRef } from "react"
 
 import gsap from "gsap"
 import ScrollTrigger from "gsap/ScrollTrigger"
@@ -7,7 +7,6 @@ import styled from "styled-components"
 
 import ArrowLink from "components/ArrowLink"
 import MainButton from "components/MainButton"
-import { ScreenContext } from "components/Providers"
 import { useIsSmooth } from "components/Scroll"
 import Photo from "images/homepage/intro/mauricio.webp"
 import colors from "styles/colors"
@@ -28,7 +27,6 @@ export default function Intro() {
   const wrapper = useRef<HTMLDivElement>(null)
   const t = useT()
   const isSmooth = useIsSmooth()
-  const { mobile } = useContext(ScreenContext)
 
   useAnimation(() => {
     if (!wrapper.current) return
@@ -43,8 +41,9 @@ export default function Intro() {
     const cta = wrapper.current.querySelector(".intro-cta")
 
     // the section LOCKS (pins) when you reach it; the animation then plays as
-    // you keep scrolling through the pinned distance
-    if (pinned && !mobile)
+    // you keep scrolling through the pinned distance (mobile pins too now, the
+    // mobile layout below is sized to fit one viewport)
+    if (pinned)
       ScrollTrigger.create({
         trigger: wrapper.current,
         start: "top top",
@@ -80,24 +79,21 @@ export default function Intro() {
       allWords.push(...(split.words as HTMLElement[]))
     })
 
-    if (mobile) {
-      gsap.set(allWords, { opacity: 1 })
-      if (cta) gsap.set(cta, { opacity: 1 })
-    } else {
-      gsap.set(allWords, { opacity: 0.15 })
-      if (cta) gsap.set(cta, { opacity: 0, y: 20 })
+    // fill the words dim->full across the pinned scroll (same on mobile now
+    // that the section pins there too), then fade the buttons in at the end
+    gsap.set(allWords, { opacity: 0.15 })
+    if (cta) gsap.set(cta, { opacity: 0, y: 20 })
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: wrapper.current,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: true,
-        },
-      })
-      tl.to(allWords, { opacity: 1, ease: "none", stagger: 1 }, 0)
-      if (cta) tl.to(cta, { opacity: 1, y: 0, ease: "none", duration: 6 }, "-=6")
-    }
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: wrapper.current,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true,
+      },
+    })
+    tl.to(allWords, { opacity: 1, ease: "none", stagger: 1 }, 0)
+    if (cta) tl.to(cta, { opacity: 1, y: 0, ease: "none", duration: 6 }, "-=6")
 
     // subtle photo parallax across the whole section
     if (img)
@@ -115,7 +111,7 @@ export default function Intro() {
           },
         }
       )
-  }, [isSmooth, mobile])
+  }, [isSmooth])
 
   return (
     <Outer ref={wrapper}>
@@ -159,7 +155,9 @@ const Outer = styled.div`
   height: 320vh;
 
   ${media.mobile} {
-    height: auto;
+    /* runway for the pinned word-fill on mobile (shorter than desktop's 320vh
+       so the fill doesn't take too much scrolling on a small screen) */
+    height: 240vh;
   }
 `
 
@@ -178,9 +176,10 @@ const Pinned = styled.div`
     padding: 0 5.371vw;
   }
   ${media.mobile} {
-    height: auto;
-    overflow: visible;
-    padding: 21.333vw 6.667vw;
+    /* keep a full-viewport pinned stage on mobile too, so the content is
+       centered and locks while the words fill in on scroll */
+    height: 100vh;
+    padding: 0 6.667vw;
   }
 `
 
@@ -200,7 +199,7 @@ const Inner = styled.div`
   }
   ${media.mobile} {
     grid-template-columns: 1fr;
-    gap: 10.667vw;
+    gap: 6vw;
   }
 `
 
@@ -248,7 +247,9 @@ const PhotoCard = styled.div`
   }
   ${media.mobile} {
     border-radius: 3.2vw;
-    max-width: 80vw;
+    /* smaller on mobile so the whole photo + pitch fits inside one pinned
+       viewport (the section locks there now) */
+    max-width: 56vw;
     margin: 0 auto;
     .intro-bar {
       height: 1.067vw;
@@ -273,7 +274,7 @@ const Role = styled.p`
     margin-bottom: 1.25vw;
   }
   ${media.mobile} {
-    margin-bottom: 4vw;
+    margin-bottom: 2.5vw;
   }
 `
 
@@ -285,8 +286,8 @@ const Greeting = styled.h2`
     margin-bottom: 1.667vw;
   }
   ${media.mobile} {
-    ${text.h5}
-    margin-bottom: 5.333vw;
+    ${text.h6}
+    margin-bottom: 3.5vw;
   }
 `
 
@@ -301,7 +302,7 @@ const Body = styled.p`
   }
   ${media.mobile} {
     ${text.bodyS}
-    margin-bottom: 8vw;
+    margin-bottom: 6vw;
   }
 `
 
@@ -317,7 +318,7 @@ const Actions = styled.div`
   ${media.mobile} {
     flex-direction: column;
     align-items: flex-start;
-    gap: 6.667vw;
+    gap: 4.5vw;
     width: 100%;
   }
 `

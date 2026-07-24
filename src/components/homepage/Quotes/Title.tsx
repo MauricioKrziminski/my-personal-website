@@ -4,7 +4,7 @@ import SplitText from "gsap/SplitText"
 import styled from "styled-components"
 
 import WaveArrowSVG from "images/quotes/waveArrows.svg"
-import media, { mobile } from "styles/media"
+import media from "styles/media"
 import text from "styles/text"
 import distributeByPosition from "utils/distributeByPosition"
 import { useT } from "utils/i18n/useT"
@@ -52,25 +52,20 @@ export default function Title({ timeline, clipper }: TitleProps) {
               duration: 1,
               // ease: "power1.out",
             }, 1)
-        if (window.innerWidth <= mobile)
-          timeline.fromTo(clipper.current, {
-              marginLeft: "0",
-              marginRight: "0",
-            },
-            {
-              marginLeft: "10vw",
-              marginRight: "12vw",
-            })
       }
     }
 
     // Bail until the ref is attached. gsap 3.13's SplitText also requires a
     // config object — it dereferences `config.overwrite` with no null-check, so
     // the original `new SplitText(el)` (valid in older versions) now throws.
-    // We split into chars because the entrance timeline staggers `.chars`.
+    // We split into chars because the entrance timeline staggers `.chars`, but
+    // we ALSO split into words so each word gets an inline-block wrapper: with
+    // chars-only, the browser can wrap between any two char spans, which broke
+    // longer PT words mid-word (e.g. "i / deias"). Word wrappers keep each word
+    // intact and only allow breaks at spaces.
     if (!clipper.current) return
 
-    const newSplit = new SplitText(clipper.current, { type: "chars" })
+    const newSplit = new SplitText(clipper.current, { type: "words, chars" })
     if (newSplit) {
       currentSplit.current = newSplit
       initTimeline()
@@ -99,9 +94,10 @@ const Wrapper = styled.div`
   justify-content: center;
 
   ${media.mobile} {
-    width: 200vw;
-    margin-left: 50vw;
-    transform: translateX(-52%);
+    /* just center the tagline in the viewport; the old 200vw + translateX hack
+       (needed to fit the flanking wave arrows in a row) pushed the text off the
+       right edge and clipped words. The arrows are hidden on mobile below. */
+    width: 100vw;
   }
 `
 
@@ -119,8 +115,9 @@ const Before = styled(WaveArrowSVG)`
     margin: 3.1vw 1.953vw;
   }
   ${media.mobile} {
-    margin: 6.933vw 4vw;
-    height: 8vw;
+    /* decorative flourish only: hiding it on mobile lets the tagline use the
+       full centered width instead of being squeezed/clipped between the arrows */
+    display: none;
   }
 `
 

@@ -209,13 +209,16 @@ const ImageWrapper = styled.div`
 
   ${media.mobile} {
     width: 92vw;
-    height: 40vh;
+    height: 52vh;
     filter: drop-shadow(0.27vw 1.6vw 8vw rgba(0, 0, 0, 0.25));
     border-radius: 2.13vw;
 
     img {
       object-fit: cover;
-      object-position: bottom center;
+      /* the source has a lot of blurred background above his head, so a low %
+         left him sitting near the bottom of the frame. Bias the crop downward
+         so the subject rises to the upper-middle of the box. */
+      object-position: center 42%;
     }
   }
 `
