@@ -42,7 +42,7 @@ export default function Hero() {
     <Wrapper id="portfolio-hero">
       <Content>
         <Left>
-          <OverlayImage type="halftone" src={HeroImageJPG} alt={t.hero.alt} />
+          <OverlayImage type="halftone" src={HeroImageJPG} alt={t.projectsPage.imageAlt} />
         </Left>
         <Right>
           <Title>{t.projectsPage.title}</Title>

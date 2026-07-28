@@ -46,6 +46,16 @@ const PROJECTS: {
   tech: readonly string[]
 }[] = [
   {
+    name: "ProOps",
+    url: "https://proops.com.br/",
+    image: "/images/projects/proops.webp",
+    tech: ["Next.js", "TypeScript", "Firebase", "Cloud Run"],
+    description: {
+      pt: "SaaS multi-tenant de gestão comercial e operacional, construído em dupla: propostas com PDF, CRM em kanban, financeiro e pagamentos integrados.",
+      en: "Multi-tenant SaaS for sales and operations management, built with a partner: PDF proposals, kanban CRM, finance and integrated payments.",
+    },
+  },
+  {
     name: "SoftCode",
     url: "https://softcodedev.com.br/",
     image: "/images/projects/softcode.webp",
@@ -63,16 +73,6 @@ const PROJECTS: {
     description: {
       pt: "Site institucional para uma consultoria em logística e supply chain, entregue pela SoftCode.",
       en: "Institutional site for a logistics and supply-chain consultancy, delivered by SoftCode.",
-    },
-  },
-  {
-    name: "Portfólio Pessoal",
-    url: "https://mauriciokrziminski.com.br",
-    image: "/images/projects/portfolio.webp",
-    tech: ["Next.js", "React", "Cloudflare"],
-    description: {
-      pt: "Meu portfólio anterior, com tema de terminal e deploy na Cloudflare.",
-      en: "My previous portfolio, with a terminal theme, deployed on Cloudflare.",
     },
   },
   {
@@ -130,6 +130,20 @@ const EXPERIENCES: {
   logo: string
   logoCover: boolean
 }[] = [
+  {
+    name: "ProOps",
+    title: {
+      pt: "Sócio e Desenvolvedor Full-stack · desde 2025",
+      en: "Partner and Full-stack Developer · since 2025",
+    },
+    description: {
+      pt: "Produto próprio, tocado em sociedade com outro desenvolvedor: arquitetura, front-end, back-end, infraestrutura e CI/CD. Next.js, TypeScript, Firebase, Cloud Run e integrações de pagamento.",
+      en: "A product of our own, run in partnership with another developer: architecture, front-end, back-end, infrastructure and CI/CD. Next.js, TypeScript, Firebase, Cloud Run and payment integrations.",
+    },
+    link: "https://proops.com.br/",
+    logo: "/images/team/logos/proops.webp",
+    logoCover: false,
+  },
   {
     name: "Banrisul",
     title: {
@@ -222,10 +236,10 @@ const STATS: { id: string; stat: L; description: L }[] = [
   },
   {
     id: "3",
-    stat: { pt: "10+", en: "10+" },
+    stat: { pt: "1", en: "1" },
     description: {
-      pt: "tecnologias no meu stack",
-      en: "technologies in my stack",
+      pt: "SaaS próprio em produção",
+      en: "SaaS product of my own in production",
     },
   },
 ]
