@@ -66,14 +66,14 @@ const en = {
   marqueeTop: {
     lineOne: "TypeScript · React · Next.js",
     lineTwo: "Clean Architecture · Docker · SQL",
-    altOne: "code on screen",
-    altTwo: "abstract gradient",
+    altOne: "code on a dark monitor",
+    altTwo: "server equipment racks in a dark room",
   },
   marqueeBottom: {
     lineOne: "From Idea",
     lineTwo: "To Production",
-    altOne: "terminal window",
-    altTwo: "deployment pipeline",
+    altOne: "glowing incandescent bulbs in the dark",
+    altTwo: "metrics dashboard of a system in production",
   },
   featuredProjects: {
     titleOne: "Real problems",
@@ -108,6 +108,7 @@ const en = {
     title: "Projects",
     description:
       "Products I've built end to end, from data model and back-end to a responsive, modern interface.",
+    imageAlt: "the ProOps app on a phone screen",
     cta: "View projects",
   },
   aboutPage: {
@@ -189,14 +190,14 @@ const pt: Strings = {
   marqueeTop: {
     lineOne: "TypeScript · React · Next.js",
     lineTwo: "Clean Architecture · Docker · SQL",
-    altOne: "código na tela",
-    altTwo: "gradiente abstrato",
+    altOne: "código em um monitor escuro",
+    altTwo: "racks de servidores em uma sala escura",
   },
   marqueeBottom: {
     lineOne: "Da Ideia",
     lineTwo: "À Produção",
-    altOne: "janela de terminal",
-    altTwo: "pipeline de deploy",
+    altOne: "lâmpadas incandescentes acesas no escuro",
+    altTwo: "painel de métricas de um sistema em produção",
   },
   featuredProjects: {
     titleOne: "Problemas reais",
@@ -229,6 +230,7 @@ const pt: Strings = {
     title: "Projetos",
     description:
       "Produtos que construí de ponta a ponta, do modelo de dados e back-end a uma interface moderna e responsiva.",
+    imageAlt: "o app ProOps na tela de um celular",
     cta: "Ver projetos",
   },
   aboutPage: {
