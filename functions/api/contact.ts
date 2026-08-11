@@ -31,7 +31,7 @@ type PagesContext = {
 
 /** Dois "i" em "krziminskii" é intencional, é o endereço real. Não "corrigir". */
 const TO_EMAIL = "mauricio.krziminskii@gmail.com"
-const FROM_EMAIL = "Site <contato@mauriciokrziminski.com.br>"
+const FROM_ADDRESS = "contato@mauriciokrziminski.com.br"
 
 const TURNSTILE_VERIFY_URL =
   "https://challenges.cloudflare.com/turnstile/v0/siteverify"
@@ -95,6 +95,20 @@ function escapeHtml(value: string): string {
  */
 function sanitizeHeader(value: string): string {
   return value.replace(/[\r\n]+/g, " ").trim()
+}
+
+/**
+ * Monta o nome de exibição do remetente como quoted-string.
+ *
+ * O texto vem de quem preencheu o formulário, então aspas e barra invertida
+ * precisam ser escapadas: um nome como `Ana "Aninha" Souza` quebraria o
+ * cabeçalho se entrasse cru.
+ */
+function quotedName(value: string): string {
+  const escaped = sanitizeHeader(value)
+    .replace(/\\/g, "\\\\")
+    .replace(/"/g, '\\"')
+  return `"${escaped}"`
 }
 
 async function verifyTurnstile(
@@ -203,11 +217,16 @@ export async function onRequestPost(context: PagesContext): Promise<Response> {
         "Content-Type": "application/json; charset=utf-8",
       },
       body: JSON.stringify({
-        from: FROM_EMAIL,
+        // O nome de exibição é o de quem preencheu, para a lista do Gmail
+        // mostrar quem escreveu sem precisar abrir a mensagem. O ENDEREÇO
+        // continua sendo o do domínio verificado, que é o que DKIM/SPF/DMARC
+        // conferem, então a autenticação não muda.
+        from: `${quotedName(`${safeName} (via site)`)} <${FROM_ADDRESS}>`,
         to: [TO_EMAIL],
         // responder no Gmail vai direto para quem preencheu o formulário
         reply_to: sanitizeHeader(email),
-        subject: `Novo contato pelo site: ${safeName}`,
+        // o nome já vai no remetente, então não se repete aqui
+        subject: "Novo contato pelo site",
         text,
         html,
       }),
