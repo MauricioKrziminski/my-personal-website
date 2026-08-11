@@ -50,7 +50,7 @@ const en = {
   intro: {
     greeting: "Hi, I'm Mauricio",
     role: "Full-stack Software Developer · Software Engineering graduate, PUC-RS",
-    body: "I turn ideas into complete products, from a solid back-end to a polished interface. Whether it's building something from scratch as a freelancer or joining your team, let's talk.",
+    body: "I turn ideas into complete products, from a solid back-end to a polished interface. To join your team, or to build something from scratch, let's talk.",
     aboutCta: "About me",
     cvCta: "Download CV",
     contactCta: "Get in touch",
@@ -59,7 +59,7 @@ const en = {
   stories: {
     one: "I build robust, scalable back-ends.",
     two: "I craft modern, responsive interfaces.",
-    three: "From database to UI, full products.",
+    three: "Systems in production, with real users.",
     altOne: "source code on a dark editor",
     altTwo: "a modern app interface on a phone",
     altThree: "a developer workspace",
@@ -81,13 +81,13 @@ const en = {
     titleTwo: "solved with",
     titleThree: "modern code",
     description:
-      "A selection of products I've designed and built end to end, from architecture to interface.",
+      "From a multi-tenant SaaS to institutional sites: products that shipped and are running in production.",
     cta: "View projects",
   },
   skills: {
     heading: "How I Work",
     description:
-      "I work across the full stack, from robust back-end services and databases to fast, modern front-ends.",
+      "TypeScript and React on the interface, .NET, Nest and Spring on the back-end, SQL for data, Docker and CI/CD to get it to production.",
     cta: "Get in touch",
     backend: "Back-end Architecture",
     backendShort: "Back-end",
@@ -99,7 +99,7 @@ const en = {
   quotes: {
     // rendered as one clipped headline; the hyphen slot is unused now (kept for
     // shape parity), the tagline wraps naturally at word boundaries
-    titleA: "Turning ideas into robust, scalable software since 2022.",
+    titleA: "Turning ideas into robust, scalable software.",
     titleHyphen: "",
     titleB: "",
     sub: "Full-stack Software Developer and Software Engineering graduate from PUC-RS, focused on clean architecture and building things that last.",
@@ -108,19 +108,19 @@ const en = {
   projectsPage: {
     title: "Projects",
     description:
-      "Products I've built end to end, from data model and back-end to a responsive, modern interface.",
+      "I designed, built and shipped every one of these. Some on my own, some with a partner.",
     imageAlt: "the ProOps app on a phone screen",
     cta: "View projects",
   },
   aboutPage: {
     title: "About",
     description:
-      "I'm a full-stack software developer and Software Engineering graduate from PUC-RS. I like pairing solid fundamentals with clean, scalable code, building complete products from back-end to interface.",
+      "I'm a full-stack software developer and Software Engineering graduate from PUC-RS. I like pairing solid fundamentals with clean, scalable code, and understanding the problem well before writing the first line.",
     cta: "Get in touch",
     heroCta: "My journey",
     experienceTitle: "My journey",
     experienceIntro: "Where I come from and what I've been building along the way.",
-    office: "Where I work",
+    office: "Where I'm based",
     officeName: "Porto Alegre",
     officeDescription:
       "Based in Porto Alegre, RS, Brazil, building software with a focus on architecture, performance and developer experience.",
@@ -131,22 +131,22 @@ const en = {
   contactPage: {
     title: "Let's talk",
     description:
-      "Tell me about your project, your team, or an idea you want to get off the ground. The form goes straight to my inbox.",
+      "If you got here looking for a developer for your team, or you just want to talk about code and architecture, send me a message. It lands in my inbox and I reply by email.",
     nameLabel: "Name",
     namePlaceholder: "Your name",
     emailLabel: "Email",
     emailPlaceholder: "you@example.com",
     messageLabel: "Message",
-    messagePlaceholder: "What would you like to build?",
+    messagePlaceholder: "What would you like to talk about?",
     submit: "Send message",
     sending: "Sending...",
     success: "Message sent. Thanks for reaching out, I'll reply to this email.",
     errorName: "Please enter your name.",
     errorEmail: "Please enter a valid email address.",
     errorMessage: "Your message is a little short, tell me a bit more.",
-    errorCaptcha: "We could not verify that you are human. Please try again.",
+    errorCaptcha: "I could not verify that you are human. Please try again.",
     errorGeneric:
-      "Something went wrong on our side. Try again, or reach me directly below.",
+      "Something went wrong on my side. Try again, or reach me directly below.",
     directTitle: "or reach me directly",
     whatsapp: "WhatsApp",
     waMessage: "Hi Mauricio, I came from your website.",
@@ -201,7 +201,7 @@ const pt: Strings = {
   intro: {
     greeting: "Oi, eu sou o Mauricio",
     role: "Desenvolvedor de Software Full-stack · Formado em Engenharia de Software na PUC-RS",
-    body: "Transformo ideias em produtos completos, do back-end sólido à interface bem-acabada. Seja pra construir algo do zero como freelancer, ou pra somar no seu time, vamos conversar.",
+    body: "Transformo ideias em produtos completos, do back-end sólido à interface bem-acabada. Para somar no seu time, ou para construir algo do zero, vamos conversar.",
     aboutCta: "Sobre mim",
     cvCta: "Baixar CV",
     contactCta: "Entrar em contato",
@@ -210,7 +210,7 @@ const pt: Strings = {
   stories: {
     one: "Construo back-ends sólidos e escaláveis.",
     two: "Crio interfaces modernas e responsivas.",
-    three: "Do banco à interface, produtos completos.",
+    three: "Sistemas em produção, com usuários de verdade.",
     altOne: "código-fonte em um editor escuro",
     altTwo: "interface de app moderna em um celular",
     altThree: "um ambiente de desenvolvimento",
@@ -232,13 +232,13 @@ const pt: Strings = {
     titleTwo: "resolvidos com",
     titleThree: "código moderno",
     description:
-      "Uma seleção de produtos que projetei e construí de ponta a ponta, da arquitetura à interface.",
+      "De um SaaS multi-tenant a sites institucionais: produtos que saíram do papel e estão no ar.",
     cta: "Ver projetos",
   },
   skills: {
     heading: "Como eu trabalho",
     description:
-      "Atuo em toda a stack, de serviços de back-end e bancos de dados robustos a front-ends rápidos e modernos.",
+      "TypeScript e React na interface, .NET, Nest e Spring no back-end, SQL nos dados, Docker e CI/CD para chegar em produção.",
     cta: "Entrar em contato",
     backend: "Arquitetura Back-end",
     backendShort: "Back-end",
@@ -248,7 +248,7 @@ const pt: Strings = {
     dataShort: "Dados & Infra",
   },
   quotes: {
-    titleA: "Transformando ideias em software robusto e escalável desde 2022.",
+    titleA: "Transformando ideias em software robusto e escalável.",
     titleHyphen: "",
     titleB: "",
     sub: "Desenvolvedor de Software Full-stack e formado em Engenharia de Software na PUC-RS, com foco em arquitetura limpa e em construir coisas que duram.",
@@ -257,19 +257,19 @@ const pt: Strings = {
   projectsPage: {
     title: "Projetos",
     description:
-      "Produtos que construí de ponta a ponta, do modelo de dados e back-end a uma interface moderna e responsiva.",
+      "Cada um destes eu projetei, construí e coloquei no ar. Alguns sozinho, outros em dupla.",
     imageAlt: "o app ProOps na tela de um celular",
     cta: "Ver projetos",
   },
   aboutPage: {
     title: "Sobre",
     description:
-      "Sou desenvolvedor de software full-stack, formado em Engenharia de Software na PUC-RS. Gosto de unir fundamentos sólidos a código limpo e escalável, construindo produtos completos, do back-end à interface.",
+      "Sou desenvolvedor de software full-stack, formado em Engenharia de Software na PUC-RS. Gosto de unir fundamentos sólidos a código limpo e escalável, e de entender bem o problema antes de escrever a primeira linha.",
     cta: "Entrar em contato",
     heroCta: "Minha trajetória",
     experienceTitle: "Minha trajetória",
     experienceIntro: "De onde venho e o que venho construindo até aqui.",
-    office: "Onde eu trabalho",
+    office: "De onde eu trabalho",
     officeName: "Porto Alegre",
     officeDescription:
       "Baseado em Porto Alegre, RS, Brasil, construindo software com foco em arquitetura, performance e experiência de desenvolvimento.",
@@ -280,22 +280,22 @@ const pt: Strings = {
   contactPage: {
     title: "Vamos conversar",
     description:
-      "Me conte sobre seu projeto, seu time, ou uma ideia que você quer tirar do papel. O formulário cai direto na minha caixa de entrada.",
+      "Se você chegou aqui procurando um desenvolvedor para o seu time, ou quer trocar uma ideia sobre código e arquitetura, me escreve. Cai direto na minha caixa de entrada e eu respondo por email.",
     nameLabel: "Nome",
     namePlaceholder: "Seu nome",
     emailLabel: "Email",
     emailPlaceholder: "voce@exemplo.com",
     messageLabel: "Mensagem",
-    messagePlaceholder: "O que você quer construir?",
+    messagePlaceholder: "Sobre o que você quer falar?",
     submit: "Enviar mensagem",
     sending: "Enviando...",
     success: "Mensagem enviada. Obrigado pelo contato, respondo neste email.",
     errorName: "Por favor, informe seu nome.",
     errorEmail: "Por favor, informe um email válido.",
     errorMessage: "Sua mensagem ficou curta, me conte um pouco mais.",
-    errorCaptcha: "Não conseguimos confirmar que você é humano. Tente de novo.",
+    errorCaptcha: "Não consegui confirmar que você é humano. Tente de novo.",
     errorGeneric:
-      "Algo deu errado do nosso lado. Tente de novo, ou fale comigo direto pelos canais abaixo.",
+      "Algo deu errado do meu lado. Tente de novo, ou fale comigo direto pelos canais abaixo.",
     directTitle: "ou fale comigo direto",
     whatsapp: "WhatsApp",
     waMessage: "Oi Mauricio, vim pelo seu site.",

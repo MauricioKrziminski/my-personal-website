@@ -61,8 +61,8 @@ const PROJECTS: {
     image: "/images/projects/softcode.webp",
     tech: ["Next.js", "TypeScript", "Tailwind"],
     description: {
-      pt: "Landing page da minha software house, com design moderno, animações e foco em performance.",
-      en: "Landing page for my software house, a modern, animated design focused on performance.",
+      pt: "Site da minha software house, que entrega projetos web sob demanda. Design moderno, animações e foco em performance.",
+      en: "Site for my software house, which delivers web projects on demand. Modern, animated design focused on performance.",
     },
   },
   {
