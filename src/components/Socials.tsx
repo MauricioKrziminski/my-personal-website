@@ -14,16 +14,23 @@ type SocialProps = {
   hideEmail?: boolean
   hideLegal?: boolean
   darkText?: boolean
+  /**
+   * Espacamento menor entre os links no celular. Existe para o menu
+   * lateral, que e de altura fixa e nao cabia mais depois que o WhatsApp
+   * entrou na lista. O rodape, que cresce livremente, nao usa.
+   */
+  compact?: boolean
 }
 
 export default function Socials({
   forwardRef = undefined,
   hideEmail: showEmail = false,
   darkText = false,
+  compact = false,
 }: SocialProps) {
   const t = useT()
   return (
-    <Links ref={forwardRef}>
+    <Links ref={forwardRef} compact={compact}>
       {!showEmail && (
         <a href={links.email} target="_blank" rel="noreferrer">
           <ArrowLink darkText={darkText}>{t.common.email}</ArrowLink>
@@ -48,7 +55,7 @@ export default function Socials({
   )
 }
 
-const Links = styled.div`
+const Links = styled.div<{ compact?: boolean }>`
   ${text.sub3};
   display: flex;
   flex-direction: column;
@@ -63,6 +70,6 @@ const Links = styled.div`
     gap: 2.441vw;
   }
   ${media.mobile} {
-    gap: 6.67vw;
+    gap: ${({ compact }) => (compact ? "4.5vw" : "6.67vw")};
   }
 `

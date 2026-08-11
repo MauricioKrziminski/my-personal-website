@@ -400,11 +400,10 @@ export default function SideNav({ navOnScreen, setNavIsOpen }: SideNavProps) {
           <InnerBG />
           <NavigationItems navOnScreen={navOnScreen} />
           <HR />
-          <Socials forwardRef={links} darkText={false} hideLegal />
+          <Socials forwardRef={links} darkText={false} hideLegal compact />
           <Touch>
             <GetInTouch darkText transition="sideNav" />
           </Touch>
-          <ExtraLine />
         </InnerWrapper>
         <FakeLoader show={displaySpinner}>
           <Spinner />
@@ -465,7 +464,7 @@ const Sidebar = styled.div`
     width: 100%;
     top: -100%;
     left: 0;
-    padding: calc(14.36 * var(--vh)) 4vw calc(1.84 * var(--vh));
+    padding: calc(11.5 * var(--vh)) 4vw calc(1.84 * var(--vh));
     place-items: start;
   }
 `
@@ -504,13 +503,29 @@ const InnerWrapper = styled.div`
   }
   ${media.mobile} {
     grid-template-columns: 1fr;
+    /* o marquee "Fale Comigo" sai do menu no celular (ver Touch abaixo),
+       e com ele a segunda linha divisoria: sem a area "touch" no meio,
+       nao ha o que separar. Sobram tres faixas, e o menu volta a caber. */
     grid-template-areas:
       "navs"
       "line"
-      "touch"
-      "secondLine"
       "social";
-    gap: calc(3.07 * var(--vh));
+    /* folga menor que os 3.07vh originais: o menu passou a ter 4 itens de
+       navegacao e 4 redes, e com o espacamento antigo o bloco estourava a
+       altura da tela em aparelho comum. */
+    gap: calc(2.2 * var(--vh));
+
+    /* Rede de seguranca para quando ainda assim nao couber (tela baixa,
+       fonte aumentada, aparelho pequeno): overflow-y: auto sobrescreve so
+       o eixo vertical do overflow: hidden la de cima, entao o horizontal
+       continua segurando o marquee. overscroll-behavior impede que a
+       pagina atras role junto quando a rolagem do menu chega ao fim. */
+    width: 100%;
+    min-height: 0;
+    max-height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
   }
 `
 
@@ -540,20 +555,14 @@ const Touch = styled.div`
   grid-area: touch;
 
   ${media.mobile} {
-    overflow: visible;
-    @media (max-height: 600px) {
-      display: none;
-    }
+    /* Some no celular inteiro, nao so abaixo de 600px de altura. Com a
+       rota /contact na navegacao, o marquee virou um segundo caminho para
+       a mesma pagina, e sozinho ele custava de 77 a 177px de altura num
+       menu que ja nao cabia. Continua no rodape e no desktop. */
+    display: none;
   }
 `
 
-const ExtraLine = styled(HR)`
-  display: none;
-  ${media.mobile} {
-    display: block;
-    grid-area: secondLine;
-  }
-`
 
 const FakeLoader = styled.div<{ show: boolean }>`
   position: absolute;
