@@ -28,7 +28,7 @@ card sem alteração.
    (nem no site, nem no README, nem em comentário).
 4. **Seções da home** (a ordem e as animações são fixas): Hero, Intro, Stories,
    Marquee, Projetos, Skills (Venn), Tagline + stats.
-5. **Rotas**: `/` (home), `/projects`, `/about`.
+5. **Rotas**: `/` (home), `/projects`, `/about`, `/contact`.
 
 ## Quem é o Mauricio (fonte de verdade para conteúdo)
 
@@ -121,8 +121,46 @@ src/app/layout.tsx  (Server Component; metadata; <html>)
   folha **não** precisam cada um do `"use client"`.
 - `src/lib/registerGsap.ts` registra os plugins GSAP (import de side-effect no AppShell).
 - Rotas: `src/app/page.tsx` (home), `src/app/projects/page.tsx`,
-  `src/app/about/page.tsx`. A lógica real de cada página está em
-  `src/components/{homepage,projects,about}/`.
+  `src/app/about/page.tsx`, `src/app/contact/page.tsx`. A lógica real de cada
+  página está em `src/components/{homepage,projects,about,contact}/`.
+
+### Contato: a única peça de servidor do projeto
+
+O site é 100% estático (`output: "export"`), mas o formulário de `/contact`
+precisa de um servidor. Ele posta para **`functions/api/contact.ts`**, uma
+**Cloudflare Pages Function** que vive na **raiz do repositório**, fora de
+`src/`, que é onde o Pages procura. Não é uma API route do Next, e por isso
+`output: "export"` continua intacto.
+
+A Function valida os campos, descarta o honeypot, confere o token do
+**Turnstile** e envia via **Resend**. Ela devolve só códigos de erro estáveis
+(`invalid_email`, `captcha_failed`, `send_failed`...), que o cliente traduz;
+detalhe de erro do Resend vai para o log do Worker, nunca para a resposta.
+
+- **`npm run dev` NÃO executa Pages Functions.** Em dev o POST dá 404. Para
+  testar de verdade: `npm run build && npx wrangler pages dev out`, com um
+  `.dev.vars` na raiz (git-ignorado) contendo `RESEND_API_KEY` e
+  `TURNSTILE_SECRET_KEY`. Use as chaves de teste da Cloudflare (`1x000...AA`
+  sempre passa, `2x000...AA` sempre falha) para não depender do widget real.
+- **Secrets em produção** ficam no painel do Cloudflare Pages, em Production
+  **e** Preview (são listas separadas; só em Production faz o preview responder
+  `not_configured`).
+- **O Turnstile é opcional e está DESLIGADO.** A site key em
+  `src/utils/turnstile.ts` está vazia, então o widget nem carrega e o formulário
+  roda só com o honeypot. Ligar exige os **dois** lados: a site key pública lá, e
+  `TURNSTILE_SECRET_KEY` nos secrets do Pages. Só um dos dois trava tudo: com o
+  secret setado e sem site key, nenhum envio passa.
+- Depois de rodar o wrangler, apague o `.wrangler/` (é cache; já está no
+  `.gitignore` e no ignore do ESLint, mas ocupa espaço).
+- **Entregabilidade**: o DNS (no Cloudflare) tem DKIM (`resend._domainkey`), SPF
+  e MX de bounce em `send.`, e um DMARC `p=none` em `_dmarc`. Sem o DMARC o Gmail
+  mandava tudo para spam. Se um dia migrar de provedor de email, esses quatro
+  registros vão junto.
+- **Ao testar a Function por `curl` no Git Bash do Windows, mande o JSON de um
+  arquivo** (`--data-binary @payload.json`), nunca inline com `-d '...'`. O
+  `curl.exe` é binário nativo e recebe os argumentos convertidos pela codepage
+  ANSI, o que destrói acento em argv. Isso já gerou um falso alarme de "bug de
+  UTF-8" que não existia no código.
 
 ### `next.config.ts`
 - `output: "export"` — site estático em `out/`, servido pelo Cloudflare Pages.
@@ -326,6 +364,13 @@ em `public/images/projects/` e os logos de experiência em `public/images/team/l
   ~5px de folga) e a caixa do "Topo da Página". Detalhe traiçoeiro: em inglês a
   cópia muitas vezes não tem descida nenhuma, então o bug **só aparece em
   português**. Ao criar máscara/recorte em texto, deixe folga vertical e teste em PT.
+- **Rota nova com `<Section>` precisa entrar em `BACKGROUND_ROUTES`**
+  (`src/components/Layout.tsx`). O `BackgroundCanvas`, que pinta as faixas
+  clara/escura e as ondas, é montado por uma lista de pathnames. Uma rota que
+  não está na lista renderiza **sem fundo nenhum**, e como os heros escuros
+  escrevem em `mainWhite` o título fica **branco no branco**, invisível, sem
+  nenhum erro no console. Foi exatamente o que aconteceu ao criar `/contact`.
+  A lista era três `pathname === ...` repetidos; virou um array só.
 - **Nunca use crase dentro de comentário CSS** em `styled.x\`...\``: a crase
   encerra o template literal e o build quebra com "Expected a semicolon", com a
   página inteira em branco no dev. Isso inclui usar crase para citar um nome de
@@ -373,6 +418,9 @@ em `public/images/projects/` e os logos de experiência em `public/images/team/l
   do CMS antigo (`TeamMemberNodes`, `CompanyNode`), e por isso a prop `team` de
   `about/02-Experiences.tsx` e `02-List.tsx` ainda se chama assim mesmo carregando
   experiências. Renomear cascateia por todos os cards; deixado para depois.
+- **Turnstile desligado** (site key vazia em `src/utils/turnstile.ts`). O
+  formulário de `/contact` está protegido só pelo honeypot. Se aparecer spam,
+  criar o widget no dashboard e preencher os dois lados (ver "Contato" acima).
 - Páginas `/terms` e `/privacy` (linkadas em `Socials`, sem rota) — criar ou
   remover links.
 - Ícones de skill custom no Venn: hoje a arte dos 3 círculos é gerada

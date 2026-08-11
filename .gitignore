@@ -32,6 +32,13 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# secrets locais das Cloudflare Pages Functions (RESEND_API_KEY etc),
+# lidos pelo wrangler pages dev
+.dev.vars
+.dev.vars.*
+
+# cache local do wrangler (pages dev)
+.wrangler/
 
 # vercel
 .vercel

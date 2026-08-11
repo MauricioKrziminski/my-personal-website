@@ -6,26 +6,46 @@ import Marquee from "components/Marquee"
 import colors from "styles/colors"
 import media from "styles/media"
 import text from "styles/text"
+import { Transitions } from "utils/Loader"
+import UniversalLink from "utils/Loader/UniversalLink"
 import { useT } from "utils/i18n/useT"
 
 type Props = {
   darkText: boolean
+  /**
+   * No menu lateral a navegação precisa da transição "sideNav" para o
+   * menu fechar junto. No rodapé é a transição normal de página.
+   */
+  transition?: Transitions
 }
 
-export default function GetInTouch({ darkText }: Props) {
+export default function GetInTouch({
+  darkText,
+  transition = "generic",
+}: Props) {
   const t = useT()
   return (
-    <Marquee>
-      <TouchInternal darkText={darkText}>
-        {t.common.getInTouchTop}
-        {/* explicit space: JSX trims the newline between the two words, which
-            joined them ("FaleComigo") */}
-        {" "}
-        <span>{t.common.getInTouchBottom}</span>
-      </TouchInternal>
-    </Marquee>
+    <TouchLink to="/contact" transition={transition}>
+      <Marquee>
+        <TouchInternal darkText={darkText}>
+          {t.common.getInTouchTop}
+          {/* explicit space: JSX trims the newline between the two words, which
+              joined them ("FaleComigo") */}
+          {" "}
+          <span>{t.common.getInTouchBottom}</span>
+        </TouchInternal>
+      </Marquee>
+    </TouchLink>
   )
 }
+
+/* o marquee era puramente decorativo: o maior CTA do site nao levava a
+   lugar nenhum. display: block para o ancora nao virar uma linha inline
+   dentro do Touch (que tem overflow: hidden) e mudar o corte do texto. */
+const TouchLink = styled(UniversalLink)`
+  display: block;
+  cursor: pointer;
+`
 
 const TouchInternal = styled.div<{ darkText: boolean }>`
   ${text.d3Serif}

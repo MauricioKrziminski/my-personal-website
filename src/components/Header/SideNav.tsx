@@ -402,7 +402,7 @@ export default function SideNav({ navOnScreen, setNavIsOpen }: SideNavProps) {
           <HR />
           <Socials forwardRef={links} darkText={false} hideLegal />
           <Touch>
-            <GetInTouch darkText />
+            <GetInTouch darkText transition="sideNav" />
           </Touch>
           <ExtraLine />
         </InnerWrapper>

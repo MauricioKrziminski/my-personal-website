@@ -16,15 +16,28 @@ type MainButtonProps = {
    *  This should be true if the background is dark
    */
   darkBackground: boolean
+  /**
+   * "submit" para usar o botão dentro de um <form>. O default "button"
+   * mantém o comportamento dos consumidores que já existiam.
+   */
+  type?: "button" | "submit"
+  disabled?: boolean
 }
 
 export default function MainButton({
   children,
   onClick = undefined,
   darkBackground,
+  type = "button",
+  disabled = false,
 }: MainButtonProps) {
   return (
-    <Wrapper darkBackground={darkBackground} onClick={onClick}>
+    <Wrapper
+      darkBackground={darkBackground}
+      onClick={onClick}
+      type={type}
+      disabled={disabled}
+    >
       <TextWrapper>
         {children}
         <Line />
@@ -98,6 +111,13 @@ const Wrapper = styled.button<{ darkBackground: boolean }>`
     ${Arrow} {
       transform: translateX(5px);
     }
+  }
+
+  /* depois do &:hover de proposito: senao o cursor: pointer dele
+     venceria enquanto o botao esta desabilitado durante o envio */
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
   }
 
   padding: 20px 30px;

@@ -20,6 +20,7 @@ const navList = [
   { key: "home", to: "/" },
   { key: "projects", to: "/projects" },
   { key: "about", to: "/about" },
+  { key: "contact", to: "/contact" },
 ] as const
 
 function Items({
@@ -161,7 +162,10 @@ const Clipper = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: 33%;
+  /* a fracao acompanha navList.length: 1/3 com 3 itens, 1/4 com 4. O top e
+     o y ja sao calculados a partir de navList.length, so esta altura era
+     um numero cravado. */
+  height: 25%;
   overflow: hidden;
   ${colors.backgroundBlack};
 `

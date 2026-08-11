@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Artefatos de build do wrangler (pages dev). Sem isto, um `wrangler pages
+    // dev` deixa bundles gerados em .wrangler/tmp que o lint passa a reportar
+    // como se fossem codigo do projeto.
+    ".wrangler/**",
   ]),
 ]);
 

@@ -5,13 +5,17 @@ import styled from "styled-components"
 import MainButton from "components/MainButton"
 import media from "styles/media"
 import text from "styles/text"
-import links from "utils/links"
+import { loadPage } from "utils/Loader/TransitionUtils"
 import { useT } from "utils/i18n/useT"
 
 export default function Description() {
   const t = useT()
+  /* navega em vez de abrir o cliente de email: o mailto sumia sem aviso
+     para quem usa webmail sem cliente configurado. loadPage (e nao um
+     UniversalLink por fora) porque o MainButton ja e um <button>, e um
+     <button> dentro de <a> e HTML invalido. */
   const handleClick = () => {
-    window.open(links.email, "blank")
+    loadPage("/contact", "generic").catch(console.error)
   }
 
   return (

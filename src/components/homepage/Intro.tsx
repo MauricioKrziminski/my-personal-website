@@ -12,7 +12,6 @@ import Photo from "images/homepage/intro/mauricio.webp"
 import colors from "styles/colors"
 import media from "styles/media"
 import text from "styles/text"
-import links from "utils/links"
 import UniversalLink from "utils/Loader/UniversalLink"
 import { useT } from "utils/i18n/useT"
 import useAnimation from "utils/useAnimation"
@@ -135,9 +134,9 @@ export default function Intro() {
               <a href="/Mauricio-Krziminski-CV.pdf" download>
                 <ArrowLink>{t.intro.cvCta}</ArrowLink>
               </a>
-              <a href={links.email}>
+              <UniversalLink to="/contact" transition="generic">
                 <ArrowLink>{t.intro.contactCta}</ArrowLink>
-              </a>
+              </UniversalLink>
             </Links>
           </Actions>
         </Content>

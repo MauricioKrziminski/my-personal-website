@@ -25,6 +25,9 @@ export default function FooterNav({ isDark }: Props) {
       <UniversalLink to="/about" transition="generic">
         <ArrowLink darkText={!isDark}>{t.nav.about}</ArrowLink>
       </UniversalLink>
+      <UniversalLink to="/contact" transition="generic">
+        <ArrowLink darkText={!isDark}>{t.nav.contact}</ArrowLink>
+      </UniversalLink>
     </Wrapper>
   )
 }

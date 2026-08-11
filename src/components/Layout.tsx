@@ -15,8 +15,24 @@ interface LayoutProps {
   children: React.ReactNode
 }
 
+/**
+ * Rotas que pintam o proprio fundo (as faixas clara/escura e as ondas) via
+ * BackgroundCanvas.
+ *
+ * Uma rota que NAO estiver nesta lista renderiza sem fundo nenhum, e como os
+ * heros escuros escrevem em mainWhite o titulo fica branco no branco, ou seja
+ * invisivel. Foi exatamente o que aconteceu quando /contact foi criada: a
+ * pagina existia e montava <Section isDark>, mas o canvas nunca era montado.
+ *
+ * Ao adicionar uma rota nova com <Section>, adicione-a aqui tambem.
+ */
+const BACKGROUND_ROUTES = ["/", "/about", "/projects", "/contact"]
+
 export default function Layout({ children }: LayoutProps) {
   const { pathname } = useLocation()
+  const usesBackground = BACKGROUND_ROUTES.some(
+    route => pathname === route || pathname === `${route}/`,
+  )
 
   useEffect(() => {
     // add a 100vh css variable to the root element
@@ -35,13 +51,7 @@ export default function Layout({ children }: LayoutProps) {
     <>
       <FPSTracker />
       <PageLoader>
-        {pathname === "/" && <BackgroundCanvas />}
-        {(pathname === "/about" || pathname === "/about/") && (
-          <BackgroundCanvas />
-        )}
-        {(pathname === "/projects" || pathname === "/projects/") && (
-          <BackgroundCanvas />
-        )}
+        {usesBackground && <BackgroundCanvas />}
         <Header />
         <Scroll>
           <Main>{children}</Main>

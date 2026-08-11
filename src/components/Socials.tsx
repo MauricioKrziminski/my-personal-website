@@ -4,7 +4,7 @@ import styled from "styled-components"
 
 import media from "styles/media"
 import text from "styles/text"
-import links from "utils/links"
+import links, { whatsappLink } from "utils/links"
 import { useT } from "utils/i18n/useT"
 
 import ArrowLink from "./ArrowLink"
@@ -29,6 +29,15 @@ export default function Socials({
           <ArrowLink darkText={darkText}>{t.common.email}</ArrowLink>
         </a>
       )}
+      <a
+        href={whatsappLink(t.contactPage.waMessage)}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <ArrowLink darkText={darkText}>
+          {t.contactPage.whatsapp}
+        </ArrowLink>
+      </a>
       <a href={links.linkedin} target="_blank" rel="noreferrer">
         <ArrowLink darkText={darkText}>{t.common.linkedin}</ArrowLink>
       </a>

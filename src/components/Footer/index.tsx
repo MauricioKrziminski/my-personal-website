@@ -6,7 +6,6 @@ import colors from "styles/colors"
 import media from "styles/media"
 import text from "styles/text"
 import links from "utils/links"
-import { useT } from "utils/i18n/useT"
 
 import GetInTouch from "../GetInTouch"
 import NavItem from "../NavItem"
@@ -22,7 +21,6 @@ type Props = {
 
 export default function Footer({ isDark, hideBlob = false }: Props) {
   const [wrapperEl, setWrapperEl] = useState<HTMLElement | null>(null)
-  const t = useT()
 
   return (
     <Wrapper isDark={isDark} ref={ref => setWrapperEl(ref)}>
@@ -32,7 +30,7 @@ export default function Footer({ isDark, hideBlob = false }: Props) {
             color={isDark ? colors.mainWhite : colors.mainBlack}
             isActive
           >
-            {t.footer.email}
+            {links.emailAddress}
           </NavItem>
         </a>
       </Email>

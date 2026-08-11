@@ -10,6 +10,7 @@ import HeroImg from "images/about/Hero-about-main.webp"
 import colors from "styles/colors"
 import media from "styles/media"
 import text from "styles/text"
+import UniversalLink from "utils/Loader/UniversalLink"
 import { useT } from "utils/i18n/useT"
 
 export default function Hero() {
@@ -35,6 +36,9 @@ export default function Hero() {
             <a href="/Mauricio-Krziminski-CV.pdf" download>
               <ArrowLink>{t.intro.cvCta}</ArrowLink>
             </a>
+            <UniversalLink to="/contact" transition="generic">
+              <ArrowLink>{t.aboutPage.cta}</ArrowLink>
+            </UniversalLink>
           </Actions>
         </Content>
         <ImageWrapper>
