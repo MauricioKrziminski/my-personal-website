@@ -94,17 +94,22 @@ const Wrapper = styled.button<{ darkBackground: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Sombras derivadas do accent ambar. Eram verdes (rgba(16,94,29) e
+     rgba(18,146,39)), sobra da identidade visual anterior, e brigavam com
+     o proprio botao, que e accent500. Sobre fundo escuro vale um brilho
+     luminoso (accent500); sobre fundo claro, uma sombra quente e mais
+     escura (accent800), que e o que a rampa tem para esse papel. */
   box-shadow: ${({ darkBackground }) =>
     darkBackground
-      ? "1px 8px 20px rgba(16, 94, 29, 0.45);"
-      : "1px 8px 20px rgba(18, 146, 39, 0.25);"};
+      ? "1px 8px 20px rgba(255, 176, 32, 0.35);"
+      : "1px 8px 20px rgba(122, 78, 0, 0.25);"};
 
   &:hover {
     cursor: pointer;
     box-shadow: ${({ darkBackground }) =>
       darkBackground
-        ? "1px 4px 10px rgba(16, 94, 29, 0.45);"
-        : "1px 4px 10px rgba(18, 146, 39, 0.25);"};
+        ? "1px 4px 10px rgba(255, 176, 32, 0.35);"
+        : "1px 4px 10px rgba(122, 78, 0, 0.25);"};
     ${Line} {
       width: 100%;
     }

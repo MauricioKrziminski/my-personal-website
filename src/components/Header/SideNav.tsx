@@ -434,7 +434,10 @@ const BG = styled.button<{ navOnScreen: boolean }>`
   z-index: -1;
   transition: opacity 1s;
   cursor: pointer;
-  background-color: rgba(46, 56, 48, 0.8);
+  /* neutro quente (black600 #2b2825). Era rgba(46,56,48), um cinza
+     esverdeado da identidade antiga, que puxava verde por cima de uma
+     paleta inteira de neutros quentes. */
+  background-color: rgba(43, 40, 37, 0.8);
 `
 
 const Sidebar = styled.div`
