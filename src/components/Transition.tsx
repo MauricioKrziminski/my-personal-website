@@ -388,7 +388,7 @@ const blinks = keyframes`
 `
 
 const Line = styled.div`
-  background-color: ${colors.mainGreen};
+  background-color: ${colors.mainAccent};
   animation: ${blinks} 0.5s steps(1) infinite;
 
   ${media.fullWidth} {
@@ -453,11 +453,11 @@ const Row = styled.div`
   align-items: center;
 
   p:nth-of-type(1) {
-    ${text.d4Editorial}
+    ${text.d4Serif}
   }
 
   p:nth-of-type(2) {
-    ${text.d4Mondwest}
+    ${text.d4Pixel}
   }
 
   p {

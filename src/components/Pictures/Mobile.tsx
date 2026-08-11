@@ -38,7 +38,6 @@ export default function MobilePictures({
         return (
           <Image key={photo}>
             <OverlayImage
-              type={index === 2 ? "pixelated" : "halftone"}
               loading="lazy"
               src={photo}
               alt={alts[index]}

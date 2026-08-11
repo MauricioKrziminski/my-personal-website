@@ -39,7 +39,7 @@ export default function Layout({ children }: LayoutProps) {
         {(pathname === "/about" || pathname === "/about/") && (
           <BackgroundCanvas />
         )}
-        {(pathname === "/portfolio" || pathname === "/portfolio/") && (
+        {(pathname === "/projects" || pathname === "/projects/") && (
           <BackgroundCanvas />
         )}
         <Header />

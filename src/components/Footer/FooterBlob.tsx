@@ -9,6 +9,7 @@ import easing from "styles/easing"
 import media from "styles/media"
 import text from "styles/text"
 import { addDebouncedEventListener } from "utils/functions"
+import { useT } from "utils/i18n/useT"
 import useAnimation from "utils/useAnimation"
 
 type Props = {
@@ -17,6 +18,7 @@ type Props = {
 }
 
 export default function FooterBlob({ isDark, parent }: Props) {
+  const t = useT()
   const wrapper = useRef<HTMLDivElement>(null)
   const [arrowEl, setArrowEl] = useState<HTMLImageElement | null>(null)
   const [textEl, setTextEl] = useState<HTMLParagraphElement | null>(null)
@@ -107,13 +109,13 @@ export default function FooterBlob({ isDark, parent }: Props) {
         <Arrow
           ref={ref => setArrowEl(ref)}
           src={linkArrowSVG}
-          alt="a green arrow"
+          alt="seta"
         />
       </ArrowWrapper>
       <Inner ref={wrapper} isDark={isDark} />
       <TextWrapper>
         <Text ref={ref => setTextEl(ref)} isDark={isDark}>
-          Top of Page
+          {t.footer.topOfPage}
         </Text>
       </TextWrapper>
     </Wrapper>
@@ -207,32 +209,36 @@ const Arrow = styled.img<{ alt: string }>`
 const TextWrapper = styled.div`
   color: white;
   position: absolute;
+  /* A caixa é recortada, então o rótulo NÃO pode quebrar linha: em português
+     "Topo da Página" pede ~124px a 18px de corpo, contra os 94px que a fonte
+     anterior exigia. Daí a caixa mais larga e o nowrap. */
+  white-space: nowrap;
   overflow: hidden;
   z-index: 20;
   left: 50%;
   transform: translateX(-50%);
 
   ${media.fullWidth} {
-    width: 94px;
-    height: 23px;
+    width: 136px;
+    height: 26px;
     top: -36px;
   }
 
   ${media.desktop} {
-    width: 6.53vw;
-    height: 1.6vw;
+    width: 9.44vw;
+    height: 1.81vw;
     top: -2.5vw;
   }
 
   ${media.tablet} {
-    width: 9.5vw;
-    height: 1.76vw;
+    width: 13.74vw;
+    height: 1.99vw;
     top: -3.13vw;
   }
 
   ${media.mobile} {
-    width: 25.5vw;
-    height: 4.8vw;
+    width: 36.88vw;
+    height: 5.43vw;
     top: -7.73vw;
   }
 `

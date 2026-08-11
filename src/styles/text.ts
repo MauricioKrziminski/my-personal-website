@@ -1,9 +1,9 @@
 import media from "./media"
 
 export const fonts = {
-  primary: "font-family: 'TWK Lausanne';",
-  mondwest: "font-family: 'PP Mondwest';",
-  editorial: "font-family: 'Editorial New';",
+  primary: "font-family: 'Geist';",
+  pixel: "font-family: 'Pixelify Sans';",
+  serif: "font-family: 'Instrument Serif';",
 }
 
 const text = {
@@ -160,8 +160,8 @@ const text = {
       font-size: 4.8vw;
     }
   `,
-  d1Mondwest: `
-    ${fonts.mondwest}
+  d1Pixel: `
+    ${fonts.pixel}
     font-style: normal;
     font-weight: normal;
     font-size: 555px;
@@ -177,10 +177,10 @@ const text = {
       font-size: 148vw;
     }
   `,
-  d1Editorial: `
-    ${fonts.editorial}
+  d1Serif: `
+    ${fonts.serif}
     font-style: normal;
-    font-weight: 300; /* one step lighter than normal */
+    font-weight: 400; /* Instrument Serif ships a single weight */
     font-size: 450px;
     line-height: 90%;
     letter-spacing: -0.02em;
@@ -194,8 +194,8 @@ const text = {
       font-size: 120vw;
     }
   `,
-  d2Mondwest: `
-    ${fonts.mondwest}
+  d2Pixel: `
+    ${fonts.pixel}
     font-style: normal;
     font-weight: normal;
     font-size: 295px;
@@ -211,10 +211,10 @@ const text = {
       font-size: 78.667vw;
     }
   `,
-  d2Editorial: `
-    ${fonts.editorial}
+  d2Serif: `
+    ${fonts.serif}
     font-style: normal;
-    font-weight: 300; /* one step lighter than normal */
+    font-weight: 400; /* Instrument Serif ships a single weight */
     font-size: 240px;
     line-height: 90%;
     letter-spacing: -0.01em;
@@ -228,8 +228,8 @@ const text = {
       font-size: 64vw;
     }
   `,
-  d3Mondwest: `
-    ${fonts.mondwest}
+  d3Pixel: `
+    ${fonts.pixel}
     font-style: normal;
     font-weight: normal;
     font-size: 165px;
@@ -245,10 +245,10 @@ const text = {
       font-size: 44vw;
     }
   `,
-  d3Editorial: `
-    ${fonts.editorial}
+  d3Serif: `
+    ${fonts.serif}
     font-style: normal;
-    font-weight: 300; /* one step lighter than normal */
+    font-weight: 400; /* Instrument Serif ships a single weight */
     font-size: 140px;
     line-height: 90%;
     letter-spacing: -0.02em;
@@ -262,8 +262,8 @@ const text = {
       font-size: 37.333vw;
     }
   `,
-  d4Mondwest: `
-    ${fonts.mondwest}
+  d4Pixel: `
+    ${fonts.pixel}
     font-style: normal;
     font-weight: normal;
     font-size: 72px;
@@ -279,10 +279,10 @@ const text = {
       font-size: 19.2vw;
     }
   `,
-  d4Editorial: `
-    ${fonts.editorial}
+  d4Serif: `
+    ${fonts.serif}
     font-style: normal;
-    font-weight: 300; /* one step lighter than normal */
+    font-weight: 400; /* Instrument Serif ships a single weight */
     font-size: 60px;
     line-height: 90%;
     letter-spacing: -0.02em;
@@ -414,15 +414,20 @@ const text = {
       font-size: 15.467vw;
     }
   `,
-  mobileVennTextMondwest: `
-    ${fonts.mondwest}
+  mobileVennTextPixel: `
+    ${fonts.pixel}
     font-style: normal;
     font-weight: normal;
-    font-size: 8.8vw;
+    /* 4.16vw = 0.08 do diametro do circulo (52vw no mobile), a mesma proporcao
+       corpo/circulo validada no fullWidth (28px num circulo de 350px). Manter a
+       proporcao preserva as duas margens que importam: a palavra mais longa cabe
+       na caixa e o rotulo inteiro NAO cabe (senao ele para de quebrar linha).
+       Ver o comentario em VennUI.tsx antes de mexer. */
+    font-size: 4.16vw;
     line-height: 90%; 
     `,
-  mobileVennTextEditorial: `
-    ${fonts.editorial}
+  mobileVennTextSerif: `
+    ${fonts.serif}
     font-style: normal;
     font-weight: 300;
     font-size: 7.733vw;

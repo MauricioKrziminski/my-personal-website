@@ -34,7 +34,7 @@ const bounce = keyframes`
 `
 
 const Bar = styled.div<{ timing: number }>`
-  background-color: ${colors.mainGreen};
+  background-color: ${colors.mainAccent};
   width: 8px;
   height: 68px;
   animation: ${bounce} ${({ timing }) => timing}s ease-in-out infinite;

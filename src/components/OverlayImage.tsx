@@ -3,11 +3,15 @@ import React from "react"
 import type { StaticImageData } from "next/image"
 import styled from "styled-components"
 
-import halftone from "images/global/halftone-texture-small.webp"
-import pixelated from "images/global/pixelated-texture-small.webp"
-
+/**
+ * Imagem que preenche o container do pai, recortando pelo centro.
+ *
+ * Já teve uma camada de textura por cima (meio-tom / granulado, herdada do port),
+ * removida por decisão do Mauricio: o padrão criava moiré em cima de screenshots
+ * de interface e deixava as fotos sujas. Se um dia voltar, volta como opt-in por
+ * prop, não como padrão em toda imagem.
+ */
 type OverlayImageProps = {
-  type: "halftone" | "pixelated"
   src: string | StaticImageData
   loading?: "eager" | "lazy"
   alt: string
@@ -22,7 +26,6 @@ export default function OverlayImage({
   alt,
   width = undefined,
   height = undefined,
-  type,
   className = "",
 }: OverlayImageProps) {
   return (
@@ -33,11 +36,6 @@ export default function OverlayImage({
         alt={alt}
         width={width}
         height={height}
-      />
-      <Overlay
-        backgroundUrl={type === "pixelated" ? pixelated.src : halftone.src}
-        backgroundSize={type === "pixelated" ? 156 : 17}
-        opacity={type === "pixelated" ? 0.1 : 0.075}
       />
     </Wrapper>
   )
@@ -55,19 +53,4 @@ const Image = styled.img<{ alt: string }>`
   height: 100%;
   object-fit: cover;
   object-position: center;
-`
-
-const Overlay = styled.div<{
-  backgroundUrl: string
-  backgroundSize: number
-  opacity: number
-}>`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url(${({ backgroundUrl }) => backgroundUrl}) repeat;
-  background-size: ${({ backgroundSize }) => backgroundSize}px;
-  opacity: ${({ opacity }) => opacity};
 `

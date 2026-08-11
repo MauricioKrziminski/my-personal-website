@@ -69,7 +69,7 @@ export default function NavItem({
     }).catch(console.error)
   }, [navOnScreen, textValue])
 
-  // On hover the word must stay put — only the green blinky dash should pulse
+  // On hover the word must stay put — only the accent blinky dash should pulse
   // (handled purely by the `${Wrapper}:hover &` CSS below). The old
   // mouse-enter handler re-typed the whole word letter-by-letter, which is not
   // how the original menu behaves.
@@ -121,7 +121,7 @@ const blinks = keyframes`
 `
 
 const Blinky = styled.div`
-  border-bottom: 10px solid ${colors.mainGreen};
+  border-bottom: 10px solid ${colors.mainAccent};
   display: inline-block;
   width: 60px;
   height: 80px;

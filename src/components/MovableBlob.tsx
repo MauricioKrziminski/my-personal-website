@@ -36,14 +36,14 @@ type CustomMouseMove = {
 
 /**
  * takes a number between -1 and 1 and returns the
- * amplitude of the new form wave at that point
+ * amplitude of the resulting wave at that point
  *
  * bezier curves don't convert to functions easily,
  * so this is just an approximation function of the curve
  * more than good enough for our purposes
  *
  * @param x number between -1 and 1
- * @returns amplitude of the new form wave at that point
+ * @returns amplitude of the resulting wave at that point
  */
 const realCurve = (x: number) => {
   return (
@@ -671,7 +671,7 @@ export default function MovableBlob({
 
   useEffect(() => {
     if (drawPath) {
-      pathColor.current = colors.mainGreen
+      pathColor.current = colors.mainAccent
     } else {
       pathColor.current = colors.black300
     }
@@ -786,7 +786,7 @@ const HighPerfBackground = styled.div<{
   background-color: ${({ isFilled }) =>
     isFilled ? colors.mainWhite : "transparent"};
   border: 1px solid
-    ${({ drawPath }) => (drawPath ? colors.mainGreen : colors.black300)};
+    ${({ drawPath }) => (drawPath ? colors.mainAccent : colors.black300)};
   border-radius: 10px;
   transition: background-color 0.2s ease-in-out;
 `

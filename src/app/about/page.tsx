@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
 
-import Team from "components/team/Team"
+import About from "components/about/About"
 
 // Replaces the Gatsby page's `Head`/`<SEO>` export. The root layout supplies the
-// `%s | New Form` title template, so `title` here is just the page name.
+// `%s | Mauricio Krziminski` title template, so `title` here is just the page name.
 export const metadata: Metadata = {
   title: "Sobre",
   description:
@@ -14,5 +14,5 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <Team />
+  return <About />
 }

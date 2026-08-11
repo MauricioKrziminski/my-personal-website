@@ -2,8 +2,8 @@ import React, { useRef } from "react"
 
 import styled from "styled-components"
 
-import BackgroundPNG from "images/homepage/approach/data-background.webp"
-import DataSVG from "images/homepage/approach/Data.svg"
+import BackgroundPNG from "images/homepage/approach/infra-background.webp"
+import DataSVG from "images/homepage/approach/data.svg"
 import useAnimation from "utils/useAnimation"
 import { useT } from "utils/i18n/useT"
 
@@ -142,7 +142,7 @@ export default function Data({ timeline }: DataProps) {
               KEYFRAMES.START_BLOCKCHAIN_FADE_IN,
           }, KEYFRAMES.START_BLOCKCHAIN_FADE_IN)
 
-      // remove the green when nobody's looking at it
+      // remove o accent quando ninguem esta olhando
       timeline.fromTo(elementsToAnimate, {
           opacity: 1,
         },
@@ -193,7 +193,7 @@ export default function Data({ timeline }: DataProps) {
         alt="a textured background"
       />
       <BG ref={svg} />
-      <Text ref={text}>{t.skills.data}</Text>
+      <Text ref={text} $shift={3.4}>{t.skills.data}</Text>
       <BeforeText ref={beforeText}>{t.skills.dataShort}</BeforeText>
     </Wrapper>
   )

@@ -22,7 +22,7 @@ export default function ArrowLink({
     <Wrapper darkText={darkText}>
       <Line darkText={darkText}>{children}</Line>
       <Arrow>
-        <img src={linkArrowSVG} alt="green arrow" />
+        <img src={linkArrowSVG} alt="seta" />
       </Arrow>
     </Wrapper>
   )

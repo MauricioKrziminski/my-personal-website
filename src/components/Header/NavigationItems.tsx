@@ -18,7 +18,7 @@ type NavItemsProps = {
 
 const navList = [
   { key: "home", to: "/" },
-  { key: "projects", to: "/portfolio" },
+  { key: "projects", to: "/projects" },
   { key: "about", to: "/about" },
 ] as const
 

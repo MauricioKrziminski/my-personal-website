@@ -6,16 +6,16 @@ import styled from "styled-components"
 
 import Pictures from "components/Pictures"
 import { useIsSmooth, usePinType } from "components/Scroll"
-import Story1 from "images/homepage/stories/Story-01.webp"
-import Story2 from "images/homepage/stories/Story-02.webp"
-import Story3 from "images/homepage/stories/Story-03.webp"
+import Story1 from "images/homepage/stories/panel-01.webp"
+import Story2 from "images/homepage/stories/panel-02.webp"
+import Story3 from "images/homepage/stories/panel-03.webp"
 import media from "styles/media"
 import { useT } from "utils/i18n/useT"
 import useAnimation from "utils/useAnimation"
 
 import ScrollInvite from "../ScrollInvite"
 import MainText from "./Stories/MainText"
-import PortfolioInvite from "./Stories/PortfolioInvite"
+import ProjectsInvite from "./Stories/ProjectsInvite"
 
 const storyPhotos = [Story1, Story2, Story3]
 
@@ -109,7 +109,7 @@ export default function Stories() {
             />
           </PicturesWrapper>
           <MainText stories={stories} timeline={textTl} />
-          <PortfolioInvite />
+          <ProjectsInvite />
         </Inner>
       </Wrapper>
     </Outer>

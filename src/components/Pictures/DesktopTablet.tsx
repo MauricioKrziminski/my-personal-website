@@ -115,7 +115,6 @@ export default function DesktopPictures({
       {photos.map((photo, i) => (
         <Image key={photo} ref={photoRefs[i]}>
           <OverlayImage
-            type={i === 2 ? "pixelated" : "halftone"}
             loading="lazy"
             src={photo}
             alt={alts[i]}

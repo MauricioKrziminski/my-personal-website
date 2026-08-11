@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# mauriciokrziminski.com.br
 
-## Getting Started
+Portfólio pessoal do Mauricio Krziminski, desenvolvedor de software full-stack.
+Bilíngue PT/EN, exportado como site estático e publicado no Cloudflare Pages.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router, Turbopack, `output: "export"`)
+- **React 19** + **styled-components 6**
+- **GSAP 3** (ScrollSmoother, ScrollTrigger, SplitText, TextPlugin)
+- **sharp** para gerar os assets de imagem
+- TypeScript
+
+## Rodando
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # gera o site estático em out/
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Fontes
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+As três famílias são [SIL Open Font License 1.1](https://openfontlicense.org) e
+ficam auto-hospedadas em `public/fonts`, com os textos de licença em
+`public/fonts/licenses`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Papel | Família |
+| --- | --- |
+| Texto e títulos | [Geist](https://github.com/vercel/geist-font) (variável) |
+| Display pixelado | [Pixelify Sans](https://fonts.google.com/specimen/Pixelify+Sans) (variável) |
+| Display serifado | [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif) |
 
-## Learn More
+Cada família vem em dois subsets (`latin` e `latin-ext`) com o mesmo
+`unicode-range` que o Google Fonts usa, declarados em `src/app/globals.css`.
 
-To learn more about Next.js, take a look at the following resources:
+## Assets gerados
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Nada de arte no repositório é desenhado à mão: todos os gráficos saem de scripts
+determinísticos em `scripts/`, então dá para regerar tudo depois de mexer na
+paleta ou na tipografia. Rode da raiz do projeto:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+node scripts/gen-logos.mjs      # os 4 SVGs do logo do header
+node scripts/gen-icons.mjs      # favicon.ico + icon.png + apple-icon.png
+node scripts/gen-og.mjs         # imagem de preview de link (Open Graph)
+node scripts/gen-textures.mjs   # tiles de fundo, meio-tom, granulado e ruído
+node scripts/gen-approach.mjs   # os 3 círculos animados do Venn + interseção
+node scripts/gen-gallery.mjs    # as 3 imagens abstratas da página Sobre
+```
 
-## Deploy on Vercel
+`scripts/brand.mjs` guarda os tokens de marca compartilhados por esses scripts.
+Ele precisa ficar em sincronia com `src/styles/colors.ts`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Os SVGs do Venn têm um contrato com as animações GSAP (quais tags e classes cada
+componente busca). Está documentado no cabeçalho de `scripts/gen-approach.mjs`;
+leia antes de mudar a geometria.

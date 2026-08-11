@@ -2,7 +2,7 @@ import React from "react"
 
 import styled, { keyframes } from "styled-components"
 
-import Noise from "images/header/noise.webp"
+import Noise from "images/header/grain.webp"
 
 export default function NoiseEl() {
   return (

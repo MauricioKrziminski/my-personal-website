@@ -1,43 +1,44 @@
-import blackBG from "images/global/Black-Background-Tile-2x.webp"
-import whiteBG from "images/global/White-Background-Tile-2x.webp"
+import blackBG from "images/global/dark-tile.webp"
+import whiteBG from "images/global/light-tile.webp"
 
 const colors = {
   // Mains
   trueBlack: "#000000",
-  mainBlack: "#121613",
-  mainGreen: "#2BEE4B",
-  mainWhite: "#fafffa",
+  mainBlack: "#121110",
+  mainAccent: "#FFB020",
+  mainWhite: "#faf9f7",
   trueWhite: "#ffffff",
 
-  // New Form Green
-  green800: "#0a761c",
-  green700: "#0da527",
-  green600: "#11d432",
-  green500: "#2bee4b",
-  green400: "#5af273",
-  green300: "#73f288",
-  green200: "#a2f6b0",
+  // Accent (âmbar). accent500 é o tom da marca; os escuros existem para texto
+  // pequeno sobre fundo claro, onde o accent500 não alcança contraste AA.
+  accent800: "#7a4e00",
+  accent700: "#a66a00",
+  accent600: "#d18700",
+  accent500: "#ffb020",
+  accent400: "#ffc24d",
+  accent300: "#ffd07a",
+  accent200: "#ffe0a8",
 
   // Blacks
-  black800: "#121613",
-  black700: "#232924",
-  black600: "#2e3830",
-  black500: "#3a463c",
-  black400: "#455448",
-  black300: "#516254",
-  black200: "#5c7060",
+  black800: "#121110",
+  black700: "#201e1b",
+  black600: "#2b2825",
+  black500: "#37332f",
+  black400: "#443f3a",
+  black300: "#524c45",
+  black200: "#605951",
 
   // Whites
-  white700: "#b9c1b9",
-  white600: "#c8d2c8",
-  white500: "#dfe7df",
-  white400: "#edf3ed",
-  white300: "#f0f6f0",
-  white200: "#fafffa",
+  white700: "#c0bbb4",
+  white600: "#cfcac3",
+  white500: "#e4e0da",
+  white400: "#f1eee9",
+  white300: "#f5f2ee",
+  white200: "#faf9f7",
 
   // Backgrounds
-  backgroundBlack: `background: url(${blackBG.src}); background-color: #121613;`,
-  backgroundWhite: `background: url(${whiteBG.src}); background-color: #fafffa; background-size:200px;`,
+  backgroundBlack: `background: url(${blackBG.src}); background-color: #121110;`,
+  backgroundWhite: `background: url(${whiteBG.src}); background-color: #faf9f7; background-size:200px;`,
 }
 
 export default colors

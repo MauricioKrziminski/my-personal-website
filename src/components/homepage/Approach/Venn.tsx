@@ -7,9 +7,9 @@ import getMedia from "utils/getMedia"
 import useAnimation from "utils/useAnimation"
 
 import KEYFRAMES from "../05-KEYFRAMES"
-import Blockchain from "./Blockchain"
+import Frontend from "./Frontend"
 import Data from "./Data"
-import Finance from "./Finance"
+import Backend from "./Backend"
 
 type VennProps = {
   timeline: gsap.core.Timeline | null
@@ -127,13 +127,13 @@ export default function Venn({ timeline, afterTimeline }: VennProps) {
     <Wrapper>
       <Inner ref={container}>
         <Circle>
-          <Finance timeline={timeline} />
+          <Backend timeline={timeline} />
         </Circle>
         <Circle>
           <Data timeline={timeline} />
         </Circle>
         <Circle>
-          <Blockchain timeline={timeline} />
+          <Frontend timeline={timeline} />
         </Circle>
       </Inner>
     </Wrapper>

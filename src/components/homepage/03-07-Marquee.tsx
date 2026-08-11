@@ -43,10 +43,9 @@ export default function HomepageMarqueeUpper({
     <Wrapper ref={wrapper} extraPadding={atBottom ?? false}>
       <Marquee timing={60}>
         <Content>
-          <Editorial>{children[0]}</Editorial>
+          <SerifLine>{children[0]}</SerifLine>
           <ImageWrapper>
             <OverlayImage
-              type="halftone"
               loading="lazy"
               src={images[0]}
               alt={alts[0]}
@@ -58,13 +57,12 @@ export default function HomepageMarqueeUpper({
         <Content>
           <ImageWrapper>
             <OverlayImage
-              type="pixelated"
               loading="lazy"
               src={images[1]}
               alt={alts[1]}
             />
           </ImageWrapper>
-          <Mondwest>{children[1]}</Mondwest>
+          <PixelLine>{children[1]}</PixelLine>
         </Content>
       </Marquee>
     </Wrapper>
@@ -117,11 +115,11 @@ const Content = styled.div`
   }
 `
 
-const Editorial = styled.h2`
-  ${text.d2Editorial}
+const SerifLine = styled.h2`
+  ${text.d2Serif}
 
   ${media.mobile} {
-    ${text.d4Editorial}
+    ${text.d4Serif}
   }
 `
 
@@ -153,9 +151,9 @@ const ImageWrapper = styled.div`
   }
 `
 
-const Mondwest = styled.h2`
-  ${text.d2Mondwest}
+const PixelLine = styled.h2`
+  ${text.d2Pixel}
   ${media.mobile} {
-    ${text.d4Mondwest}
+    ${text.d4Pixel}
   }
 `

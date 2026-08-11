@@ -28,9 +28,9 @@ export default function GetInTouch({ darkText }: Props) {
 }
 
 const TouchInternal = styled.div<{ darkText: boolean }>`
-  ${text.d3Editorial}
+  ${text.d3Serif}
   span {
-    ${text.d3Mondwest}
+    ${text.d3Pixel}
   }
 
   color: ${props => (props.darkText ? colors.black700 : colors.white500)};
@@ -42,8 +42,9 @@ const TouchInternal = styled.div<{ darkText: boolean }>`
      português o "g" de "Comigo" ficava raspado. Valor em em (nada de crase aqui:
      ela encerraria o template literal do styled-components) para acompanhar a fonte
      em todos os breakpoints (antes eram três valores duplicados, e o mobile nem
-     tinha o seu). */
-  margin-bottom: -0.04em;
+     tinha o seu). Depois da troca de fontes o -0.04em deixava so ~2px de folga
+     sob a descida da Instrument Serif, entao passou para -0.02em. */
+  margin-bottom: -0.02em;
   ${media.desktop} {
     padding-left: 3.472vw;
   }
@@ -52,9 +53,9 @@ const TouchInternal = styled.div<{ darkText: boolean }>`
   }
   ${media.mobile} {
     @media (max-height: 800px) {
-      ${text.d4Editorial}
+      ${text.d4Serif}
       span {
-        ${text.d4Mondwest}
+        ${text.d4Pixel}
       }
     }
   }

@@ -11,7 +11,7 @@ import { type Language } from "./LanguageContext"
 import { useLang } from "./useT"
 
 /**
- * PT | EN language switch. The active language is the brand green; the inactive
+ * PT | EN language switch. The active language is the brand accent; the inactive
  * one is a dimmed neutral. Because header sections range from light to dark, the
  * inactive color would vanish if it just inherited a fixed header color (dark on
  * a dark section). So the toggle samples the background behind it — like the
@@ -95,7 +95,7 @@ const Option = styled.button<{ $isActive: boolean; $onLight: boolean }>`
   font: inherit;
   color: ${({ $isActive, $onLight }) =>
     $isActive
-      ? colors.mainGreen
+      ? colors.mainAccent
       : $onLight
       ? colors.mainBlack
       : colors.mainWhite};

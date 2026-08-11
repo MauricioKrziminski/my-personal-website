@@ -74,7 +74,7 @@ const Arrow = styled(linkArrowSVG)`
 
 const Wrapper = styled.button<{ darkBackground: boolean }>`
   ${text.buttonMain}
-  background-color: ${colors.mainGreen};
+  background-color: ${colors.mainAccent};
   color: ${colors.mainBlack};
   transition: box-shadow 0.3s ${easing.main};
   color: black;

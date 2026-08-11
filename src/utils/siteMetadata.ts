@@ -1,6 +1,5 @@
 /**
- * Static site metadata. Replaces the Gatsby `useStaticQuery(graphql\`…siteMetadata\`)`
- * lookup that the original Seo component used. Edit these values for the real site.
+ * Metadados estáticos do site, consumidos por src/app/layout.tsx.
  */
 export const siteMetadata = {
   title: "Mauricio Krziminski",

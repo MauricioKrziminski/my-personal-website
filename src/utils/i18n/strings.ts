@@ -123,11 +123,15 @@ const en = {
     officeName: "Porto Alegre",
     officeDescription:
       "Based in Porto Alegre, RS, Brazil, building software with a focus on architecture, performance and developer experience.",
+    gallery1Alt: "abstract graphic of stacked blocks rising from a baseline",
+    gallery2Alt: "abstract graphic of a dot field condensing toward the center",
+    gallery3Alt: "abstract graphic of an interface wireframe",
   },
   footer: {
     email: "mauricio.krziminskii@gmail.com",
     legal: "© Mauricio Krziminski 2026",
     address: "Porto Alegre, RS, Brazil",
+    topOfPage: "Top of Page",
   },
 } as const
 
@@ -245,11 +249,15 @@ const pt: Strings = {
     officeName: "Porto Alegre",
     officeDescription:
       "Baseado em Porto Alegre, RS, Brasil, construindo software com foco em arquitetura, performance e experiência de desenvolvimento.",
+    gallery1Alt: "gráfico abstrato de blocos empilhados subindo a partir da base",
+    gallery2Alt: "gráfico abstrato de um campo de pontos adensando em direção ao centro",
+    gallery3Alt: "gráfico abstrato de um wireframe de interface",
   },
   footer: {
     email: "mauricio.krziminskii@gmail.com",
     legal: "© Mauricio Krziminski 2026",
     address: "Porto Alegre, RS, Brasil",
+    topOfPage: "Topo da Página",
   },
 }
 

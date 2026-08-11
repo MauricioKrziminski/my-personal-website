@@ -53,7 +53,7 @@ export default function Intro() {
         anticipatePin: isSmooth ? undefined : 1,
       })
 
-    // entrance (as the section approaches / locks): photo wipe + green bar
+    // entrance (as the section approaches / locks): photo wipe + barra accent
     if (photo)
       gsap.from(photo, {
         scrollTrigger: { trigger: wrapper.current, start: "top 60%" },
@@ -223,14 +223,14 @@ const PhotoCard = styled.div`
     will-change: transform;
   }
 
-  /* brand accent: a thin green bar along the bottom edge (grows in on reveal) */
+  /* brand accent: a thin bar along the bottom edge (grows in on reveal) */
   .intro-bar {
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
     height: 6px;
-    background-color: ${colors.mainGreen};
+    background-color: ${colors.mainAccent};
     transform-origin: left center;
     z-index: 1;
   }
@@ -267,7 +267,7 @@ const Role = styled.p`
   ${text.bodyXS}
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: ${colors.mainGreen};
+  color: ${colors.mainAccent};
 
   margin-bottom: 18px;
   ${media.desktop} {

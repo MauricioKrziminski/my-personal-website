@@ -141,7 +141,7 @@ const EXPERIENCES: {
       en: "A product of our own, run in partnership with another developer: architecture, front-end, back-end, infrastructure and CI/CD. Next.js, TypeScript, Firebase, Cloud Run and payment integrations.",
     },
     link: "https://proops.com.br/",
-    logo: "/images/team/logos/proops.webp",
+    logo: "/images/about/logos/proops.webp",
     logoCover: false,
   },
   {
@@ -155,7 +155,7 @@ const EXPERIENCES: {
       en: "Modernizing and restructuring the banking app: new features, improved flows and process optimization. C#, .NET, JavaScript, jQuery, IBM Db2 and Oracle.",
     },
     link: "https://www.linkedin.com/in/mauriciokrziminski/",
-    logo: "/images/team/logos/banrisul.webp",
+    logo: "/images/about/logos/banrisul.webp",
     logoCover: false,
   },
   {
@@ -169,7 +169,7 @@ const EXPERIENCES: {
       en: "On-demand web projects (Confeitaria GE, LyftConnect), from architecture to interface. Next.js, React, Tailwind and Vercel/Cloudflare deploys.",
     },
     link: "https://github.com/MauricioKrziminski",
-    logo: "/images/team/logos/freelancer.webp",
+    logo: "/images/about/logos/freelancer.webp",
     logoCover: true,
   },
   {
@@ -183,7 +183,7 @@ const EXPERIENCES: {
       en: "Team Thinking Heads: a Swift mobile app and a Go back-end solving a real-world challenge, focused on performance and UX.",
     },
     link: "https://github.com/MauricioKrziminski",
-    logo: "/images/team/logos/hackatona.webp",
+    logo: "/images/about/logos/hackatona.webp",
     logoCover: false,
   },
   {
@@ -197,7 +197,7 @@ const EXPERIENCES: {
       en: "Bachelor's in Software Engineering: system architecture, databases, web/mobile development and agile methodologies.",
     },
     link: "https://www.linkedin.com/in/mauriciokrziminski/",
-    logo: "/images/team/logos/pucrs.webp",
+    logo: "/images/about/logos/pucrs.webp",
     logoCover: false,
   },
 ]
@@ -215,7 +215,7 @@ export const getExperiences = (lang: Language): Contentful.TeamMemberNodes =>
   )
 
 // ---------------------------------------------------------------------------
-// Stats (homepage Quotes cards), reuses Queries.FactNode (stat + description)
+// Stats (homepage Tagline cards), reuses Queries.FactNode (stat + description)
 // ---------------------------------------------------------------------------
 const STATS: { id: string; stat: L; description: L }[] = [
   {

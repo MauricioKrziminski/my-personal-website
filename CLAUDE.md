@@ -8,30 +8,27 @@
 
 ## O que este projeto é (leia primeiro)
 
-Este repositório começou como um **port fiel** (Next.js 16 App Router +
-styled-components + GSAP) do site da **New Form Capital** (um fundo de VC). O
-port reproduz o design, as animações e a estrutura originais do site Gatsby.
+Portfólio de desenvolvedor do **Mauricio Krziminski**: Next.js 16 App Router +
+styled-components + GSAP, bilíngue PT/EN, exportado como site estático e
+publicado no Cloudflare Pages.
 
-**O projeto foi então transformado** no **portfólio de desenvolvedor do
-Mauricio Krziminski**, mantendo TODO o visual/animações da New Form e trocando
-apenas o conteúdo. Ou seja: se você encontrar nomes de seções "New Form-esque"
-(Portfolio, Team, Venn, Quotes), eles foram **remapeados** para o contexto
-pessoal — veja o mapa abaixo. Não "conserte" para o contexto de VC; o alvo é o
-portfólio pessoal.
+A base técnica veio de um **port de um codebase Gatsby**, o que explica algumas
+esquisitices que não são acidentais: os shapes `Contentful.*` / `Queries.*` em
+`src/gatsby-shim.d.ts`, o `siteMetadata` estático no lugar de um `useStaticQuery`,
+e utilitários como `useAnimation` / `getMedia` / os tokens de `text.ts`. Não
+"conserte" esses padrões achando que são erro; eles sustentam os componentes de
+card sem alteração.
 
 ### Decisões travadas (não reabrir sem o usuário pedir)
 1. **Bilíngue PT/EN** com um toggle no header. PT é o padrão.
-2. **Manter a identidade visual da New Form**: verde `#2BEE4B`, tema dark/light,
-   fontes TWK Lausanne. Só o conteúdo/branding muda.
-3. **Remapeamento de seções** (mantendo o design):
-   - `Portfolio` / `/portfolio` → **Projetos**
-   - `Team` / `/about` (rota renomeada de `/team`) → **Sobre / Trajetória**
-   - `Venn` (Approach) → **Skills** (3 pilares: Back-end / Front-end / Dados & Infra)
-   - `Quotes` → **tagline pessoal + stats**
-4. **Rotas:** `/portfolio` mantida; `/team` foi **renomeada para `/about`**
-   (pasta `src/app/about/`; links, canonical e `Layout.tsx` atualizados; a pasta
-   de componentes segue `components/team/*` internamente). `/portfolio`→`/projects`
-   é cleanup opcional futuro.
+2. **Identidade**: accent **âmbar `#FFB020`**, neutros quentes
+   (`mainBlack #121110`, `mainWhite #faf9f7`), tipografia **Geist + Pixelify Sans
+   + Instrument Serif** (todas OFL, auto-hospedadas). Ver "Tipografia" abaixo.
+3. **Repositório privado**, sem crédito ou atribuição a terceiros em lugar nenhum
+   (nem no site, nem no README, nem em comentário).
+4. **Seções da home** (a ordem e as animações são fixas): Hero, Intro, Stories,
+   Marquee, Projetos, Skills (Venn), Tagline + stats.
+5. **Rotas**: `/` (home), `/projects`, `/about`.
 
 ## Quem é o Mauricio (fonte de verdade para conteúdo)
 
@@ -70,13 +67,14 @@ Usar estes dados ao escrever/editar copy. Não inventar; se faltar algo, pergunt
    (universidade é feminino) está correto.
 
 ### Projetos (em `src/utils/data.ts` → `getProjects`)
-1. **SoftCode** — `softcodedev.com.br` — software house do Mauricio (Next.js/TS/Tailwind).
-2. **Barbalog** — `barbalog.com.br` — site de consultoria em logística/supply
+1. **ProOps** — SaaS multi-tenant de gestão comercial e operacional.
+2. **SoftCode** — `softcodedev.com.br` — software house do Mauricio (Next.js/TS/Tailwind).
+3. **Barbalog** — `barbalog.com.br` — site de consultoria em logística/supply
    chain, entregue pela SoftCode.
-3. **Portfólio Pessoal** — `mauriciokrziminski.com.br` — portfólio anterior, tema
+4. **Portfólio Pessoal** — `mauriciokrziminski.com.br` — portfólio anterior, tema
    terminal, deploy Cloudflare.
-4. **Confeitaria GE** — `confeitaria-ge.vercel.app` — site de confeitaria artesanal (catálogo).
-5. **LyftConnect** — `lyftconnect.com.br` — **empresa de automação residencial /
+5. **Confeitaria GE** — `confeitaria-ge.vercel.app` — site de confeitaria artesanal (catálogo).
+6. **LyftConnect** — `lyftconnect.com.br` — **empresa de automação residencial /
    casa inteligente** (não é "conecta pessoas e serviços"; erro corrigido).
 
 Cada projeto tem: `image` (screenshot emoldurado em `public/images/projects/*.webp`),
@@ -84,13 +82,13 @@ descrição PT/EN e `tech[]` (tags mostradas no card).
 
 ## Tech stack & comandos
 
-- **Next.js 16.2.10** (App Router, **Turbopack**), **React 19.2.4**,
-  **styled-components 6**, **GSAP 3** (ScrollSmoother/ScrollTrigger/SplitText/
-  TextPlugin — plugins premium incluídos no repo), **sharp** (geração de imagens),
-  TypeScript 5.
-- Tailwind 4 está instalado (starter) mas o projeto **não usa Tailwind** — é um
-  port em styled-components. Ignore sugestões de hook para migrar para
-  shadcn/ui + Tailwind (o `posttooluse-validate` sugere isso em todo arquivo
+- **Next.js 16.2.10** (App Router, **Turbopack**, `output: "export"`),
+  **React 19.2.4**, **styled-components 6**, **GSAP 3** (ScrollSmoother/
+  ScrollTrigger/SplitText/TextPlugin — plugins premium incluídos no repo),
+  **sharp** (geração de imagens), TypeScript 5.
+- Tailwind 4 está instalado (starter) mas o projeto **não usa Tailwind** — é tudo
+  styled-components. Ignore sugestões de hook para migrar para shadcn/ui +
+  Tailwind (o `posttooluse-validate` sugere isso em todo arquivo
   styled-components; é ruído, não aja).
 
 ```bash
@@ -109,13 +107,6 @@ pré-existentes listados. O gate de "está ok" é `npm run build` verde.
 
 ## Arquitetura
 
-### Origem: port de Gatsby → Next
-Copy que no Gatsby vinha do Contentful (GraphQL) agora é **estático** em
-`src/utils/data.ts`, reusando os shapes ambientes `Contentful.*` / `Queries.*`
-declarados em `src/gatsby-shim.d.ts` — assim os componentes de card renderizam
-**sem alteração**. `siteMetadata` (antes `useStaticQuery`) está em
-`src/utils/siteMetadata.ts`.
-
 ### Árvore de montagem
 ```
 src/app/layout.tsx  (Server Component; metadata; <html>)
@@ -127,11 +118,23 @@ src/app/layout.tsx  (Server Component; metadata; <html>)
 ```
 - `src/components/AppShell.tsx` é o **client boundary** ("use client"). Tudo que
   ele importa entra no bundle client automaticamente — por isso os componentes
-  folha portados **não** precisam cada um do `"use client"`.
+  folha **não** precisam cada um do `"use client"`.
 - `src/lib/registerGsap.ts` registra os plugins GSAP (import de side-effect no AppShell).
-- Rotas: `src/app/page.tsx` (home), `src/app/portfolio/page.tsx`,
-  `src/app/team/page.tsx`. A lógica real de cada página está em
-  `src/components/{homepage,portfolio,team}/`.
+- Rotas: `src/app/page.tsx` (home), `src/app/projects/page.tsx`,
+  `src/app/about/page.tsx`. A lógica real de cada página está em
+  `src/components/{homepage,projects,about}/`.
+
+### `next.config.ts`
+- `output: "export"` — site estático em `out/`, servido pelo Cloudflare Pages.
+- `compiler.styledComponents` com **`displayName: false` e `fileName: false`**.
+  Isso é deliberado: com eles ligados, o SWC assa o nome de cada componente e do
+  arquivo de origem dentro das classes CSS, e o bundle de produção passa a expor
+  a árvore interna inteira do projeto para qualquer um ler. **Não religue.**
+  Confira com `grep -rE "[A-Z][A-Za-z0-9]+__[A-Z]" out/_next/static/chunks/`,
+  que tem que voltar vazio.
+- SVGR via `turbopack.rules`, com SVGO configurado para **não** converter shape
+  em path, **não** colapsar `<g>` e **não** renomear classes. Os SVGs do Venn
+  dependem disso (ver "Venn" abaixo).
 
 ## i18n — a peça central (leia antes de mexer em qualquer texto)
 
@@ -150,100 +153,197 @@ Diretório `src/utils/i18n/`:
 - **`LanguageToggle.tsx`**: o botão `PT | EN` no header.
 
 ### Regras práticas de i18n
-- **Todo texto visível vem de `useT()`**. Não hardcode strings em JSX. (Um sweep
-  já removeu todas as strings literais; mantenha assim.)
+- **Todo texto visível vem de `useT()`**. Não hardcode strings em JSX, e isso
+  inclui `alt` de imagem (a galeria da Sobre e o rótulo "Topo da Página" já
+  passaram por essa correção).
 - **Dados bilíngues**: `data.ts` exporta funções `getProjects(lang)`,
   `getExperiences(lang)`, `getStats(lang)` que montam os arrays já na língua
   certa. Os **4 consumidores** passam `lang` via `useLang()`:
-  `homepage/Home.tsx`, `homepage/Quotes/AllCards.tsx`, `portfolio/Portfolio.tsx`,
-  `team/Team.tsx`.
-- **Títulos animados com GSAP** (Hero, Stories typewriter, Quotes SplitText):
+  `homepage/Home.tsx`, `homepage/Tagline/AllCards.tsx`, `projects/Projects.tsx`,
+  `about/About.tsx`.
+- **Títulos animados com GSAP** (Hero, Stories typewriter, Tagline SplitText):
   SplitText muta o DOM **fora do React**. Ao trocar de idioma é preciso
   **remontar** o componente com `key={lang}` para re-splitar (feito em
-  `06-Quotes.tsx`). Se um título animado não traduzir, é quase sempre isto.
+  `06-Tagline.tsx`). Se um título animado não traduzir, é quase sempre isto.
+
+## Tipografia
+
+Três famílias, todas **SIL OFL 1.1**, auto-hospedadas em `public/fonts` com os
+textos de licença em `public/fonts/licenses`:
+
+| Token | Família | Observação |
+|---|---|---|
+| `fonts.primary` | **Geist** | variável 100–900, cobre os pesos 200/350/550 de `text.ts` |
+| `fonts.pixel` | **Pixelify Sans** | variável 400–700, tokens `d1..d4Pixel` |
+| `fonts.serif` | **Instrument Serif** | **peso único 400**, tokens `d1..d4Serif` |
+
+Cada família vem em dois subsets (`latin` e `latin-ext`) com o mesmo
+`unicode-range` do Google Fonts, declarados em `src/app/globals.css`.
+
+**Cuidado ao mexer em corpo de texto:** a Pixelify Sans é ~35% mais larga que a
+fonte pixelada anterior no mesmo corpo. Isso já obrigou a alargar a caixa do
+"Topo da Página" (`FooterBlob.tsx`) e a recalibrar o rótulo do Venn. Se adicionar
+copy nova em `d*Pixel`, **meça** antes de assumir que cabe.
+
+**O headline do hero (`homepage/01-Hero.tsx`) é um bloco justificado.** As quatro
+linhas alternam texto+imagem e imagem+texto, e todas têm exatamente a mesma
+largura. Quem fecha a conta é a **imagem**, que tem `flex: 1 0 220px`: o texto
+ocupa o que precisa e a foto absorve a sobra da linha. Consequências:
+- o `flex-shrink` fica em **0** de propósito. Com ele ligado, a imagem da linha
+  mais larga era espremida até 0 e o `width: max-content` do bloco passava a valer
+  só o texto, desalinhando tudo;
+- a proporção das imagens varia de linha para linha (frase curta, faixa larga).
+  Isso é o efeito desejado, não um bug;
+- **não** volte para um grid de colunas fixas. Era assim antes, e só funciona se as
+  quatro frases tiverem comprimentos parecidos, o que não vale nem em PT nem em EN;
+- o DOM é sempre texto → imagem, e o `$flip` do `Row` inverte só a direção visual
+  no desktop. É isso que mantém a ordem de leitura certa quando empilha no mobile;
+- nos breakpoints empilhados o `Image` precisa de `flex: none`, senão o
+  `flex-basis` passa a valer como **altura** (o eixo principal vira o vertical) e
+  sobrescreve o `height`.
+
+**O rótulo do Venn (`VennUI.tsx` → `Text`) tem três números acoplados**, e mexer
+em um sozinho quebra o outro:
+1. **corpo** (28px no fullWidth, 0.08 do diâmetro do círculo nos demais);
+2. **largura da caixa** (74%), que precisa ficar *entre* a palavra mais longa
+   ("Arquitetura", ~8.4px por px de corpo) e o rótulo inteiro numa linha só. Larga
+   demais e ele para de quebrar linha e vira uma linha comprida que estoura;
+   estreita demais e a palavra sozinha estoura;
+3. **`$shift`** (±3.4%), que recentra o rótulo na parte visível do círculo, já que
+   o círculo vizinho cobre um lado só. Sem isso a primeira letra some por baixo do
+   vizinho (foi o que comeu o "I" de "Infrastructure").
+Para validar, meça no browser a linha mais larga contra a corda livre do círculo
+(descontando a invasão dos vizinhos naquela altura), **nos dois idiomas**: PT tem
+as palavras mais longas, mas foi o EN que estourou primeiro depois de um ajuste.
 
 ## Estilo & convenções
 
 - **styled-components** em todo lugar. Nada de CSS modules/Tailwind.
 - **Breakpoints** (`src/styles/media.ts`): `mobile ≤428`, `tablet 429–1024`,
   `desktop 1025–1440`, `fullWidth ≥1441`. Use `${media.fullWidth}`,
-  `${media.desktop}`, etc. Padrão do port: valores em **px no fullWidth** e em
-  **vw** nos demais (responsividade fluida).
+  `${media.desktop}`, etc. Padrão: valores em **px no fullWidth** e em **vw**
+  nos demais (responsividade fluida).
 - **`useMedia(fw, d, t, m)`** (`src/utils/useMedia.ts`) e **`getMedia(...)`**
   (`src/utils/getMedia.ts`): escolhem um valor por breakpoint em JS (ordem
   **fullWidth, desktop, tablet, mobile**). Usados p/ ex. em animações GSAP.
-- **Cores** (`src/styles/colors.ts`): `green500 #2bee4b`, `mainBlack #121613`,
-  `mainWhite #fafffa`, `black700`, `white500`, etc. Use os tokens, não hex cru.
+- **Cores** (`src/styles/colors.ts`): `mainAccent`/`accent500 #FFB020`,
+  `accent200..accent800` na rampa âmbar, `mainBlack #121110`,
+  `mainWhite #faf9f7`, `black200..800`, `white200..700`. Use os tokens, não hex
+  cru. Em fundo claro o `accent500` não bate contraste AA em texto pequeno: use
+  `accent700 #a66a00`.
 - **Tipografia** (`src/styles/text.ts`): tokens `text.h1..h6`, `text.sub1..3`,
-  `text.bodyS/bodyXS`, `text.buttonMain`, etc. Espalhe com `${text.h4}`.
+  `text.bodyS/bodyXS`, `text.buttonMain`, `d1..d4Pixel`, `d1..d4Serif`.
+  Espalhe com `${text.h4}`.
 - **`useAnimation(fn, deps)`** (`src/utils/useAnimation.ts`): wrapper do padrão
-  do port para efeitos GSAP (roda no cliente, re-executa nas deps). Título/efeito
-  que depende de texto deve incluir o texto/lang nas deps.
+  para efeitos GSAP (roda no cliente, re-executa nas deps). Título/efeito que
+  depende de texto deve incluir o texto/lang nas deps.
 
-## Gotchas do port (economize tempo — já resolvidos antes)
+## Assets: tudo é gerado por script
+
+**Nenhum gráfico do repositório é desenhado à mão.** Todos saem de scripts
+determinísticos em `scripts/`, então dá para regerar tudo depois de mexer na
+paleta ou na tipografia. `scripts/brand.mjs` guarda os tokens compartilhados e
+**precisa ficar em sincronia com `src/styles/colors.ts`** (os scripts não
+conseguem importar o TS do app).
+
+```bash
+node scripts/gen-logos.mjs      # src/images/global/Logo{Dark,Light,SmallDark,SmallLight}.svg (+ cópia em public/)
+node scripts/gen-icons.mjs      # src/app/{icon.png,apple-icon.png,favicon.ico}
+node scripts/gen-og.mjs         # public/images/og-default.png
+node scripts/gen-textures.mjs   # tiles de fundo, meio-tom, granulado, ruído do header
+node scripts/gen-approach.mjs   # os 3 círculos do Venn + interseção + os 3 fundos
+node scripts/gen-gallery.mjs    # src/images/about/gallery/gallery-{1,2,3}.webp
+```
+
+### Venn (`scripts/gen-approach.mjs`) — tem contrato com as animações
+Cada componente do Approach busca elementos **dentro do seu próprio SVG** e anima
+**por tag**, não por id. A forma pode mudar à vontade; a estrutura não:
+
+| SVG | Componente | O que ele busca |
+|---|---|---|
+| `backend.svg` | `Approach/Backend.tsx` | `querySelectorAll("rect")` menos os `.background` → anima `scaleY` |
+| `data.svg` | `Approach/Data.tsx` | `querySelectorAll("circle:not(.specialBackground)")` → anima `scale` + posição |
+| `frontend.svg` | `Approach/Frontend.tsx` | `querySelectorAll("g")` filtrando `.one/.two/.three/.four` → entram de 4 direções |
+
+Ou seja: todo `<rect>` que **não** deve animar (fundo, e principalmente os que
+vivem dentro de `<clipPath>`) precisa de `class="background"`; e o clip do
+`data.svg` usa `<rect rx>` justamente para não entrar na seleção de círculos.
+
+**Há um quarto consumidor, fácil de esquecer:** `Approach/Venn.tsx` faz um cull
+de performance durante o zoom (`setSVGdisplay`) que põe `display="none"` em
+**todos** os descendentes de cada SVG **menos os que têm
+`class="specialBackground"`**. Por isso o disco de fundo dos três círculos é um
+`<circle class="specialBackground">`. Já quebrou uma vez: com o fundo do Back-end
+como `<rect class="background">`, ele sobrevivia à animação mas era escondido pelo
+cull, e o círculo aparecia claro enquanto os outros dois ficavam escuros.
+
+O cabeçalho de `scripts/gen-approach.mjs` documenta os quatro contratos.
+
+`intersection.svg` é derivado por geometria: é a interseção real dos três
+círculos do Venn, achada por bisseção no `d/R` até bater a proporção que o layout
+espera (65×59). Não edite o path na mão.
+
+### Fotos reais
+`src/images/homepage/intro/mauricio.webp`, `src/images/about/Hero-about-main.webp`
+(braços cruzados), `src/images/about/caricatura.png`, os screenshots dos projetos
+em `public/images/projects/` e os logos de experiência em `public/images/team/logos/`.
+
+## Gotchas (economize tempo — já morderam antes)
 
 - **Edição com CRLF**: os `.tsx` usam **quebra de linha CRLF**. A ferramenta
   `Edit` casa por texto exato; **matches multi-linha frequentemente falham**.
-  Prefira editar **linha a linha** (âncoras de uma linha só), ou use PowerShell
-  com `[System.IO.File]::ReadAllText/WriteAllText` + regex e
-  `UTF8Encoding($false)` (sem BOM) para edições em bloco.
+  Prefira editar **linha a linha** (âncoras de uma linha só), ou use um script
+  Node com `fs.readFileSync/writeFileSync` + `split().join()`.
+- **`\b` em regex dentro de `node -e` no bash**: o escaping se perde e o regex
+  vira caractere de backspace, silenciosamente casando nada. Escreva o script num
+  arquivo (com a ferramenta `Write`) em vez de passar por `-e`, ou monte o `\b`
+  com `String.fromCharCode(92) + "b"`.
 - **Read hook**: o harness às vezes recusa reler um arquivo ("Wasted call").
   Use `Grep` com `pattern: "."` e `-n` para ver o conteúdo, ou `Read` com
   `offset/limit`.
-- **SVGs como `<img src>`**: alguns SVGs vêm compilados como componentes SVGR
-  (JS). Quando um SVG é usado via `<img src>` (não import SVGR), ele precisa
-  existir como **SVG cru** em `public/images/**`. Ícones do Approach animam
-  consultando os próprios elementos por tag/classe — não regenere sem verificar.
+- **Logo do header**: o `Logo.tsx` renderiza os SVGs com `height:100%; width:auto`
+  dentro de um `Jail` de largura fixa (320px no wordmark, 60px no monograma). Os
+  SVGs usam **`textLength` + `lengthAdjust="spacingAndGlyphs"`** de propósito: o
+  librsvg (que o sharp usa) mede a Geist ~5% mais estreita que o Chrome, e um
+  viewBox medido por rasterização cortava o "i" final no browser. Com
+  `textLength` é o SVG que manda a largura em qualquer renderizador. O
+  `gen-logos.mjs` imprime a proporção e avisa se estourar o `Jail`.
+- **Fontes embutidas em SVG**: os logos carregam via `<img src>`, e `<img>` não
+  herda o `@font-face` do documento. Por isso a Geist vai embutida como data URI
+  dentro do próprio SVG. Mesma técnica no `gen-icons.mjs`/`gen-og.mjs` (o librsvg
+  lê `@font-face` base64). Como a Geist é variável, declare **um peso fixo** por
+  `@font-face`: uma faixa (`100 900`) faz o librsvg renderizar no default.
+- **SVGs como `<img src>`**: quando um SVG é usado via `<img src>` (não import
+  SVGR), ele precisa existir como **SVG cru** em `public/images/**`. Hoje isso
+  vale para os 4 logos, o `linkArrow.svg` e o `intersection.svg`.
+- **Ícone de seta**: os consumidores recolorem com `* { fill: ... }`, então o
+  `linkArrow.svg` precisa ser feito de **paths preenchidos**, não de stroke.
 - **Descidas de letra (g, j, p, q, y, @) sendo raspadas**: os tokens `text.h1..h6`
   usam `line-height: 100%`, então a caixa da linha tem exatamente a altura da
-  fonte e a tinta das descidas fica ~7% ABAIXO dela (maiúsculas acentuadas ficam
-  ~3% acima). Qualquer `overflow: hidden` ou `clip-path` colado na caixa corta a
-  letra. Já mordeu duas vezes: o `clip-path` do `NavItem` (e-mail do rodapé e
-  itens do menu) e o `margin-bottom` negativo do `GetInTouch` ("Fale Comigo").
-  Detalhe traiçoeiro: em inglês o texto do port não tinha descida nenhuma
-  ("Get in touch", "Projects" no menu era o único), então o bug só aparece com a
-  cópia em português. Ao criar máscara/recorte em texto, deixe folga vertical.
+  fonte e a tinta das descidas fica abaixo dela. Qualquer `overflow: hidden` ou
+  `clip-path` colado na caixa corta a letra. Já mordeu três vezes: o `clip-path`
+  do `NavItem`, o `margin-bottom` negativo do `GetInTouch` (hoje `-0.02em`, com
+  ~5px de folga) e a caixa do "Topo da Página". Detalhe traiçoeiro: em inglês a
+  cópia muitas vezes não tem descida nenhuma, então o bug **só aparece em
+  português**. Ao criar máscara/recorte em texto, deixe folga vertical e teste em PT.
 - **Nunca use crase dentro de comentário CSS** em `styled.x\`...\``: a crase
   encerra o template literal e o build quebra com "Expected a semicolon", com a
-  página inteira em branco no dev.
+  página inteira em branco no dev. Isso inclui usar crase para citar um nome de
+  prop ou de propriedade dentro do comentário, que é o jeito natural de escrever.
+  Já mordeu de novo depois de estar documentado aqui: escreva os nomes sem crase.
+- **Imagens não têm mais overlay de textura.** O `OverlayImage` já teve uma camada
+  de meio-tom/granulado por cima de toda foto; foi removida porque criava moiré em
+  cima de screenshots de interface. Se voltar, que volte como opt-in por prop.
 - **JSX apaga whitespace** entre expressões em linhas separadas (ex.: `{a}` e
   `<span>` viraram "FaleComigo"). Use `{" "}` explícito quando precisar do espaço.
-- **Imagens de projeto via `sharp`**: os screenshots emoldurados (barra de
-  browser com 3 pontinhos + URL + cantos arredondados) são gerados por scripts
-  `sharp` temporários (`_frame_*.mjs`) na raiz — **rode e apague** depois. Saída
-  em `public/images/projects/*.webp` (~1200px de largura). O `Contentful.CompanyNode`
-  ganhou campos opcionais `image?` e `tech?`; o card renderiza `image` em cor
-  real + sombra (sem o filtro verde dos logos placeholder) quando presente.
 - **Aba de automação (Claude-in-Chrome)**: o loader/ScrollSmoother usa `rAF` que
   **congela em aba de fundo**. Para verificar visualmente: dirija manualmente
-  `gsap.ticker.tick()` em loop com `setTimeout` real entre ticks, e use
-  `ScrollSmoother.get().scrollTop(y)` em vez de `window.scrollTo`. Loops muito
-  longos podem estourar timeout do CDP — quebre em chamadas menores. Para sites
-  externos com animação de reveal congelada, injete um `<style>` forçando
-  `opacity:1!important;transform:none!important;visibility:visible!important;
-  animation:none` e esconda `[class*=load]` antes do screenshot.
-
-## Assets
-
-- **Prontos**: os 5 screenshots emoldurados dos projetos; ícones/SVGs do port
-  já renderizados; texturas; fotos reais do Mauricio no Intro da home
-  (`homepage/intro/mauricio.webp`) e no hero da Sobre (`team/Hero-team-main.webp`,
-  braços cruzados); caricatura vetorial (`team/caricatura.png`).
-- **Favicon e OG image (prontos, gerados por script)**: monograma MK verde
-  `#2BEE4B` sobre `#121613` em `src/app/icon.png` (512), `apple-icon.png` (180) e
-  `favicon.ico` (16/32/48, PNGs embutidos); OG 1200x630 com a caricatura em
-  `public/images/og-default.png`. Saem de `scripts/gen-icons.mjs` e
-  `scripts/gen-og.mjs` (rodar da raiz). Os scripts montam um SVG com a
-  **TWK Lausanne embutida como data URI woff2** e renderizam via `sharp`:
-  librsvg lê `@font-face` base64, então a tipografia sai idêntica à do site
-  (vale para qualquer imagem futura com texto da marca).
-- **Ainda placeholder** (trocar quando o Mauricio enviar os originais — mesmos
-  paths em `src/images/**` e cópia em `public/images/**` p/ os usados como `<img>`):
-  os 4 logos MK (`global/Logo*.svg`), `portfolio/hero.webp`,
-  e headshots/dados reais dos membros de "experiência"
-  (hoje `headshot:null` em `data.ts`).
-- Detalhe completo dos assets faltantes vive na memória do assistente
-  (`missing-site-assets`).
+  `gsap.ticker.tick()` em loop com `setTimeout(r, 0)` entre ticks, e role com
+  `window.scrollTo` antes de ticar (o ScrollSmoother transforma o
+  `#smooth-content`). Loops longos estouram o timeout do CDP: use ~150 ticks por
+  chamada, não 300+. O `resize_window` pode não ter efeito se a janela estiver
+  maximizada; nesse caso meça o layout mobile analiticamente com
+  `canvas.measureText` nos tamanhos em vw em vez de tentar redimensionar.
 
 ## Git / commits
 
@@ -259,17 +359,21 @@ Diretório `src/utils/i18n/`:
 ## Fluxo de verificação (faça sempre)
 
 1. `npm run build` verde (gate principal).
-2. Se tocou tipos, `npx tsc --noEmit` e confira só os arquivos alterados.
-3. Verificação visual no browser (`localhost:3000`, `/portfolio`, `/team`):
+2. `grep -rE "[A-Z][A-Za-z0-9]+__[A-Z]" out/_next/static/chunks/` → **vazio**.
+3. Se tocou tipos, `npx tsc --noEmit` e confira só os arquivos alterados.
+4. Verificação visual no browser (`localhost:3000`, `/projects`, `/about`):
    trocar PT↔EN e conferir que TODO o copy troca, animações re-rodam sem
-   quebrar, 0 imagens quebradas, 0 erros de console, seções remapeadas corretas.
-4. Ignorar o hook `posttooluse-validate` que sugere shadcn/Tailwind.
+   quebrar, 0 imagens quebradas, 0 erros de console, descidas de letra inteiras
+   em PT.
+5. Ignorar o hook `posttooluse-validate` que sugere shadcn/Tailwind.
 
 ## Fora de escopo / pendências
 
-- Renomear rota `/portfolio`→`/projects` (o `/team`→`/about` já foi feito).
+- Os shapes `Contentful.*` / `Queries.*` em `src/gatsby-shim.d.ts` ainda têm nomes
+  do CMS antigo (`TeamMemberNodes`, `CompanyNode`), e por isso a prop `team` de
+  `about/02-Experiences.tsx` e `02-List.tsx` ainda se chama assim mesmo carregando
+  experiências. Renomear cascateia por todos os cards; deixado para depois.
 - Páginas `/terms` e `/privacy` (linkadas em `Socials`, sem rota) — criar ou
   remover links.
-- Logos MK definitivos (`global/Logo*.svg` ainda são placeholder). Favicon, OG
-  image e fotos reais já estão feitos.
-- Ícones de skill custom no Venn (hoje reusa os SVGs animados do Approach).
+- Ícones de skill custom no Venn: hoje a arte dos 3 círculos é gerada
+  proceduralmente, o que já é próprio, mas não há iconografia dedicada.

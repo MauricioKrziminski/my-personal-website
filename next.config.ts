@@ -6,15 +6,23 @@ const nextConfig: NextConfig = {
   // next/image is only used as a type (StaticImageData), never the runtime
   // <Image> optimizer, so nothing needs a Node server at runtime.
   output: "export",
-  // The ported New Form codebase was written against Gatsby's looser type/lint
-  // setup. Don't let its pre-existing strict-mode nits block the build; the
-  // editor still type-checks. Tighten these once the port is stabilised.
+  // O código herdado do port de Gatsby foi escrito contra um setup de tipos/lint
+  // mais frouxo. Não deixe essas pendências antigas travarem o build; o editor
+  // continua checando os tipos. Dá para apertar isto quando forem resolvidas.
   typescript: {
     ignoreBuildErrors: true,
   },
   compiler: {
-    // Enable styled-components SSR/transform support (ported from Gatsby site)
-    styledComponents: true,
+    // Enable styled-components SSR/transform support.
+    // `displayName`/`fileName` are deliberately off: they bake the component and
+    // source-file names into the generated class names, which ships the whole
+    // internal component tree in the production bundle for anyone to read. `ssr`
+    // stays on because styled-components needs it to hydrate without a flash.
+    styledComponents: {
+      ssr: true,
+      displayName: false,
+      fileName: false,
+    },
   },
   turbopack: {
     // Import *.svg as React components (SVGR), matching the original Gatsby

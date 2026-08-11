@@ -7,17 +7,22 @@
 import fs from "fs"
 import sharp from "sharp"
 
+import { colors, fontFace, GEIST } from "./brand.mjs"
+
 const W = 1200
 const H = 630
-const GREEN = "#2BEE4B"
-const DARK = "#121613"
-const WHITE = "#FAFFFA"
+const ACCENT = colors.accent
+const DARK = colors.dark
+const WHITE = colors.white
+const MUTED = "#B7B2AC"
 
-const b64 = f => fs.readFileSync(f).toString("base64")
-const fonts = `
-@font-face{font-family:'TWK Lausanne';font-weight:550;src:url(data:font/woff2;base64,${b64("public/fonts/TWKLausanne-550.woff2")}) format('woff2');}
-@font-face{font-family:'TWK Lausanne';font-weight:350;src:url(data:font/woff2;base64,${b64("public/fonts/TWKLausanne-350.woff2")}) format('woff2');}
-@font-face{font-family:'TWK Lausanne';font-weight:200;src:url(data:font/woff2;base64,${b64("public/fonts/TWKLausanne-200.woff2")}) format('woff2');}`
+// Geist e variavel: o librsvg escolhe a instancia pelo peso do @font-face, entao
+// declaramos os tres pesos que o layout usa como familias de mesmo nome.
+const fonts = [
+  fontFace("Geist", 600, GEIST),
+  fontFace("Geist", 400, GEIST),
+  fontFace("Geist", 250, GEIST),
+].join(String.fromCharCode(10))
 
 // caricatura sangrando na direita, cantos arredondados como os cards do site
 const CW = 430
@@ -38,22 +43,22 @@ const layout = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}"
   <defs><style>${fonts}</style></defs>
   <rect width="${W}" height="${H}" fill="${DARK}"/>
 
-  <text x="72" y="150" font-family="'TWK Lausanne'" font-weight="350" font-size="22"
-        letter-spacing="3.4" fill="${GREEN}">MAURICIOKRZIMINSKI.COM.BR</text>
+  <text x="72" y="150" font-family="Geist" font-weight="400" font-size="22"
+        letter-spacing="3.4" fill="${ACCENT}">MAURICIOKRZIMINSKI.COM.BR</text>
 
-  <text x="72" y="266" font-family="'TWK Lausanne'" font-weight="550" font-size="82"
+  <text x="72" y="266" font-family="Geist" font-weight="600" font-size="82"
         letter-spacing="-3" fill="${WHITE}">Mauricio</text>
-  <text x="72" y="352" font-family="'TWK Lausanne'" font-weight="550" font-size="82"
+  <text x="72" y="352" font-family="Geist" font-weight="600" font-size="82"
         letter-spacing="-3" fill="${WHITE}">Krziminski</text>
 
-  <rect x="72" y="396" width="72" height="6" fill="${GREEN}"/>
+  <rect x="72" y="396" width="72" height="6" fill="${ACCENT}"/>
 
-  <text x="72" y="466" font-family="'TWK Lausanne'" font-weight="200" font-size="30"
-        fill="#B9C2B9">Desenvolvedor de Software Full-stack</text>
-  <text x="72" y="508" font-family="'TWK Lausanne'" font-weight="200" font-size="30"
-        fill="#B9C2B9">Porto Alegre, RS</text>
+  <text x="72" y="466" font-family="Geist" font-weight="250" font-size="30"
+        fill="${MUTED}">Desenvolvedor de Software Full-stack</text>
+  <text x="72" y="508" font-family="Geist" font-weight="250" font-size="30"
+        fill="${MUTED}">Porto Alegre, RS</text>
 
-  <rect x="0" y="${H - 10}" width="${W}" height="10" fill="${GREEN}"/>
+  <rect x="0" y="${H - 10}" width="${W}" height="10" fill="${ACCENT}"/>
 </svg>`)
 
 await sharp(layout)

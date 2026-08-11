@@ -118,11 +118,12 @@ const Wrapper = styled.button<{ isScrolled: boolean }>`
   cursor: pointer;
   position: relative;
 
-  /* full wordmark "Mauricio Krziminski" renders ~269px wide at the header logo
-     height, so the track is widened from New Form's 200px to avoid clipping;
-     the small "MK" only needs ~50px */
+  /* o wordmark "Mauricio Krziminski" renderiza ~294px de largura na altura do
+     header (28px), e o monograma "MK" ~54px. As duas trilhas tem folga por cima
+     disso; se o logo for regerado com outra fonte ou tracking, o gen-logos.mjs
+     imprime a proporcao nova e avisa se estourar estes valores. */
   ${Jail}:first-child {
-    width: ${props => (props.isScrolled ? "0%" : "280px")};
+    width: ${props => (props.isScrolled ? "0%" : "320px")};
   }
   ${Jail}:last-child {
     width: ${props => (props.isScrolled ? "60px" : "0%")};
@@ -130,7 +131,7 @@ const Wrapper = styled.button<{ isScrolled: boolean }>`
 
   &:hover {
     ${Jail}:first-child {
-      width: 280px;
+      width: 320px;
     }
     ${Jail}:last-child {
       width: 0%;

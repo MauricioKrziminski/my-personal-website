@@ -7,14 +7,14 @@ import Hero from "components/homepage/01-Hero"
 import Stories from "components/homepage/02-Stories"
 import Intro from "components/homepage/Intro"
 import HomepageMarquee from "components/homepage/03-07-Marquee"
-import HomepagePortfolios from "components/homepage/04-Portfolios"
+import HomepageProjects from "components/homepage/04-Projects"
 import Approach from "components/homepage/05-Approach"
-import Quotes from "components/homepage/06-Quotes"
+import Tagline from "components/homepage/06-Tagline"
 import Section from "components/Section"
-import marqueeOne from "images/homepage/marquees/Marquee-one-01.webp"
-import marqueeTwo from "images/homepage/marquees/Marquee-one-02.webp"
-import marqueeThree from "images/homepage/marquees/Marquee-two-01.webp"
-import marqueeFour from "images/homepage/marquees/Marquee-two-02.webp"
+import marqueeOne from "images/homepage/marquees/band-01.webp"
+import marqueeTwo from "images/homepage/marquees/band-02.webp"
+import marqueeThree from "images/homepage/marquees/band-03.webp"
+import marqueeFour from "images/homepage/marquees/band-04.webp"
 import { getProjects } from "utils/data"
 import { useLang, useT } from "utils/i18n/useT"
 import usePageLoad from "utils/usePageLoad"
@@ -50,7 +50,7 @@ export default function Home() {
         </HomepageMarquee>
       </Section>
       <Section isDark>
-        <HomepagePortfolios
+        <HomepageProjects
           featuredOne={featuredOne}
           featuredTwo={featuredTwo}
           featuredThree={featuredThree}
@@ -67,7 +67,7 @@ export default function Home() {
         </Section>
       </div>
       <Section isDark>
-        <Quotes />
+        <Tagline />
       </Section>
       <Section noBottomWave>
         <HomepageMarquee images={lower} atBottom alts={lowerAlt}>

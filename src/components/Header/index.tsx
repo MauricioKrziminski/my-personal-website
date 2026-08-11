@@ -11,7 +11,7 @@ import text from "styles/text"
 import LanguageToggle from "utils/i18n/LanguageToggle"
 import { useT } from "utils/i18n/useT"
 
-import Candlestick from "./Candlestick"
+import MenuGlyph from "./MenuGlyph"
 import Logo from "./Logo"
 import SideNav from "./SideNav"
 
@@ -82,7 +82,7 @@ export default function Header() {
                 {t.header.menu}
               </Menu>
             </MenuContainer>
-            <Candlestick isCloseButton={navIsOpen} />
+            <MenuGlyph isCloseButton={navIsOpen} />
           </Right>
         </RightGroup>
       </Wrapper>

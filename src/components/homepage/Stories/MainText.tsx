@@ -141,7 +141,7 @@ const Inner = styled.div`
 `
 
 const Blinky = styled.div`
-  background-color: ${colors.mainGreen};
+  background-color: ${colors.mainAccent};
   display: inline-block;
   width: 50px;
   height: 10px;

@@ -7,9 +7,11 @@
 import fs from "fs"
 import sharp from "sharp"
 
-const GREEN = "#2BEE4B" // colors.mainGreen, mesma cor do traço no logo do header
-const DARK = "#121613" // colors.mainBlack
-const WHITE = "#fafffa" // colors.mainWhite, o fundo claro da aplicação
+import { colors, fontFace, GEIST } from "./brand.mjs"
+
+const ACCENT = colors.accent // mesma cor do traço no logo do header
+const DARK = colors.dark
+const WHITE = colors.white // o fundo claro da aplicação
 
 // proporções escolhidas comparando renders reais em 16px e 32px: abaixo de 0.88
 // as letras esmaecem na aba, e o traço fino demais vira um verde lavado
@@ -19,11 +21,10 @@ const GAP_RATIO = 0.15 // respiro entre as letras e o traço
 const CORNER_RATIO = 0.18 // raio dos cantos
 
 // fonte real do site, embutida como data URI (librsvg lê woff2 via @font-face)
-const woff2 = fs.readFileSync("public/fonts/TWKLausanne-550.woff2").toString("base64")
-const fontFace = `@font-face{font-family:'TWK Lausanne';font-weight:550;src:url(data:font/woff2;base64,${woff2}) format('woff2');}`
+const face = fontFace("Geist", 600, GEIST)
 
 const textEl = (fontSize, x, y) =>
-  `<text x="${x}" y="${y}" font-family="'TWK Lausanne'" font-weight="550" font-size="${fontSize}"` +
+  `<text x="${x}" y="${y}" font-family="Geist" font-weight="600" font-size="${fontSize}"` +
   ` letter-spacing="${-0.0375 * fontSize}" fill="${DARK}">MK</text>`
 
 /**
@@ -35,7 +36,7 @@ const F0 = 560
 const probe = await sharp(
   Buffer.from(
     `<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900">
-      <defs><style>${fontFace}</style></defs>${textEl(F0, 800, 650)}</svg>`
+      <defs><style>${face}</style></defs>${textEl(F0, 800, 650)}</svg>`
   )
 )
   .png()
@@ -66,10 +67,10 @@ async function icon(size) {
   const y = top - k.top * fontSize
 
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}">
-    <defs><style>${fontFace}</style></defs>
+    <defs><style>${face}</style></defs>
     <rect width="${size}" height="${size}" rx="${size * CORNER_RATIO}" fill="${WHITE}"/>
     ${textEl(fontSize, x, y)}
-    <rect x="${left}" y="${top + inkH + gap}" width="${inkW}" height="${barH}" fill="${GREEN}"/>
+    <rect x="${left}" y="${top + inkH + gap}" width="${inkW}" height="${barH}" fill="${ACCENT}"/>
   </svg>`
 
   return sharp(Buffer.from(svg)).png({ compressionLevel: 9 }).toBuffer()
