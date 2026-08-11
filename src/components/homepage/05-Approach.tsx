@@ -61,18 +61,21 @@ export default function Approach() {
 
       newTimeline.to(wrapper.current, { duration: 0 }, KEYFRAMES.DURATION) // calibrate timeline duration
 
-      if (isSmooth) {
-        const newAfterTimeline = gsap.timeline({
-          scrollTrigger: {
-            trigger: outer.current,
-            start: "bottom 100%",
-            end: "bottom -100%",
-            scrub: true,
-            refreshPriority: 10 - 5.2,
-          },
-        })
-        setAfterTimeline(newAfterTimeline)
-      }
+      /* A transicao de saida (o zoom do Venn ate o tagline) ficava atras
+         de um if (isSmooth), entao nao existia no celular, onde o
+         ScrollSmoother e desligado de proposito. O Venn ja tinha um valor
+         proprio de mobile no getMedia do deslocamento, sinal de que a
+         animacao foi pensada para o celular e o gate veio depois. */
+      const newAfterTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: outer.current,
+          start: "bottom 100%",
+          end: "bottom -100%",
+          scrub: true,
+          refreshPriority: 10 - 5.2,
+        },
+      })
+      setAfterTimeline(newAfterTimeline)
       setTimeline(newTimeline)
     }
   }, [isSmooth])
