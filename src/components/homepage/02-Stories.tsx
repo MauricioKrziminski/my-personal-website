@@ -33,7 +33,14 @@ export default function Stories() {
   const instantResize = () => {
     setTimeout(() => {
       gsap.set(inner.current, {
-        height: Math.round(window.innerHeight),
+        /* clientHeight, e nao window.innerHeight: no Safari do iOS o
+           innerHeight muda enquanto a barra de endereco recolhe e
+           expande durante a rolagem. Gravada com a barra recolhida, a
+           altura ficava maior que a area visivel e o fim da secao (o
+           botao "Ver projetos") caia para fora, encostando na faixa
+           seguinte. O clientHeight e o viewport de layout, que no iOS
+           nao oscila, entao a secao e dimensionada pelo pior caso. */
+        height: Math.round(document.documentElement.clientHeight),
       })
     }, 0)
   }

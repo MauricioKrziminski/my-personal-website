@@ -49,6 +49,10 @@ const Wrapper = styled.div`
     position: static;
     width: 92vw;
     margin-top: 10.667vw;
+    /* no desktop e no tablet o respiro embaixo vem do position: absolute
+       com bottom; aqui o bloco vira estatico e ficava colado no fim da
+       secao, com o botao encostando na faixa seguinte */
+    margin-bottom: 8vw;
   }
 `
 
