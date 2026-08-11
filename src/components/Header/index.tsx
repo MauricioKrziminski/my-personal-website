@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState, useContext } from "react"
 import gsap from "gsap"
 import styled from "styled-components"
 
-import { NavContext, ScreenContext } from "components/Providers"
+import { NavContext } from "components/Providers"
 import colors from "styles/colors"
 import easing from "styles/easing"
 import media from "styles/media"
@@ -17,9 +17,9 @@ import SideNav from "./SideNav"
 
 export default function Header() {
   const menuText = useRef<HTMLDivElement>(null)
+  const menuBox = useRef<HTMLDivElement>(null)
   const [isScrolled, setIsScrolled] = useState(false)
   const { navIsOpen, setNavIsOpen, menuLight } = useContext(NavContext)
-  const { mobile } = useContext(ScreenContext)
   const t = useT()
 
   const handleScroll = () => {
@@ -31,22 +31,35 @@ export default function Header() {
   }
 
   useEffect(() => {
-    if (menuText.current) {
-      if (isScrolled) {
-        gsap.to(menuText.current, {
-          x: "-100%",
-          opacity: 0,
-          ease: "power1.out",
-        })
-      } else {
-        gsap.to(menuText.current, {
-          x: 0,
-          opacity: 1,
-          ease: "power1.out",
-        })
-      }
-    }
-  }, [isScrolled])
+    const word = menuText.current
+    const box = menuBox.current
+    if (!word || !box) return
+
+    /* Com o menu aberto o rotulo vira "Fechar", que precisa continuar
+       visivel mesmo com a pagina rolada. Como o "Fechar" e absoluto dentro
+       da caixa, encolher a caixa o esconderia: por isso a condicao exige
+       tambem que o menu esteja fechado. */
+    const collapsed = isScrolled && !navIsOpen
+
+    gsap.to(word, {
+      x: collapsed ? "-100%" : 0,
+      opacity: collapsed ? 0 : 1,
+      duration: 0.4,
+      ease: "power2.out",
+    })
+
+    /* opacity e transform nao mexem no layout, entao so com a animacao
+       acima a caixa da palavra continuava ocupando largura e mantinha o
+       toggle PT/EN afastado do icone. Encolher a largura junto (a caixa ja
+       tem overflow: hidden) aproxima os dois enquanto o rotulo sai, num
+       movimento so. Mesma duracao e mesma curva das duas animacoes de
+       proposito, para lerem como um gesto unico. */
+    gsap.to(box, {
+      width: collapsed ? 0 : "auto",
+      duration: 0.4,
+      ease: "power2.out",
+    })
+  }, [isScrolled, navIsOpen])
 
   useEffect(() => {
     window.addEventListener("smoothScroll", handleScroll)
@@ -70,13 +83,13 @@ export default function Header() {
             }}
             navIsOpen={navIsOpen}
           >
-            <MenuContainer>
-              <Menu ref={menuText} transparent={!navIsOpen} light>
+            <MenuContainer ref={menuBox}>
+              <Menu transparent={!navIsOpen} light>
                 {t.header.close}
               </Menu>
               <Menu
                 ref={menuText}
-                transparent={navIsOpen || mobile}
+                transparent={navIsOpen}
                 light={menuLight}
               >
                 {t.header.menu}
