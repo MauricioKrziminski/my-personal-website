@@ -29,8 +29,8 @@ type PagesContext = {
   env: Env
 }
 
-/** Dois "i" em "krziminskii" é intencional, é o endereço real. Não "corrigir". */
-const TO_EMAIL = "mauricio.krziminskii@gmail.com"
+/** Sobrenome antes do nome é intencional, é o endereço real. Não "corrigir". */
+const TO_EMAIL = "krziminski.mauricio@gmail.com"
 const FROM_ADDRESS = "contato@mauriciokrziminski.com.br"
 
 const TURNSTILE_VERIFY_URL =

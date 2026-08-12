@@ -45,9 +45,9 @@ Usar estes dados ao escrever/editar copy. Não inventar; se faltar algo, pergunt
 - **Stack pessoal**: TypeScript, React, Next.js, Nest, Spring, SQL, Docker,
   Clean/Hexagonal Architecture.
 - **Localização**: Porto Alegre, RS — Brasil.
-- **Contatos** (`src/utils/links.ts`): email `mauricio.krziminskii@gmail.com`
-  (nota: dois "i" em krziminskii no email; o handle é sem — confirmar antes de
-  "corrigir"), GitHub `github.com/MauricioKrziminski`,
+- **Contatos** (`src/utils/links.ts`): email `krziminski.mauricio@gmail.com`
+  (nota: no email o sobrenome vem primeiro, ao contrário do handle das redes;
+  confirmar antes de "corrigir"), GitHub `github.com/MauricioKrziminski`,
   LinkedIn `linkedin.com/in/mauriciokrziminski`, site `mauriciokrziminski.com.br`.
 
 ## Regras de cópia/voz (valem para TODA a cópia do site)

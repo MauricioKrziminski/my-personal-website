@@ -5,10 +5,10 @@
  * (aqui, e nos dois dicionários de strings.ts), o que obrigava a lembrar dos
  * três para trocar de endereço. Endereço não é texto traduzível.
  *
- * Nota: são dois "i" em "krziminskii" no email, e um só no handle das redes.
- * É assim mesmo, não "corrigir".
+ * Nota: no email o sobrenome vem primeiro ("krziminski.mauricio"), ao contrário
+ * do handle das redes. É assim mesmo, não "corrigir".
  */
-const emailAddress = "mauricio.krziminskii@gmail.com"
+const emailAddress = "krziminski.mauricio@gmail.com"
 
 const links = {
   github: "https://github.com/MauricioKrziminski",
