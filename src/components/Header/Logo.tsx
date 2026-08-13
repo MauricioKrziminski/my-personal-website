@@ -8,6 +8,8 @@ const LogoLightSVG = "/images/global/LogoLight.svg"
 const LogoSmallDark = "/images/global/LogoSmallDark.svg"
 const LogoSmallLight = "/images/global/LogoSmallLight.svg"
 import { isBrowser, isColorLight } from "utils/functions"
+import loader from "utils/Loader"
+import { getLoaderIsDone } from "utils/Loader/LoaderUtils"
 import { loadPage } from "utils/Loader/TransitionUtils"
 
 type LogoProps = {
@@ -63,21 +65,41 @@ export default function Logo({ isScrolled }: LogoProps) {
       /* updateLogoColor le o layout (elementsFromPoint + getComputedStyle), o
          que forca reflow. rodar isso a cada 250ms para sempre aparecia no
          Lighthouse como "Forced reflow" e impedia a main thread de ficar
-         ociosa, o que empurrava a run contra o teto de tempo. agora so roda
-         enquanto algo pode ter mudado: quando o scroll mexeu, mais um periodo
-         curto de folga depois disso (as ondas do fundo levam alguns frames
-         para se acomodar depois que o scroll para). */
+         ociosa. entao so roda quando algo pode ter mudado o fundo atras do
+         logo: enquanto o loader/transicao esta rodando, e por uma janela
+         curta depois de cada mudanca de scroll (as ondas do fundo levam
+         alguns frames para se acomodar depois que o scroll para). */
       const SETTLE_TICKS = 8
       let lastScroll = -1
       let settling = SETTLE_TICKS
 
+      const rearm = () => {
+        settling = SETTLE_TICKS
+      }
+
+      /* uma transicao de rota troca o fundo atras do logo sem que haja
+         scroll nenhum, entao a janela precisa reabrir no fim dela tambem. */
+      loader.addEventListener("anyEnd", rearm)
+      loader.addEventListener("transitionEnd", rearm)
+
       const updater = setInterval(() => {
         if (document.hidden) return
+
+        /* Enquanto o loader cobre a pagina, elementsFromPoint devolve o
+           proprio overlay: a leitura seria do preto do loader e nao do fundo
+           real. Segue checando (o wipe vai revelando o hero), mas sem
+           consumir a janela, que precisa valer depois que o overlay sair.
+           Sem isto o logo congelava claro sobre o hero branco ate o primeiro
+           scroll. */
+        if (!getLoaderIsDone()) {
+          requestAnimationFrame(updateLogoColor)
+          return
+        }
 
         const scroll = Math.round(window.scrollY)
         if (scroll !== lastScroll) {
           lastScroll = scroll
-          settling = SETTLE_TICKS
+          rearm()
         } else if (settling <= 0) return
         else settling -= 1
 
@@ -86,6 +108,8 @@ export default function Logo({ isScrolled }: LogoProps) {
 
       return () => {
         clearInterval(updater)
+        loader.removeEventListener("anyEnd", rearm)
+        loader.removeEventListener("transitionEnd", rearm)
       }
     }
   }, [])
