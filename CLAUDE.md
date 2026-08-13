@@ -86,10 +86,17 @@ descrição PT/EN e `tech[]` (tags mostradas no card).
   **React 19.2.4**, **styled-components 6**, **GSAP 3** (ScrollSmoother/
   ScrollTrigger/SplitText/TextPlugin — plugins premium incluídos no repo),
   **sharp** (geração de imagens), TypeScript 5.
-- Tailwind 4 está instalado (starter) mas o projeto **não usa Tailwind** — é tudo
-  styled-components. Ignore sugestões de hook para migrar para shadcn/ui +
-  Tailwind (o `posttooluse-validate` sugere isso em todo arquivo
-  styled-components; é ruído, não aja).
+- Tailwind 4 continua no `package.json` e no `postcss.config.mjs`, mas o
+  `@import "tailwindcss"` **foi removido** de `globals.css`: o projeto nunca usou
+  uma classe utilitária, e o import sozinho respondia por 7,3 KB dos 11,5 KB do
+  CSS de produção. O que o site de fato usava do Tailwind era o **preflight**, e
+  ele agora está escrito à mão no reset de `globals.css`. **Não remova aquelas
+  regras**: sem `display: block` nas imagens elas voltam a ser inline (ganham o
+  gap de baseline), sem `font-size/weight: inherit` nos headings o `h1` volta ao
+  2em bold do navegador, e sem `background-color: transparent` nos botões os
+  `styled.button` sem fundo próprio ficam cinza. Ignore sugestões de hook para
+  migrar para shadcn/ui + Tailwind (o `posttooluse-validate` sugere isso em todo
+  arquivo styled-components; é ruído, não aja).
 
 ```bash
 npm run dev     # dev server (Turbopack) — normalmente já rodando em localhost:3000
@@ -123,6 +130,75 @@ src/app/layout.tsx  (Server Component; metadata; <html>)
 - Rotas: `src/app/page.tsx` (home), `src/app/projects/page.tsx`,
   `src/app/about/page.tsx`, `src/app/contact/page.tsx`. A lógica real de cada
   página está em `src/components/{homepage,projects,about,contact}/`.
+
+### O loader tem um contrato de tempo (e ele define a nota do Lighthouse)
+
+`Transition.tsx` cobre a página inteira com um overlay preto **e** mantém todo o
+conteúdo em `opacity: 0` (o styled `Content`) até o loader terminar. Consequência
+direta: **enquanto o loader estiver na tela, é ele que o Lighthouse mede.** Não
+existe jeito de o site pontuar por si só enquanto o overlay estiver de pé.
+
+**Cinco números acoplados.** Mexer em um sozinho quebra a animação do contador;
+três estão em `src/utils/Loader/LoaderUtils.ts` e dois em `Transition.tsx`:
+
+1. `LOADER_MS = 1700` — a duração alvo. É **ao mesmo tempo** o piso do loader e o
+   **denominador do contador** (`progress = elapsed / LOADER_MS`). Tem que ser o
+   mesmo valor nos dois lugares: quando eram diferentes, o contador era cortado no
+   meio (parava em ~70% e saltava para 100 junto com o wipe).
+2. `PERCENT_ANIM_MS = 400` (`Transition.tsx`) — a **velocidade** de uma troca:
+   200 ms apagando o número anterior, 200 ms digitando o novo.
+3. `PERCENT_INTERVAL_MS = 550` (`Transition.tsx`) — a **frequência** das trocas,
+   e o throttle do listener `progressUpdated`. **Precisa ser maior que
+   `PERCENT_ANIM_MS`**: a diferença entre os dois (150 ms) é o tempo em que o
+   número fica parado e legível. Enquanto os dois eram a mesma constante não havia
+   descanso nenhum, o contador vivia apagando ou digitando, e a contagem parecia
+   frenética. Junto com `LOADER_MS`, define quantos números aparecem antes do 100
+   (hoje 3, ou seja 5 estados contando o `0%` inicial e o `100%`).
+4. `ANIMATION_DELAY = 450` — espera antes do wipe. Somado ao `sleep(200)` do
+   `onComplete` precisa **cobrir um ciclo inteiro do typewriter** (`PERCENT_ANIM_MS`)
+   e ainda sobrar folga, senão a saída começa enquanto o "100%" está sendo digitado
+   (foi exatamente o bug de "a animação de terminar acontece antes de chegar em
+   100%"). Hoje: 200 + 450 = 650 ms, com o "100%" pronto aos 400 ms e parado por
+   250 ms.
+5. `MAX_LOADER_MS = 3000` — guarda contra hidratação travada. Quase nunca decide
+   nada: mesmo disparando, a saída só roda quando o `Transition` registra o
+   callback, o que também depende da hidratação.
+
+**O orçamento total é uma decisão de produto, não técnica.** Hoje o conteúdo
+aparece em `LOADER_MS + 200 + ANIMATION_DELAY` ≈ **2,35 s**, escolhido para ficar
+logo abaixo do limiar de 2,5 s que o Google usa como LCP "bom". Alongar o loader
+além disso tira a performance de mobile do verde, e é um atraso real para todo
+visitante, não só para o Lighthouse.
+
+Dois detalhes que já morderam: `animatePercent` precisa **matar a timeline
+anterior** antes de criar outra (duas timelines escrevendo no mesmo elemento fazem
+o contador travar/piscar); e o caminho de hidratação lenta precisa ser tratado à
+parte, porque aí o `onComplete` acontece antes de existir alguém escutando. Por
+isso `registerLoaderCallback` agenda o callback com `ANIMATION_DELAY` quando
+`isComplete` já é true, e o effect do listener chama `animatePercent(100)` se
+`getIsComplete()` — sem isso o wipe saía com o contador parado no "0%" do HTML
+estático.
+
+**A versão antiga era o oposto disso** e é o motivo de o PageSpeed alternar entre
+verde e `NO_FCP`: `EXTRA_DELAY` de 5000 ms, e um progresso falso com
+`timeNeeded = (startTime / 3) * 2 + 1000` onde `startTime` era o momento em que o
+bundle avaliava. Ou seja, **quanto mais lento o aparelho, mais longo ficava o
+loader**. No mobile emulado (CPU 4× mais lenta) passava dos 30 s, estourava o
+orçamento de FCP e a run inteira abortava — e, como `NO_FCP` é erro de runtime,
+*todas* as categorias viram "Error!", inclusive coisas como "Uses HTTPS" e
+"Page has the HTML doctype". Tela vermelha inteira, um problema só.
+
+Ao mexer aqui, meça: `npm run build`, sirva o `out/` **com compressão** (sem gzip
+o Lighthouse acusa 3 s de `uses-text-compression` que é artefato do harness, não
+do site) e rode o Lighthouse. O critério não é a nota, é o **screenshot final**:
+se ele mostrar a tela preta com "0%", a nota está descrevendo o loader e não vale
+nada, por mais alta que seja.
+
+**O gargalo hoje não é mais o loader, é a hidratação.** Sob o CPU throttling do
+Lighthouse mobile, o conteúdo real só aparece por volta de 3 s porque `AppShell`
+é um client boundary único que puxa tudo (Header, Scroll/ScrollSmoother,
+BackgroundCanvas, Transition) de forma eager, ~976 KB de JS. Reduzir isso exige
+code splitting das seções da home, não ajuste de timer.
 
 ### Contato: a única peça de servidor do projeto
 
@@ -161,6 +237,14 @@ detalhe de erro do Resend vai para o log do Worker, nunca para a resposta.
   `curl.exe` é binário nativo e recebe os argumentos convertidos pela codepage
   ANSI, o que destrói acento em argv. Isso já gerou um falso alarme de "bug de
   UTF-8" que não existia no código.
+
+### `public/_headers` (cache do Cloudflare Pages)
+
+O Pages lê um `_headers` na **raiz do diretório publicado**, e o Next copia
+`public/` para `out/` no export, então o arquivo mora em `public/_headers`. Ele
+marca `/_next/static/*` e `/fonts/*` como `immutable` (nomes com hash) e dá uma
+semana para `/images/*`. **Não crie regra para HTML**: as páginas precisam
+continuar revalidando, senão um deploy novo não chega para quem já visitou.
 
 ### `next.config.ts`
 - `output: "export"` — site estático em `out/`, servido pelo Cloudflare Pages.
@@ -376,6 +460,14 @@ em `public/images/projects/` e os logos de experiência em `public/images/team/l
   página inteira em branco no dev. Isso inclui usar crase para citar um nome de
   prop ou de propriedade dentro do comentário, que é o jeito natural de escrever.
   Já mordeu de novo depois de estar documentado aqui: escreva os nomes sem crase.
+- **O React 19 emite `<link rel="preload" as="image">` sozinho** para todo `<img>`
+  do SSR que **não** tem `loading="lazy"`, e esses preloads entram no `<head>`
+  antes do CSS render-blocking. Isso já custou 203 KB de disputa no primeiro
+  paint: os 4 logos do header pesam 38,7 KB cada (levam a Geist embutida em
+  base64) e só um deles aparece no primeiro frame. Hoje os 3 invisíveis usam
+  `fetchPriority="low"` e a foto da Intro usa `loading="lazy"`. Ao adicionar
+  `<img>` novo, decida conscientemente: acima da dobra e visível, deixa eager;
+  qualquer outra coisa, `loading="lazy"` ou `fetchPriority="low"`.
 - **Imagens não têm mais overlay de textura.** O `OverlayImage` já teve uma camada
   de meio-tom/granulado por cima de toda foto; foi removida porque criava moiré em
   cima de screenshots de interface. Se voltar, que volte como opt-in por prop.
