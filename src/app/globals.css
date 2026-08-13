@@ -1,5 +1,3 @@
-@import "tailwindcss";
-
 /*
  * Brand fonts. All three are SIL Open Font License 1.1 and self-hosted from
  * /public/fonts; the license texts live alongside them in /public/fonts/licenses.
@@ -80,11 +78,86 @@
 /*
  * Global reset. styled-components owns all real styling; these are just the
  * baseline rules every page depends on.
+ *
+ * A maior parte disto vinha do preflight do Tailwind. O projeto nunca usou uma
+ * classe utilitaria sequer (e tudo styled-components), mas o
+ * @import "tailwindcss" injetava ~7,3 KB dos 11,5 KB do CSS de producao. As
+ * regras abaixo sao as do preflight das quais o site realmente depende, em
+ * especial o display: block nas imagens (sem isso elas voltam a ser inline e
+ * ganham o gap de baseline embaixo) e o font-size/weight herdado nos headings
+ * (os tokens de styles/text.ts assumem que o h1..h6 nao traz tamanho proprio).
  */
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  border: 0 solid;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  vertical-align: middle;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* button entra aqui de proposito: sem background-color: transparent os
+   styled.button que nao declaram fundo proprio (o BG do SideNav, o Wrapper do
+   Logo) voltam a receber o cinza padrao do navegador. */
+button,
+input,
+select,
+optgroup,
+textarea {
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+button,
+input:where([type="button"], [type="reset"], [type="submit"]) {
+  -webkit-appearance: button;
+  appearance: button;
+}
+
+::placeholder {
+  opacity: 1;
 }
 
 html,
