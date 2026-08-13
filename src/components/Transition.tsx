@@ -7,7 +7,7 @@ import React, {
   ReactNode,
 } from "react"
 
-import gsap from "gsap/all"
+import gsap from "gsap"
 import styled, { keyframes } from "styled-components"
 
 import Marquee from "components/ConsistentMarquee"
@@ -17,6 +17,7 @@ import media from "styles/media"
 import text from "styles/text"
 import loader from "utils/Loader"
 import {
+  getIsComplete,
   registerLoaderCallback,
   unregisterLoaderCallback,
 } from "utils/Loader/LoaderUtils"
@@ -28,6 +29,27 @@ import useInnerVh from "utils/useInnerVh"
 import { useT } from "utils/i18n/useT"
 
 import Spinner from "./Spinner"
+
+/**
+ * Quanto tempo o typewriter leva para trocar um numero: metade apagando o
+ * anterior, metade digitando o novo. E a *velocidade* de cada troca.
+ *
+ * ANIMATION_DELAY (utils/Loader/LoaderUtils.ts) precisa dar conta deste valor,
+ * senao o wipe de saida comeca enquanto o "100%" ainda esta sendo digitado.
+ */
+const PERCENT_ANIM_MS = 400
+
+/**
+ * De quanto em quanto tempo um numero novo entra. E a *frequencia* das trocas.
+ *
+ * Precisa ser MAIOR que PERCENT_ANIM_MS: a diferenca entre os dois e o tempo em
+ * que o numero fica parado e legivel antes da proxima troca. Enquanto os dois
+ * eram a mesma constante nao havia descanso nenhum, o contador vivia apagando
+ * ou digitando, e a contagem parecia frenetica.
+ *
+ * Junto com LOADER_MS, define quantos numeros aparecem antes do 100.
+ */
+const PERCENT_INTERVAL_MS = 550
 
 type Props = {
   children: ReactNode
@@ -41,6 +63,7 @@ export default function Transition({ children }: Props) {
   const percentEl = useRef<HTMLDivElement>(null)
   const [showContent, setShowContent] = useState(false)
   const percentInterval = useRef<NodeJS.Timer>()
+  const percentTl = useRef<gsap.core.Timeline>()
   const wrapperRef = useRef<HTMLDivElement>(null)
   const spinnerRef = useRef<HTMLDivElement>(null)
 
@@ -254,21 +277,26 @@ export default function Transition({ children }: Props) {
   const animatePercent = useCallback((percent: number) => {
     if (percent === 100) clearInterval(percentInterval.current)
 
+    // Mata o ciclo anterior antes de comecar outro. Sem isso duas timelines
+    // escrevem no mesmo elemento ao mesmo tempo e o contador trava/pisca.
+    percentTl.current?.kill()
+
     const tl = gsap.timeline()
+    percentTl.current = tl
 
     if (percentEl.current) {
       tl.to(percentEl.current, {
         text: {
           value: "",
         },
-        duration: 0.25,
+        duration: PERCENT_ANIM_MS / 2 / 1000,
       })
 
       tl.to(percentEl.current, {
         text: {
           value: `${percent}%`,
         },
-        duration: 0.25,
+        duration: PERCENT_ANIM_MS / 2 / 1000,
       })
     }
   }, [])
@@ -285,16 +313,21 @@ export default function Transition({ children }: Props) {
         canSendProgress = false
         setTimeout(() => {
           canSendProgress = true
-        }, 500)
+        }, PERCENT_INTERVAL_MS)
       } else {
         if (timeout) clearTimeout(timeout)
         timeout = setTimeout(() => {
           updateProgress(e)
-        }, 500)
+        }, PERCENT_INTERVAL_MS)
       }
     }
 
     loader.addEventListener("progressUpdated", updateProgress)
+
+    // Hidratacao lenta: o evento de 100 ja passou antes deste listener existir,
+    // entao o contador ficaria parado no "0%" do HTML estatico enquanto o wipe
+    // de saida roda. Exibe 100 direto para a saida fazer sentido.
+    if (getIsComplete()) animatePercent(100)
 
     return () => {
       loader.removeEventListener("progressUpdated", updateProgress)
