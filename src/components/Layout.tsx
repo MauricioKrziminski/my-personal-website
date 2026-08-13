@@ -5,7 +5,6 @@ import styled from "styled-components"
 import { useLocation } from "utils/useLocation"
 
 import BackgroundCanvas from "components/BackgroundCanvas"
-import FPSTracker from "components/FPSTracker"
 import Header from "components/Header"
 import Scroll from "components/Scroll"
 import PageLoader from "components/Transition"
@@ -49,7 +48,6 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <>
-      <FPSTracker />
       <PageLoader>
         {usesBackground && <BackgroundCanvas />}
         <Header />

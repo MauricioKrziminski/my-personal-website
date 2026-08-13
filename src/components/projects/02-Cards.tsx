@@ -6,7 +6,9 @@ import React, {
   useCallback,
 } from "react"
 
-import gsap, { ScrollTrigger, ScrollSmoother } from "gsap/all"
+import gsap from "gsap"
+import { ScrollSmoother } from "gsap/ScrollSmoother"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import styled from "styled-components"
 
 import HorizontalBlob from "components/HorizontalBlob"

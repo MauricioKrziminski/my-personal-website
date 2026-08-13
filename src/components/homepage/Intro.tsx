@@ -117,7 +117,18 @@ export default function Intro() {
       <Pinned className="intro-pinned">
         <Inner>
         <PhotoCard className="intro-photo">
-          <img className="intro-photo-img" src={Photo.src} alt={t.intro.alt} />
+          {/* lazy de proposito: esta foto e da segunda secao, fora do viewport
+              inicial. sem isso o React 19 emite um <link rel="preload"
+              as="image"> para ela, que disputa a fila com o CSS render-blocking
+              no primeiro paint. */}
+          <img
+            className="intro-photo-img"
+            src={Photo.src}
+            alt={t.intro.alt}
+            width={Photo.width}
+            height={Photo.height}
+            loading="lazy"
+          />
           <span className="intro-bar" />
         </PhotoCard>
 

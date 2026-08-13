@@ -6,7 +6,7 @@ import React, {
   MouseEventHandler,
 } from "react"
 
-import gsap from "gsap/all"
+import gsap from "gsap"
 import styled from "styled-components"
 
 import MovableBlob from "components/MovableBlob"

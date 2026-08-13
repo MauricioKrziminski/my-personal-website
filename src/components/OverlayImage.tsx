@@ -28,14 +28,22 @@ export default function OverlayImage({
   height = undefined,
   className = "",
 }: OverlayImageProps) {
+  /* Quando o src é um import estático, o Next já entrega as dimensões
+     intrínsecas. Aproveitá-las aqui resolve de uma vez o "Image elements do not
+     have explicit width and height" do Lighthouse em todos os call sites (as 8
+     imagens do hero, os marquees) sem precisar repetir números à mão. O layout
+     continua vindo do CSS abaixo (width/height 100% + object-fit): os atributos
+     só informam a proporção ao navegador antes do download. */
+  const intrinsic = typeof src === "string" ? undefined : src
+
   return (
     <Wrapper className={className}>
       <Image
         src={typeof src === "string" ? src : src.src}
         loading={loading}
         alt={alt}
-        width={width}
-        height={height}
+        width={width ?? intrinsic?.width}
+        height={height ?? intrinsic?.height}
       />
     </Wrapper>
   )

@@ -76,13 +76,16 @@ export default function Scroll({ children }: ScrollProps) {
       effects: true,
       onUpdate: e => {
         // if at the top, enable overscroll behavior (pull to refresh)
-        if (e.scrollTop() === 0) {
-          document.body.style.overscrollBehaviorY = "auto"
-        } else {
-          document.body.style.overscrollBehaviorY = "none"
+        // so escreve quando muda: este callback roda a cada frame de scroll, e
+        // escrever no style do body todo frame forcava recalculo de estilo a toa
+        const overscrollY = e.scrollTop() === 0 ? "auto" : "none"
+        if (document.body.style.overscrollBehaviorY !== overscrollY) {
+          document.body.style.overscrollBehaviorY = overscrollY
         }
         // always allow sideways overscroll (forward/back usually)
-        document.body.style.overscrollBehaviorX = "auto"
+        if (document.body.style.overscrollBehaviorX !== "auto") {
+          document.body.style.overscrollBehaviorX = "auto"
+        }
 
         const event = new CustomEvent("smoothScroll")
         window.dispatchEvent(event)

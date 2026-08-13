@@ -60,10 +60,29 @@ export default function Logo({ isScrolled }: LogoProps) {
 
   useEffect(() => {
     if (isBrowser()) {
-      const updater = setInterval(
-        () => requestAnimationFrame(updateLogoColor),
-        250
-      )
+      /* updateLogoColor le o layout (elementsFromPoint + getComputedStyle), o
+         que forca reflow. rodar isso a cada 250ms para sempre aparecia no
+         Lighthouse como "Forced reflow" e impedia a main thread de ficar
+         ociosa, o que empurrava a run contra o teto de tempo. agora so roda
+         enquanto algo pode ter mudado: quando o scroll mexeu, mais um periodo
+         curto de folga depois disso (as ondas do fundo levam alguns frames
+         para se acomodar depois que o scroll para). */
+      const SETTLE_TICKS = 8
+      let lastScroll = -1
+      let settling = SETTLE_TICKS
+
+      const updater = setInterval(() => {
+        if (document.hidden) return
+
+        const scroll = Math.round(window.scrollY)
+        if (scroll !== lastScroll) {
+          lastScroll = scroll
+          settling = SETTLE_TICKS
+        } else if (settling <= 0) return
+        else settling -= 1
+
+        requestAnimationFrame(updateLogoColor)
+      }, 250)
 
       return () => {
         clearInterval(updater)
@@ -88,15 +107,25 @@ export default function Logo({ isScrolled }: LogoProps) {
           <Image src={LogoDarkSVG} alt="Mauricio Krziminski" />
         </Jail>
         <Jail>
-          <Image src={LogoSmallDark} alt="Mauricio Krziminski" />
+          <Image src={LogoSmallDark} alt="Mauricio Krziminski" fetchPriority="low" />
         </Jail>
       </LogoContainer>
       <LogoContainer ref={light}>
         <Jail>
-          <Image src={LogoLightSVG} alt="Mauricio Krziminski" aria-hidden />
+          <Image
+            src={LogoLightSVG}
+            alt="Mauricio Krziminski"
+            aria-hidden
+            fetchPriority="low"
+          />
         </Jail>
         <Jail>
-          <Image src={LogoSmallLight} alt="Mauricio Krziminski" aria-hidden />
+          <Image
+            src={LogoSmallLight}
+            alt="Mauricio Krziminski"
+            aria-hidden
+            fetchPriority="low"
+          />
         </Jail>
       </LogoContainer>
     </Wrapper>

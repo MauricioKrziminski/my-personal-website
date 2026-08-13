@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect, useState } from "react"
 
-import gsap from "gsap/all"
+import gsap from "gsap"
 import styled from "styled-components"
 
 import media from "styles/media"

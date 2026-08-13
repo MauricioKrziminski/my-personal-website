@@ -1,0 +1,20 @@
+# Cache-Control para o Cloudflare Pages.
+#
+# Este arquivo e lido pelo Pages na RAIZ do diretorio publicado (out/). Ele mora
+# em public/ porque o Next copia tudo de public/ para out/ no build de export.
+#
+# Sem ele o Pages serve tudo com o default revalidante, e o Lighthouse acusa
+# "Use efficient cache lifetimes". Os assets abaixo tem hash no nome ou nunca
+# mudam de conteudo, entao podem ser imutaveis com seguranca.
+#
+# Nao inclua regra para o HTML: as paginas precisam continuar revalidando, senao
+# um deploy novo nao chega para quem ja visitou o site.
+
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=604800

@@ -1,6 +1,7 @@
 import React from "react"
 
-import gsap, { ScrollSmoother } from "gsap/all"
+import gsap from "gsap"
+import { ScrollSmoother } from "gsap/ScrollSmoother"
 import styled from "styled-components"
 
 import ArrowLink from "components/ArrowLink"

@@ -1,5 +1,4 @@
 import gsap from "gsap"
-import CSSPlugin from "gsap/CSSPlugin"
 import ScrollSmoother from "gsap/ScrollSmoother"
 import ScrollTrigger from "gsap/ScrollTrigger"
 import SplitText from "gsap/SplitText"
@@ -14,7 +13,9 @@ import { TextPlugin } from "gsap/TextPlugin"
  * Imported for its side effect at the top of the client AppShell boundary,
  * before any effects run.
  */
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText, TextPlugin, CSSPlugin)
+// CSSPlugin nao entra aqui de proposito: ele ja vem embutido e auto-registrado
+// no core do GSAP 3, e importa-lo so aumentava o bundle.
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText, TextPlugin)
 
 // The original site set a global default ease in gatsby-browser.tsx, so every
 // tween that doesn't specify its own ease animates with power1.inOut. Without
